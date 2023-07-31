@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.newtineproject.domain.model.Notification
+import com.example.newtineproject.ui.theme.LightBlue
 
 @Composable
 fun NotificationItem(
@@ -44,7 +45,7 @@ fun NotificationItem(
                 Icon(
                     imageVector = notification.icon,
                     contentDescription = "icon",
-                    tint = Color(0xFF0094FF)
+                    tint = LightBlue
                 )
                 Spacer(modifier = Modifier.width(5.dp))
                 Text(
