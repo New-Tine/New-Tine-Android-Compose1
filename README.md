@@ -1,2 +1,2 @@
 # NewTine_Project
-NewTine but with teamwork
+NewTine App developing with team
