@@ -36,7 +36,7 @@ fun NotificationScreen() {
             icon = Icons.Rounded.Star,
             category = "추천 뉴스",
             timePassed = 2,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+            title = "테슬라, 첫 전기 트럭 생산 소식에 개장 전 주가 올라"
         ),
         Notification(
             icon = Icons.Rounded.Star,
