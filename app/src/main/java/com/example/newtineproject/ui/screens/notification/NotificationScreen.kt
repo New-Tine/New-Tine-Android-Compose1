@@ -1,6 +1,8 @@
 package com.example.newtineproject.ui.screens.notification
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.widget.ImageButton
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -138,6 +140,9 @@ fun NotificationScreen() {
                             contentDescription = "Go back"
                         )
                     }
+
+
+
                 },
                 title = { Text(text = "알림") },
                 actions = {
