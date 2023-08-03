@@ -61,17 +61,12 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.ui:ui-util:1.4.3")
     implementation("androidx.compose.material3:material3")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
@@ -81,17 +76,4 @@ dependencies {
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
-
-    //Tab and ViewPager
-    implementation("com.google.accompanist:accompanist-pager:0.20.1")
-    implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
-
-    // Coil
-    implementation("io.coil-kt:coil-compose:2.4.0")
-
-    // Navigation
-    implementation("androidx.navigation:navigation-compose:2.6.0")
-
-    // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 }
