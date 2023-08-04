@@ -17,120 +17,21 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.newtineproject.domain.model.Notification
+import com.example.newtineproject.domain.model.notification.Notification
 import com.example.newtineproject.ui.screens.notification.components.NotificationItem
 import com.example.newtineproject.ui.theme.LightBlue
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationScreen() {
-    val notificationList = listOf(
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 2,
-            title = "테슬라, 첫 전기 트럭 생산 소식에 개장 전 주가 올라"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 3,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 4,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 5,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-        Notification(
-            icon = Icons.Rounded.Star,
-            category = "추천 뉴스",
-            timePassed = 1,
-            title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
-        ),
-    )
-
+fun NotificationScreen(onBackClick: () -> Unit) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 navigationIcon = {
                     IconButton(
                         onClick = {
-
+                            onBackClick()
                         }
                     ) {
                         Icon(
@@ -173,3 +74,102 @@ fun NotificationScreen() {
         }
     }
 }
+
+val notificationList = listOf(
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 2,
+        title = "테슬라, 첫 전기 트럭 생산 소식에 개장 전 주가 올라"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 3,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 4,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 5,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+    Notification(
+        icon = Icons.Rounded.Star,
+        category = "추천 뉴스",
+        timePassed = 1,
+        title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
+    ),
+)
