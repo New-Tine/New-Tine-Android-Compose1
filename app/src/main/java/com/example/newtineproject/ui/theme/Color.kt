@@ -11,3 +11,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 val LightBlue = Color(0xFF0094FF)
+val LightGray = Color(0xFF6D7280)
+
+val NewsPressAndDate = Color(0xFF9CA3AF)
+val NewsContent = Color(0xFF6D7280)
+val BookMarkOff = Color(0xFFD2D5DA)
