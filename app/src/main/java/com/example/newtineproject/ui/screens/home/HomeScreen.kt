@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.home.Category
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
@@ -39,7 +40,7 @@ import com.example.newtineproject.ui.theme.LightBlue
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(onNotificationsClick: () -> Unit) {
+fun HomeScreen(navController: NavController) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
@@ -53,14 +54,15 @@ fun HomeScreen(onNotificationsClick: () -> Unit) {
                 items = items,
                 selectedItem = selectedItem,
                 drawerState = drawerState,
-                scope = scope
+                scope = scope,
+                navController = navController
             )
         }
     ) {
         // Screen content
         Scaffold(
             topBar = { HomeTopAppBar(
-                onNotificationsClick = onNotificationsClick,
+                navController = navController,
                 drawerState = drawerState,
                 scope = scope
             ) },

@@ -3,8 +3,6 @@ package com.example.newtineproject.graphs
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import com.example.newtineproject.ui.screens.home.HomeScreen
 
 @Composable
 fun MainNavGraph(navController: NavHostController) {
@@ -14,21 +12,20 @@ fun MainNavGraph(navController: NavHostController) {
         startDestination = MainScreen.Home.route
     ) {
         // Bottom bar navigation implementation
-        composable(route = MainScreen.Home.route) {
-            HomeScreen {
-                navController.navigate(Graph.DETAILS)
-            }
-        }
+        homeNavGraph(navController)
 //        composable(route = MainScreen.Home.route) {
+//            HomeNavGraph(navController = navController)
+//        }
+//        composable(route = MainScreen.NewTech.route) {
 //            NewTechScreen()
 //        }
-//        composable(route = MainScreen.Home.route) {
+//        composable(route = MainScreen.Scrap.route) {
 //            ScrapScreen()
 //        }
-//        composable(route = MainScreen.Home.route) {
+//        composable(route = MainScreen.MyPage.route) {
 //            MyPageScreen()
 //        }
-        homeDetailNavGraph(navController = navController)
+
     }
 }
 

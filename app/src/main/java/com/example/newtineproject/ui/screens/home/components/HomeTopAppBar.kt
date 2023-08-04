@@ -11,6 +11,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavController
+import com.example.newtineproject.graphs.HomeDetailScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -19,7 +21,7 @@ import kotlinx.coroutines.launch
 fun HomeTopAppBar(
     drawerState: DrawerState,
     scope: CoroutineScope,
-    onNotificationsClick: () -> Unit,
+    navController: NavController,
     ) {
     CenterAlignedTopAppBar(
         title = { Text(text = "") },
@@ -48,7 +50,7 @@ fun HomeTopAppBar(
             }
             IconButton(
                 onClick = {
-                    onNotificationsClick()
+                    navController.navigate(HomeDetailScreen.Notification.route)
                 },
             ) {
                 Icon(

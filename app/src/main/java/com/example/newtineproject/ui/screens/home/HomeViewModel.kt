@@ -1,8 +1,9 @@
-package com.example.newtineproject.ui.screens.home.components
+package com.example.newtineproject.ui.screens.home
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
+import com.example.newtineproject.ui.screens.home.components.tmpList
 import com.example.newtineproject.ui.theme.BookMarkOff
 import com.example.newtineproject.ui.theme.LightBlue
 
