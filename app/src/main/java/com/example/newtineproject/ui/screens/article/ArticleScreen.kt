@@ -1,60 +1,43 @@
-package com.example.newtineproject.ui.screens.categoryNews
+package com.example.newtineproject.ui.screens.article
 
 
 import android.annotation.SuppressLint
-import android.hardware.lights.Light
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material.Icon
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material.Tab
-import androidx.compose.material.TabPosition
-import androidx.compose.material.TabRow
-import androidx.compose.material.TabRowDefaults
-import androidx.compose.material.Text
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
-import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.rememberTopAppBarState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import com.google.accompanist.pager.*
-import androidx.compose.ui.unit.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.*
+import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.CategoryNews
-import com.example.newtineproject.ui.screens.categoryNews.components.CategoryNewsItem
+import com.example.newtineproject.ui.screens.article.components.CategoryNewsItem
 import com.example.newtineproject.ui.theme.LightBlue
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.pagerTabIndicatorOffset
-import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
-import java.util.Locale.Category
 
-@Preview
 @Composable
-@ExperimentalPagerApi
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
-fun PagerScreen() {
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class, )
+fun ArticleScreen(navController: NavController) {
     val list = listOf("IT/과학", "정치", "경제", "산업", "사회", "문화", "스포츠")
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
@@ -65,7 +48,7 @@ fun PagerScreen() {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-
+                            navController.popBackStack()
                         }
                     ) {
                         Icon(
@@ -112,7 +95,7 @@ fun PagerScreen() {
                 content = {
                     TabRow(
                         selectedTabIndex = pagerState.currentPage,
-                        backgroundColor = Color.White,
+                        containerColor = Color.White,
                         divider = {},
                         modifier = Modifier
                             .padding(horizontal = 17.dp),
@@ -146,7 +129,7 @@ fun PagerScreen() {
                     )
 
                     HorizontalPager(
-                        count = list.size,
+                        pageCount = list.size,
                         modifier = Modifier.fillMaxSize(),
                         state = pagerState
                     ) { tabId ->

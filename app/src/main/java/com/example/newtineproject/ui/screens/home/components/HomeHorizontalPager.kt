@@ -51,6 +51,7 @@ import com.example.newtineproject.R
 import com.example.newtineproject.common.RippleDetail
 import com.example.newtineproject.domain.model.home.CardContents
 import com.example.newtineproject.domain.model.home.Category
+import com.example.newtineproject.ui.screens.home.HomeViewModel
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NewsContent
 import com.example.newtineproject.ui.theme.NewsPressAndDate

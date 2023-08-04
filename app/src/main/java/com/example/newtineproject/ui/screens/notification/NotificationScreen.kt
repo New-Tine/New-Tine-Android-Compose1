@@ -17,6 +17,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.example.newtineproject.domain.model.notification.Notification
 import com.example.newtineproject.ui.screens.notification.components.NotificationItem
 import com.example.newtineproject.ui.theme.LightBlue
@@ -24,14 +25,14 @@ import com.example.newtineproject.ui.theme.LightBlue
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationScreen(onBackClick: () -> Unit) {
+fun NotificationScreen(navController: NavController) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            onBackClick()
+                            navController.popBackStack()
                         }
                     ) {
                         Icon(

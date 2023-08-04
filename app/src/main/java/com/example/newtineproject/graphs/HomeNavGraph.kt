@@ -4,21 +4,29 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.example.newtineproject.ui.screens.article.ArticleScreen
+import com.example.newtineproject.ui.screens.home.HomeScreen
 import com.example.newtineproject.ui.screens.notification.NotificationScreen
 
-fun NavGraphBuilder.homeDetailNavGraph(navController: NavHostController) {
+fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
     navigation(
-        route = Graph.DETAILS,
-        startDestination = HomeDetailScreen.Notification.route
+        route = "home",
+        startDestination = HomeDetailScreen.Home.route
     ) {
+        composable(route = HomeDetailScreen.Home.route) {
+            HomeScreen(navController = navController)
+        }
         composable(route = HomeDetailScreen.Notification.route) {
-            NotificationScreen() {
-                navController.popBackStack()
-            }
+            NotificationScreen(navController = navController)
+        }
+        composable(route = HomeDetailScreen.Article.route) {
+            ArticleScreen(navController = navController)
         }
     }
 }
 
 sealed class HomeDetailScreen(val route: String) {
+    data object Home: HomeDetailScreen(route = "HOME")
     data object Notification: HomeDetailScreen(route = "NOTIFICATION")
+    data object Article: HomeDetailScreen(route = "ARTICLE")
 }
