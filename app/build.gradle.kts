@@ -78,6 +78,10 @@ dependencies {
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 
+ feature/3/categoryNews
+    //Tab and ViewPager
+    implementation("com.google.accompanist:accompanist-pager:0.20.1")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
     // Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
 
@@ -86,4 +90,5 @@ dependencies {
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+ develop
 }
