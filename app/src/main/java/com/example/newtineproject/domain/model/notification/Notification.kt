@@ -1,4 +1,4 @@
-package com.example.newtineproject.domain.model
+package com.example.newtineproject.domain.model.notification
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

@@ -17,9 +17,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.newtineproject.domain.model.Notification
+import com.example.newtineproject.domain.model.notification.Notification
 import com.example.newtineproject.ui.theme.LightBlue
 
 @Composable
@@ -69,7 +70,9 @@ fun NotificationItem(
             text = notification.title,
             style = LocalTextStyle.current.copy(
                 fontSize = 14.sp
-            )
+            ),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
         Spacer(modifier = Modifier.height(14.dp))
         Divider()
