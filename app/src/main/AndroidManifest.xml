@@ -15,9 +15,17 @@
         android:theme="@style/Theme.NewTineProject"
         tools:targetApi="31">
         <activity
-            android:name=".Achievement_Activity"
+            android:name=".ui.screens.mytech.mytech_Activity"
             android:exported="false"
-            android:label="@string/title_activity_achievement"
+            android:label="@string/title_activity_mytech"
+            android:theme="@style/Theme.NewTineProject" />
+        <activity
+            android:name=".ui.screens.mytech.Achievement_Activity"
+            android:exported="false"
+            android:theme="@style/Theme.NewTineProject" />
+        <activity
+            android:name=".ui.habbit_making.Habbit_Making_Activity"
+            android:exported="false"
             android:theme="@style/Theme.NewTineProject" />
         <activity
             android:name=".MainActivity"
