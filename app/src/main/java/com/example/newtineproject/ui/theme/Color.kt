@@ -19,6 +19,10 @@ val grey=Color(0xff6D7280)
 val LightGray = Color(0xFF6D7280)
 val MiddleGrey=Color(0xffD2D5DA)
 
+val LightGrey= Color(0xffE5E7EB)
+val Grey=Color(0xff6D7280)
+val MiddleGrey=Color(0xffD2D5DA)
+
 val NewsPressAndDate = Color(0xFF9CA3AF)
 val NewsContent = Color(0xFF6D7280)
 val BookMarkOff = Color(0xFFD2D5DA)
