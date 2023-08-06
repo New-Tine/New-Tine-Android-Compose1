@@ -14,15 +14,15 @@ val LightBlue = Color(0xFF0094FF)
 val Black= Color(0xFF000000)
 val White=Color(0xffffffff)
 
-val LightGrey= Color(0xffF3F4F6)
-val grey=Color(0xff6D7280)
-val LightGray = Color(0xFF6D7280)
-val MiddleGrey=Color(0xffD2D5DA)
 
+
+//혜원
 val LightGrey= Color(0xffE5E7EB)
-val Grey=Color(0xff6D7280)
 val MiddleGrey=Color(0xffD2D5DA)
+val Grey=Color(0xff6D7280)
 
+//현종
+val LightGray = Color(0xFF6D7280)
 val NewsPressAndDate = Color(0xFF9CA3AF)
 val NewsContent = Color(0xFF6D7280)
 val BookMarkOff = Color(0xFFD2D5DA)

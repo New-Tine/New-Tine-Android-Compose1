@@ -58,24 +58,6 @@ import java.time.format.TextStyle
 import java.util.Calendar
 import java.util.Locale
 
-class Achievement_Activity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            NewTineProjectTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize()
-                        .background(Color.White),
-                    color = Color.White
-                ) {
-                    AchievementScreen()
-                }
-            }
-        }
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AchievementScreen() {

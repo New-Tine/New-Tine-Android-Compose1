@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">New Tine Project</string>
-    <string name="title_activity_mytech">mytech_Activity</string>
-    <string name="title_activity_achievement">Achievement_Activity</string>
 </resources>

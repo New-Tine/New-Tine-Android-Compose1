@@ -1,11 +1,8 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.example.newtineproject.ui.habbit_making
+package com.example.newtineproject.ui.screens.home
 
 import android.app.TimePickerDialog
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +30,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -54,27 +50,9 @@ import com.example.newtineproject.ui.theme.LightGrey
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 import java.util.Calendar
 
-class Habbit_Making_Activity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            NewTineProjectTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.White
-                ) {
-                    habbit_making_Screen()
-
-                }
-            }
-        }
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun habbit_making_Screen(){
+fun Habbit_making_Screen(){
 
     val weekdays= arrayOf("월","화","수","목","금","토","일")
     val goal_list= arrayOf("하루에 읽을 기사 갯수 정하기","하루 뉴틴에 머무는 시간 정하기"
@@ -312,9 +290,9 @@ fun goal_list_Item(goal:String){
 
 @Preview(showBackground = true)
 @Composable
-fun habbit_making_Preview() {
+fun Habbit_making_Preview() {
     NewTineProjectTheme {
-        habbit_making_Screen()
+        Habbit_making_Screen()
 
     }
 }
