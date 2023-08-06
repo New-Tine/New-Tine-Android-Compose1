@@ -2,6 +2,7 @@ package com.example.newtineproject.ui.screens.article.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,32 +23,32 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.newtineproject.domain.model.CategoryNews
-
+import com.example.newtineproject.domain.model.Article
 
 @Composable
-fun CategoryNewsItem (
-    categoryNews: CategoryNews,
-    onItemClick: (CategoryNews) -> Unit
+fun ArticleItem (
+    article: Article,
+    onItemClick: (Article) -> Unit
 ){
     Column(
-        horizontalAlignment = Alignment.Start,
         modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onItemClick(article) }
             .padding(horizontal = 17.dp)
     ){
-        Spacer(modifier = Modifier.height(9.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { onItemClick(categoryNews) }
-
+                .padding(vertical = 13.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
                 horizontalAlignment = Alignment.Start
 
             ) {
                 Text(
-                    text = categoryNews.title,
+                    text = article.title,
                     style = LocalTextStyle.current.copy(
                         fontSize = 14.sp
                     ),
@@ -60,7 +61,7 @@ fun CategoryNewsItem (
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     Text(
-                        text = categoryNews.publication,
+                        text = article.publication,
                         style = LocalTextStyle.current.copy(
                             fontSize = 12.sp,
                             color = Color.Gray
@@ -69,18 +70,16 @@ fun CategoryNewsItem (
                     Spacer(modifier = Modifier.width(12.dp))
                     Text(
                         //case("분 전","시간 전") 구분 필요
-                        text = categoryNews.timePassed.toString() + "시간 전",
+                        text = article.timePassed.toString() + "시간 전",
                         style = LocalTextStyle.current.copy(
                             fontSize = 12.sp,
                             color = Color.Gray
                         )
                     )
                 }
-                Spacer(modifier = Modifier.height(11.dp))
             }
-            Spacer(modifier = Modifier.width(50.dp))
             Image(
-                painter = painterResource(id = categoryNews.thumbnail),
+                painter = painterResource(id = article.thumbnail),
                 contentDescription = "thumbnail Image",
                 modifier = Modifier
                     .width(100.dp)

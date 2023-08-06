@@ -1,8 +1,8 @@
 package com.example.newtineproject.ui.screens.article
 
-import com.example.newtineproject.domain.model.CategoryNews
+import com.example.newtineproject.domain.model.Article
 
 data class ArticleState(
-    val categoryNews: List<CategoryNews> = emptyList(),
+    val categoryNews: List<Article> = emptyList(),
     val error: String = ""
 )
