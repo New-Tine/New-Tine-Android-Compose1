@@ -19,8 +19,11 @@ fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
         composable(route = HomeDetailScreen.Notification.route) {
             NotificationScreen(navController = navController)
         }
-        composable(route = HomeDetailScreen.Article.route) {
-            ArticleScreen(navController = navController)
+        composable(route = "${HomeDetailScreen.Article.route}/{indexFromDrawer}") { backStackEntry ->
+            ArticleScreen(
+                navController = navController,
+                indexFromDrawer = backStackEntry.arguments?.getString("indexFromDrawer") ?: "0"
+            )
         }
     }
 }

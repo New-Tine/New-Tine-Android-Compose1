@@ -66,11 +66,13 @@ fun HomeModalDrawerSheet(
                         )
                     }
                 },
-                selected = item == selectedItem.value,
+                selected = false, // item == selectedItem.value, 선택한 것 티 낼지 안 낼지 물어보기!
                 onClick = {
                     scope.launch { drawerState.close() }
-                    selectedItem.value = item
-                    navController.navigate(route = HomeDetailScreen.Article.route)
+                    // selectedItem.value = item
+                    navController.navigate(
+                        route = "${HomeDetailScreen.Article.route}/${items.indexOf(item)}"
+                    )
                 },
                 modifier = Modifier
                     .padding(NavigationDrawerItemDefaults.ItemPadding)

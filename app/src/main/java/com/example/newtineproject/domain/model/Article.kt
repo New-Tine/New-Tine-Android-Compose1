@@ -1,7 +1,7 @@
 package com.example.newtineproject.domain.model
 
 
-data class CategoryNews(
+data class Article(
     val title: String,
     val thumbnail: Int,
     val publication: String,
