@@ -11,30 +11,34 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.CustomScrollableTabRow
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import com.example.newtineproject.R
+import com.example.newtineproject.common.RippleDetail
 import com.example.newtineproject.domain.model.Article
 import com.example.newtineproject.domain.model.home.Category
 import com.example.newtineproject.ui.screens.article.components.ArticleItem
+import com.example.newtineproject.ui.screens.article.components.ArticleTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
+import com.example.newtineproject.ui.theme.LightGray
 import kotlinx.coroutines.launch
 
 @Composable
@@ -42,52 +46,13 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 fun ArticleScreen(navController: NavController, indexFromDrawer: String) {
 
-    val category = Category.values().map { it.categoryName }
+    val categories = Category.values().map { it.categoryName }
     val pagerState = rememberPagerState(initialPage = indexFromDrawer.toInt())
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
-            CenterAlignedTopAppBar(
-                navigationIcon = {
-                    IconButton(
-                        onClick = {
-                            navController.popBackStack()
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowBack,
-                            contentDescription = "Go Back",
-                            tint = Color.Gray
-                        )
-                    }
-                },
-                title = { Text(text = "기사") },
-                actions = {
-                    IconButton(
-                        onClick = {
-
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Search,
-                            contentDescription = "Search",
-                            tint = Color.LightGray
-                        )
-                    }
-                    IconButton(
-                        onClick = {
-
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Notifications,
-                            contentDescription = "Notifications",
-                            tint = Color.Gray
-                        )
-                    }
-                }
-            )
+            ArticleTopAppBar(navController = navController)
         },
         content = { innerPadding ->
             Column(
@@ -95,15 +60,26 @@ fun ArticleScreen(navController: NavController, indexFromDrawer: String) {
                     .padding(innerPadding)
                     .fillMaxSize(),
                 content = {
-                    TabRow(
+                    CustomScrollableTabRow(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        edgePadding = 17.dp,
                         selectedTabIndex = pagerState.currentPage,
-
                         divider = {},
-                        modifier = Modifier.fillMaxWidth(),
+                        indicator = { tabPositions ->
+                            TabRowDefaults.Indicator(
+                                modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
+                                color = LightBlue // Change the color of the selected tab's bar here
+                            )
+                        },
                         tabs = {
-                            category.forEachIndexed { index, title ->
+                            categories.forEachIndexed { index, title ->
                                 Tab(
+                                    modifier = Modifier.padding(horizontal = 9.dp),
                                     selected = pagerState.currentPage == index,
+                                    selectedContentColor = LightBlue,
+                                    unselectedContentColor = LightGray,
+                                    interactionSource = RippleDetail.NoRippleInteractionSource(),
                                     onClick = {
                                         coroutineScope.launch {
                                             pagerState.animateScrollToPage(index)
@@ -113,14 +89,13 @@ fun ArticleScreen(navController: NavController, indexFromDrawer: String) {
                                     Row(
                                         verticalAlignment = Alignment.CenterVertically, // 텍스트를 수직 중앙 정렬
                                         horizontalArrangement = Arrangement.Center, // 텍스트를 수평 중앙 정렬
-                                        modifier = Modifier.padding(8.dp),
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 8.dp)
                                     ) {
                                         Text(
                                             text = title,
-                                            fontSize = 11.sp,
-                                            color = if (pagerState.currentPage == index) LightBlue else Color.LightGray,
-                                            modifier = Modifier
-                                                .fillMaxWidth() // 텍스트가 가로로 꽉 차도록 설정
+                                            fontSize = 14.sp
                                         )
                                     }
                                 }
@@ -137,7 +112,7 @@ fun ArticleScreen(navController: NavController, indexFromDrawer: String) {
                         )
                     )
                     HorizontalPager(
-                        pageCount = category.size,
+                        pageCount = categories.size,
                         modifier = Modifier.fillMaxSize(),
                         state = pagerState
                     ) { tabId ->
