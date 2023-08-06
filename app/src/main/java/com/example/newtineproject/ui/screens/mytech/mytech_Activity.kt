@@ -40,6 +40,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.newtineproject.R
 import com.example.newtineproject.ui.theme.LightBlue
+<<<<<<< HEAD
+=======
+import com.example.newtineproject.ui.theme.LightGrey
+>>>>>>> 53d3aa9 (FEAT:my tech, habbit making)
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 
 class mytech_Activity : ComponentActivity() {
