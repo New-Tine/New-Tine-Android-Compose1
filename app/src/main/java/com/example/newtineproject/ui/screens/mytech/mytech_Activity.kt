@@ -47,22 +47,6 @@ import com.example.newtineproject.R
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 
-class mytech_Activity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            NewTineProjectTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = Color.White
-                ) {
-                    myTech_main()
-                }
-            }
-        }
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
