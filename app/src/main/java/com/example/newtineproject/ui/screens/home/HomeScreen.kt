@@ -1,6 +1,7 @@
 package com.example.newtineproject.ui.screens.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,6 +31,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.home.Category
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
@@ -76,7 +80,10 @@ fun HomeScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     FloatingActionButton(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                                  //navController.navigate("Habbit_making_Screen")
+
+                        },
                         shape = CircleShape,
                         containerColor = LightBlue,
                         contentColor = Color.White,
