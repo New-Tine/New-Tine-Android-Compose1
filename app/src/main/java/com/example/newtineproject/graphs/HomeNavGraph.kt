@@ -4,9 +4,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.newtineproject.ui.screens.article.ArticleScreen
+import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.HomeScreen
-import com.example.newtineproject.ui.screens.notification.NotificationScreen
+import com.example.newtineproject.ui.screens.home.habbitsetting.HabitSettingScreen
+import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
 
 fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
     navigation(
@@ -25,6 +26,9 @@ fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
                 indexFromDrawer = backStackEntry.arguments?.getString("indexFromDrawer") ?: "0"
             )
         }
+        composable(route = HomeDetailScreen.HabitSetting.route) {
+            HabitSettingScreen(navController = navController)
+        }
     }
 }
 
@@ -32,4 +36,5 @@ sealed class HomeDetailScreen(val route: String) {
     data object Home: HomeDetailScreen(route = "HOME")
     data object Notification: HomeDetailScreen(route = "NOTIFICATION")
     data object Article: HomeDetailScreen(route = "ARTICLE")
+    data object HabitSetting: HomeDetailScreen(route = "HABIT_SETTING")
 }

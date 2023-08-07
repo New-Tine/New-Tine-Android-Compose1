@@ -1,4 +1,4 @@
-package com.example.newtineproject.domain.model
+package com.example.newtineproject.domain.model.article
 
 
 data class Article(

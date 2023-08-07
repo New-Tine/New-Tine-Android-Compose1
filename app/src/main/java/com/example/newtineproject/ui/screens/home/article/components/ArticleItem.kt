@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.article.components
+package com.example.newtineproject.ui.screens.home.article.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,7 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.newtineproject.domain.model.Article
+import com.example.newtineproject.domain.model.article.Article
 
 @Composable
 fun ArticleItem (

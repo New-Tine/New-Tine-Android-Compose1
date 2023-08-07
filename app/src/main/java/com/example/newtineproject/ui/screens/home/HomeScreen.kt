@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.home.Category
+import com.example.newtineproject.graphs.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
 import com.example.newtineproject.ui.screens.home.components.HomeModalDrawerSheet
 import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
@@ -61,11 +62,13 @@ fun HomeScreen(navController: NavController) {
     ) {
         // Screen content
         Scaffold(
-            topBar = { HomeTopAppBar(
-                navController = navController,
-                drawerState = drawerState,
-                scope = scope
-            ) },
+            topBar = {
+                HomeTopAppBar(
+                    navController = navController,
+                    drawerState = drawerState,
+                    scope = scope
+                )
+            },
             floatingActionButton = {
                 Row(
                     modifier = Modifier
@@ -75,7 +78,9 @@ fun HomeScreen(navController: NavController) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     FloatingActionButton(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            navController.navigate(HomeDetailScreen.HabitSetting.route)
+                        },
                         shape = CircleShape,
                         containerColor = LightBlue,
                         contentColor = Color.White,
@@ -120,7 +125,7 @@ fun HomeScreen(navController: NavController) {
 //                        )
                     )
                     Image(
-                        painter = painterResource(id = R.drawable.newtine_logo_1),
+                        painter = painterResource(id = R.drawable.newtine_logo),
                         contentDescription = "newtine logo",
                         modifier = Modifier
                             .width(44.dp)
