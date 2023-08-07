@@ -1,6 +1,7 @@
 package com.example.newtineproject.ui.screens.home
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,7 +38,6 @@ import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
 
@@ -108,14 +107,27 @@ fun HomeScreen(navController: NavController) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = it.calculateTopPadding(), start = 17.dp)
+                        .padding(top = it.calculateTopPadding(), start = 17.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = "오늘의 뉴테크",
                         style = MaterialTheme.typography.headlineMedium
+                        // figma랑 똑같이 구현할 시 (폰트도 추가 고려)
+//                        style = LocalTextStyle.current.copy(
+//                            fontSize = 24.sp,
+//                            fontWeight = FontWeight(600)
+//                        )
+                    )
+                    Image(
+                        painter = painterResource(id = R.drawable.newtine_logo_1),
+                        contentDescription = "newtine logo",
+                        modifier = Modifier
+                            .width(44.dp)
+                            .padding(top = 4.dp)
                     )
                 }
-                Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 HomeHorizontalPager()
             }
         }
