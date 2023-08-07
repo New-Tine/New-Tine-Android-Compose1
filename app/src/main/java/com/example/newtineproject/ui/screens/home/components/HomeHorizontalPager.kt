@@ -63,7 +63,7 @@ fun HomeHorizontalPager() {
 
     val sliderList = tmpList
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(initialPage = 0)
+    val pagerState = rememberPagerState(initialPage = sliderList.size / 2)
 
     HorizontalPager(
         pageCount = sliderList.size,

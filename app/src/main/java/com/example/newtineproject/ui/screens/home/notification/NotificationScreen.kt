@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.notification
+package com.example.newtineproject.ui.screens.home.notification
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Row
@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.newtineproject.domain.model.notification.Notification
-import com.example.newtineproject.ui.screens.notification.components.NotificationItem
+import com.example.newtineproject.ui.screens.home.notification.components.NotificationItem
 import com.example.newtineproject.ui.theme.LightBlue
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

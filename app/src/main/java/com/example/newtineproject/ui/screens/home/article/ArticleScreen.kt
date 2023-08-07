@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.article
+package com.example.newtineproject.ui.screens.home.article
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -23,10 +23,10 @@ import androidx.compose.ui.unit.*
 import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.common.RippleDetail
-import com.example.newtineproject.domain.model.Article
+import com.example.newtineproject.domain.model.article.Article
 import com.example.newtineproject.domain.model.home.Category
-import com.example.newtineproject.ui.screens.article.components.ArticleItem
-import com.example.newtineproject.ui.screens.article.components.ArticleTopAppBar
+import com.example.newtineproject.ui.screens.home.article.components.ArticleItem
+import com.example.newtineproject.ui.screens.home.article.components.ArticleTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGray
 import kotlinx.coroutines.launch

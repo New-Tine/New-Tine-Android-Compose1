@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.article.components
+package com.example.newtineproject.ui.screens.home.article.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
