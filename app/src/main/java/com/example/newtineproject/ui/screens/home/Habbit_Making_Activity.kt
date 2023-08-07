@@ -3,10 +3,12 @@
 package com.example.newtineproject.ui.screens.home
 
 import android.app.TimePickerDialog
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,6 +35,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.currentCompositionLocalContext
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,13 +46,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
+import kotlinx.coroutines.withContext
 import java.util.Calendar
+import kotlin.coroutines.coroutineContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -215,7 +223,8 @@ fun Habbit_making_Screen(){
                 Spacer(modifier = Modifier.weight(1f))
 
                 Button(onClick = { /*TODO*/ },
-                    modifier=Modifier.fillMaxWidth()
+                    modifier= Modifier
+                        .fillMaxWidth()
                         .align(Alignment.End)//왜 안되냐,,
                     , shape = RoundedCornerShape(2.dp)
 
@@ -240,16 +249,34 @@ fun Habbit_making_Screen(){
 
 @Composable
 fun weekdaysItem(day:String){
-    Text(
-        text = "$day",
-        fontSize = 15.sp,
-        color= LightBlue,
-        modifier = Modifier
-            .border(1.dp, LightBlue, RectangleShape)
+    val context = LocalContext.current
+
+    Button(
+        onClick = {
+                  Toast.makeText(context,"$day",Toast.LENGTH_SHORT).show()
+        },
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        modifier= Modifier
+            .width(48.5.dp)
+            .padding(0.dp)
+            .border(1.dp, LightBlue, RoundedCornerShape(2.dp))
             .background(Color.White)
-            .padding(12.dp)
-    )
-    Spacer(modifier = Modifier.padding(end=10.dp))
+
+
+
+        ) {
+        Text(
+            text = "$day",
+            fontSize = 14.sp,
+            color= LightBlue,
+            textAlign = TextAlign.Center
+
+        )
+
+    }
+    Spacer(modifier = Modifier.padding(end=5.dp))
+
+
 }
 
 @Composable
