@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.notification
+package com.example.newtineproject.ui.screens.home.notification
 
 import com.example.newtineproject.domain.model.notification.Notification
 

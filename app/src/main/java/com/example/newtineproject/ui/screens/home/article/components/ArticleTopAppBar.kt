@@ -1,6 +1,7 @@
-package com.example.newtineproject.ui.screens.home.components
+package com.example.newtineproject.ui.screens.home.article.components
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
@@ -11,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.example.newtineproject.graphs.HomeDetailScreen
 import kotlinx.coroutines.CoroutineScope
@@ -18,30 +20,27 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeTopAppBar(
-    drawerState: DrawerState,
-    scope: CoroutineScope,
-    navController: NavController,
-    ) {
+fun ArticleTopAppBar(navController: NavController) {
     CenterAlignedTopAppBar(
         navigationIcon = {
             IconButton(
                 onClick = {
-                    scope.launch { drawerState.open() }
+                    navController.popBackStack()
                 }
             ) {
                 Icon(
-                    imageVector = Icons.Default.Menu,
-                    contentDescription = "Go back"
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Go Back",
+                    tint = Color.Gray
                 )
             }
         },
-        title = { Text(text = "") },
+        title = { Text(text = "기사") },
         actions = {
             IconButton(
                 onClick = {
 
-                },
+                }
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,
@@ -51,11 +50,11 @@ fun HomeTopAppBar(
             IconButton(
                 onClick = {
                     navController.navigate(HomeDetailScreen.Notification.route)
-                },
+                }
             ) {
                 Icon(
                     imageVector = Icons.Default.Notifications,
-                    contentDescription = "Go to notification screen"
+                    contentDescription = "Go to notification screen",
                 )
             }
         }

@@ -1,7 +1,7 @@
 package com.example.newtineproject.ui.screens.home
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,18 +30,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.home.Category
+import com.example.newtineproject.graphs.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
 import com.example.newtineproject.ui.screens.home.components.HomeModalDrawerSheet
 import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
 
@@ -66,11 +62,13 @@ fun HomeScreen(navController: NavController) {
     ) {
         // Screen content
         Scaffold(
-            topBar = { HomeTopAppBar(
-                navController = navController,
-                drawerState = drawerState,
-                scope = scope
-            ) },
+            topBar = {
+                HomeTopAppBar(
+                    navController = navController,
+                    drawerState = drawerState,
+                    scope = scope
+                )
+            },
             floatingActionButton = {
                 Row(
                     modifier = Modifier
@@ -81,8 +79,7 @@ fun HomeScreen(navController: NavController) {
                 ) {
                     FloatingActionButton(
                         onClick = {
-                                  //navController.navigate("Habbit_making_Screen")
-
+                            navController.navigate(HomeDetailScreen.HabitSetting.route)
                         },
                         shape = CircleShape,
                         containerColor = LightBlue,
@@ -115,14 +112,27 @@ fun HomeScreen(navController: NavController) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = it.calculateTopPadding(), start = 17.dp)
+                        .padding(top = it.calculateTopPadding(), start = 17.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = "오늘의 뉴테크",
                         style = MaterialTheme.typography.headlineMedium
+                        // figma랑 똑같이 구현할 시 (폰트도 추가 고려)
+//                        style = LocalTextStyle.current.copy(
+//                            fontSize = 24.sp,
+//                            fontWeight = FontWeight(600)
+//                        )
+                    )
+                    Image(
+                        painter = painterResource(id = R.drawable.newtine_logo),
+                        contentDescription = "newtine logo",
+                        modifier = Modifier
+                            .width(44.dp)
+                            .padding(top = 4.dp)
                     )
                 }
-                Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(10.dp))
                 HomeHorizontalPager()
             }
         }

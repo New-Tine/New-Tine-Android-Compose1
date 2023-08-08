@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.notification.components
+package com.example.newtineproject.ui.screens.home.notification.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
