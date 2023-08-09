@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.newtineproject.graphs.HomeDetailScreen
+import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.theme.LightGray
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

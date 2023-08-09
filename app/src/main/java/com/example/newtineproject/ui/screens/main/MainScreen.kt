@@ -20,6 +20,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.MainNavGraph
+import com.example.newtineproject.graphs.NavigationBarScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -40,17 +41,15 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
 
     Scaffold(
         bottomBar = {
-            if (bottomBarVisible) {
-                NavigationBar(
-                    contentColor = Color(0xFFFFB347),
-                ) {
-                    navigationBarItems.forEach { screen ->
-                        AddItem(
-                            screen = screen,
-                            currentDestination = currentDestination,
-                            navController = navController
-                        )
-                    }
+            NavigationBar(
+                contentColor = Color(0xFFFFB347),
+            ) {
+                navigationBarItems.forEach { screen ->
+                    AddItem(
+                        screen = screen,
+                        currentDestination = currentDestination,
+                        navController = navController
+                    )
                 }
             }
         }

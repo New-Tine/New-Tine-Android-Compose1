@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.home.Category
-import com.example.newtineproject.graphs.HomeDetailScreen
+import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
 import com.example.newtineproject.ui.screens.home.components.HomeModalDrawerSheet
 import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
