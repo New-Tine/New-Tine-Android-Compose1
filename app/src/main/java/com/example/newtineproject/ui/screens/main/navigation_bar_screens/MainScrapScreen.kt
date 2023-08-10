@@ -8,17 +8,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.example.newtineproject.graphs.navigation_bar_items.HomeNavGraph
 import com.example.newtineproject.graphs.navigation_bar_items.ScrapNavGraph
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScrapScreen(
     navController: NavHostController = rememberNavController(),
-    bottomPadding: PaddingValues
+    paddingValues: PaddingValues
 ) {
     Scaffold(
-        modifier = Modifier.padding(bottom = bottomPadding.calculateBottomPadding())
+        modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())
     ) {
         ScrapNavGraph(navController = navController)
     }

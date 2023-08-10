@@ -1,17 +1,23 @@
 package com.example.newtineproject.ui.screens.main
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -24,8 +30,10 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.newtineproject.domain.model.home.Category
 import com.example.newtineproject.graphs.MainNavGraph
 import com.example.newtineproject.graphs.NavigationBarScreen
+import com.example.newtineproject.ui.screens.home.components.HomeModalDrawerSheet
 import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NavigationBarColor
@@ -34,6 +42,14 @@ import com.example.newtineproject.ui.theme.NavigationBarColor
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(navController: NavHostController = rememberNavController()) {
+
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val scope = rememberCoroutineScope()
+
+    val items = Category.values().map { it.categoryName }
+    val selectedItem = remember { mutableStateOf(items[0]) }
+
+
     val navigationBarItems = listOf(
         NavigationBarScreen.Home,
         NavigationBarScreen.NewTech,
@@ -44,30 +60,54 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
+    val topBarVisible = NavigationBarScreen.Home.route == currentDestination?.route
     val bottomBarVisible = navigationBarItems.any {it.route == currentDestination?.route}
     val fabAndTopVisible = NavigationBarScreen.Home.route == currentDestination?.route
 
-    Scaffold(
-        bottomBar = {
-            NavigationBar(
-                containerColor = NavigationBarColor,
-                modifier = Modifier
-                    .shadow(elevation = 15.dp)
-            ) {
-                navigationBarItems.forEach { screen ->
-                    AddItem(
-                        screen = screen,
-                        currentDestination = currentDestination,
-                        navController = navController
-                    )
-                }
-            }
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            HomeModalDrawerSheet(
+                items = items,
+                selectedItem = selectedItem,
+                drawerState = drawerState,
+                scope = scope,
+                navController = navController
+            )
         }
     ) {
-        MainNavGraph(
-            navController = navController,
-            bottomPadding = it
-        )
+        Scaffold(
+            topBar = {
+                if (topBarVisible) {
+                    HomeTopAppBar(
+                        navController = navController,
+                        drawerState = drawerState,
+                        scope = scope
+                    )
+                }
+            },
+            bottomBar = {
+                NavigationBar(
+                    containerColor = NavigationBarColor,
+                    modifier = Modifier
+                        .shadow(elevation = 15.dp)
+                        .zIndex(1f)
+                ) {
+                    navigationBarItems.forEach { screen ->
+                        AddItem(
+                            screen = screen,
+                            currentDestination = currentDestination,
+                            navController = navController
+                        )
+                    }
+                }
+            }
+        ) {
+            MainNavGraph(
+                navController = navController,
+                paddingValues = it
+            )
+        }
     }
 }
 

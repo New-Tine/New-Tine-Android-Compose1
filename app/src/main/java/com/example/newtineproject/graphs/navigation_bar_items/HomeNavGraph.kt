@@ -6,15 +6,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.newtineproject.graphs.NavigationBarScreen
-import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.HomeScreen
+import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.habitsetting.HabitSettingScreen
 import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
 
 @Composable
 fun HomeNavGraph(
     navController: NavHostController,
-    bottomPadding: PaddingValues
+    paddingValues: PaddingValues
 ) {
     NavHost(
         navController = navController,
@@ -24,7 +24,7 @@ fun HomeNavGraph(
         composable(route = HomeDetailScreen.Home.route) {
             HomeScreen(
                 navController = navController,
-                bottomPadding = bottomPadding
+                paddingValues = paddingValues
             )
         }
         composable(route = HomeDetailScreen.Notification.route) {

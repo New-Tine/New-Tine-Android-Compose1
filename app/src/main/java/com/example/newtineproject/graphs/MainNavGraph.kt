@@ -2,8 +2,6 @@ package com.example.newtineproject.graphs
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -16,7 +14,7 @@ import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainScr
 @Composable
 fun MainNavGraph(
     navController: NavHostController,
-    bottomPadding: PaddingValues
+    paddingValues: PaddingValues
 ) {
     NavHost (
         navController = navController,
@@ -25,16 +23,16 @@ fun MainNavGraph(
     ) {
         // Bottom bar navigation implementation
         composable(route = NavigationBarScreen.Home.route) {
-            MainHomeScreen(bottomPadding = bottomPadding)
+            MainHomeScreen(paddingValues = paddingValues)
         }
         composable(route = NavigationBarScreen.NewTech.route) {
-            MainNewTechScreen(bottomPadding = bottomPadding)
+            MainNewTechScreen(paddingValues = paddingValues)
         }
         composable(route = NavigationBarScreen.Scrap.route) {
-            MainScrapScreen(bottomPadding = bottomPadding)
+            MainScrapScreen(paddingValues = paddingValues)
         }
         composable(route = NavigationBarScreen.MyPage.route) {
-            MainMyPageScreen(bottomPadding = bottomPadding)
+            MainMyPageScreen(paddingValues = paddingValues)
         }
     }
 }

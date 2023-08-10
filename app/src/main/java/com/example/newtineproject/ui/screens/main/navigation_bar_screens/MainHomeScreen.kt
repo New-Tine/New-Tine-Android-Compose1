@@ -11,10 +11,10 @@ import com.example.newtineproject.graphs.navigation_bar_items.HomeNavGraph
 @Composable
 fun MainHomeScreen(
     navController: NavHostController = rememberNavController(),
-    bottomPadding: PaddingValues
+    paddingValues: PaddingValues
 ) {
     HomeNavGraph(
         navController = navController,
-        bottomPadding = bottomPadding
+        paddingValues = paddingValues
     )
 }
