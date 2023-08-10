@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.theme.LightGray
 import kotlinx.coroutines.CoroutineScope
@@ -34,8 +35,7 @@ fun HomeModalDrawerSheet(
     navController: NavController
 ) {
     ModalDrawerSheet(
-        modifier = Modifier
-            .fillMaxWidth(0.35f),
+        modifier = Modifier.fillMaxWidth(0.35f),
     ) {
         Spacer(Modifier.fillMaxHeight(0.15f))
         Row(
@@ -72,7 +72,7 @@ fun HomeModalDrawerSheet(
                     scope.launch { drawerState.close() }
                     // selectedItem.value = item
                     navController.navigate(
-                        route = "${HomeDetailScreen.Article.route}/${items.indexOf(item)}"
+                        route = "${MainDetailScreen.Article.route}/${items.indexOf(item)}"
                     )
                 },
                 modifier = Modifier

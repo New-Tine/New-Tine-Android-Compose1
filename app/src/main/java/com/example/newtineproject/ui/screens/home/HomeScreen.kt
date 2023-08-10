@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.newtineproject.R
+import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
 import com.example.newtineproject.ui.theme.LightBlue
@@ -79,40 +80,6 @@ fun HomeScreen(
                 }
             )
         },
-        floatingActionButton = {
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 12.dp)
-                    .fillMaxWidth(0.915f),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                FloatingActionButton(
-                    onClick = {
-                        navController.navigate(HomeDetailScreen.HabitSetting.route)
-                    },
-                    shape = CircleShape,
-                    containerColor = LightBlue,
-                    contentColor = Color.White,
-                    modifier = Modifier.width(256.dp)
-                ) {
-                    Text(
-                        text = "나만의 습관 설정",
-                    )
-                }
-                FloatingActionButton(
-                    onClick = { /*TODO*/ },
-                    shape = CircleShape,
-                    containerColor = LightBlue,
-                    contentColor = Color.White,
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.home_chat),
-                        contentDescription = null,
-                    )
-                }
-            }
-        }
     ) {
         Column(
             modifier = Modifier

@@ -13,18 +13,18 @@ fun MyPageNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
         route = NavigationBarScreen.MyPage.route,
-        startDestination = MyPageDetailedScreen.MyPage.route
+        startDestination = MyPageDetailScreen.MyPage.route
     ) {
-        composable(route = MyPageDetailedScreen.MyPage.route) {
+        composable(route = MyPageDetailScreen.MyPage.route) {
             MyPageScreen(navController = navController)
         }
-        composable(route = MyPageDetailedScreen.Second.route) {
+        composable(route = MyPageDetailScreen.Second.route) {
             TmpNextScreen(navController = navController)
         }
     }
 }
 
-sealed class MyPageDetailedScreen(val route: String) {
-    data object MyPage: MyPageDetailedScreen(route = "MYPAGE")
-    data object Second: MyPageDetailedScreen(route = "SECOND")
+sealed class MyPageDetailScreen(val route: String) {
+    data object MyPage: MyPageDetailScreen(route = "MYPAGE")
+    data object Second: MyPageDetailScreen(route = "SECOND")
 }

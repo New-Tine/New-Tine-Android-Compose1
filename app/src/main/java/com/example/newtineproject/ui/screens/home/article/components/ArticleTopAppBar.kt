@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,7 +46,7 @@ fun ArticleTopAppBar(navController: NavController) {
             }
             IconButton(
                 onClick = {
-                    navController.navigate(HomeDetailScreen.Notification.route)
+                    navController.navigate(MainDetailScreen.Notification.route)
                 }
             ) {
                 Icon(
