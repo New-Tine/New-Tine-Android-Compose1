@@ -1,15 +1,19 @@
 package com.example.newtineproject.graphs.navigation_bar_items
 
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.ui.screens.newtech.NewTechScreen
 import com.example.newtineproject.ui.screens.newtech.achievementstatus.AchievementStatus
 
-fun NavGraphBuilder.newTechNavGraph(navController: NavHostController) {
-    navigation(
+@Composable
+fun NewTechNavGraph(navController: NavHostController) {
+    NavHost(
+        navController = navController,
         route = NavigationBarScreen.NewTech.route,
         startDestination = NewTechDetailScreen.NewTech.route
     ) {

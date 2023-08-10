@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
@@ -11,8 +12,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -21,6 +26,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.MainNavGraph
 import com.example.newtineproject.graphs.NavigationBarScreen
+import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
+import com.example.newtineproject.ui.theme.LightBlue
+import com.example.newtineproject.ui.theme.NavigationBarColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -42,7 +50,9 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
     Scaffold(
         bottomBar = {
             NavigationBar(
-                contentColor = Color(0xFFFFB347),
+                containerColor = NavigationBarColor,
+                modifier = Modifier
+                    .shadow(elevation = 15.dp)
             ) {
                 navigationBarItems.forEach { screen ->
                     AddItem(
@@ -54,7 +64,10 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
             }
         }
     ) {
-        MainNavGraph(navController = navController)
+        MainNavGraph(
+            navController = navController,
+            bottomPadding = it
+        )
     }
 }
 
@@ -86,11 +99,12 @@ fun RowScope.AddItem(
             }
         },
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = Color(0xFFFF6600),
-            selectedTextColor = Color(0xFFFF6600),
+
+            selectedIconColor = LightBlue,
+            selectedTextColor = LightBlue,
             unselectedIconColor = Color.LightGray,
             unselectedTextColor = Color.LightGray,
-            indicatorColor = Color(0xFFFFEACC)
+            indicatorColor = NavigationBarColor
         )
     )
 }

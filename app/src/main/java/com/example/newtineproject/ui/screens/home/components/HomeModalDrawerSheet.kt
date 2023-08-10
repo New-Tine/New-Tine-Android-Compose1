@@ -34,7 +34,8 @@ fun HomeModalDrawerSheet(
     navController: NavController
 ) {
     ModalDrawerSheet(
-        modifier = Modifier.fillMaxWidth(0.35f),
+        modifier = Modifier
+            .fillMaxWidth(0.35f),
     ) {
         Spacer(Modifier.fillMaxHeight(0.15f))
         Row(

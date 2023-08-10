@@ -1,28 +1,40 @@
 package com.example.newtineproject.graphs
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.newtineproject.R
-import com.example.newtineproject.graphs.navigation_bar_items.homeNavGraph
-import com.example.newtineproject.graphs.navigation_bar_items.newTechNavGraph
-import com.example.newtineproject.graphs.navigation_bar_items.scrapNavGraph
-import com.example.newtineproject.ui.screens.mypage.MyPageScreen
+import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainHomeScreen
+import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainMyPageScreen
+import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainNewTechScreen
+import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainScrapScreen
 
 @Composable
-fun MainNavGraph(navController: NavHostController) {
+fun MainNavGraph(
+    navController: NavHostController,
+    bottomPadding: PaddingValues
+) {
     NavHost (
         navController = navController,
         route = Graph.MAIN,
         startDestination = NavigationBarScreen.Home.route
     ) {
         // Bottom bar navigation implementation
-        homeNavGraph(navController = navController)
-        newTechNavGraph(navController = navController)
-        scrapNavGraph(navController = navController)
+        composable(route = NavigationBarScreen.Home.route) {
+            MainHomeScreen(bottomPadding = bottomPadding)
+        }
+        composable(route = NavigationBarScreen.NewTech.route) {
+            MainNewTechScreen(bottomPadding = bottomPadding)
+        }
+        composable(route = NavigationBarScreen.Scrap.route) {
+            MainScrapScreen(bottomPadding = bottomPadding)
+        }
         composable(route = NavigationBarScreen.MyPage.route) {
-            MyPageScreen(navController = navController)
+            MainMyPageScreen(bottomPadding = bottomPadding)
         }
     }
 }

@@ -1,22 +1,31 @@
 package com.example.newtineproject.graphs.navigation_bar_items
 
-import androidx.navigation.NavGraphBuilder
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.HomeScreen
 import com.example.newtineproject.ui.screens.home.habitsetting.HabitSettingScreen
 import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
 
-fun NavGraphBuilder.homeNavGraph(navController: NavHostController) {
-    navigation(
+@Composable
+fun HomeNavGraph(
+    navController: NavHostController,
+    bottomPadding: PaddingValues
+) {
+    NavHost(
+        navController = navController,
         route = NavigationBarScreen.Home.route,
         startDestination = HomeDetailScreen.Home.route
     ) {
         composable(route = HomeDetailScreen.Home.route) {
-            HomeScreen(navController = navController)
+            HomeScreen(
+                navController = navController,
+                bottomPadding = bottomPadding
+            )
         }
         composable(route = HomeDetailScreen.Notification.route) {
             NotificationScreen(navController = navController)

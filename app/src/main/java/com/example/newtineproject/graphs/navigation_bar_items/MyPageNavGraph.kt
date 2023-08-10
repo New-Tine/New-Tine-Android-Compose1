@@ -5,8 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.newtineproject.graphs.NavigationBarScreen
-import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MyPage
 import com.example.newtineproject.ui.screens.mypage.MyPageScreen
+import com.example.newtineproject.ui.screens.mypage.TmpNextScreen
 
 @Composable
 fun MyPageNavGraph(navController: NavHostController) {
@@ -15,12 +15,16 @@ fun MyPageNavGraph(navController: NavHostController) {
         route = NavigationBarScreen.MyPage.route,
         startDestination = MyPageDetailedScreen.MyPage.route
     ) {
-        composable(route = NavigationBarScreen.MyPage.route) {
+        composable(route = MyPageDetailedScreen.MyPage.route) {
             MyPageScreen(navController = navController)
+        }
+        composable(route = MyPageDetailedScreen.Second.route) {
+            TmpNextScreen(navController = navController)
         }
     }
 }
 
 sealed class MyPageDetailedScreen(val route: String) {
     data object MyPage: MyPageDetailedScreen(route = "MYPAGE")
+    data object Second: MyPageDetailedScreen(route = "SECOND")
 }
