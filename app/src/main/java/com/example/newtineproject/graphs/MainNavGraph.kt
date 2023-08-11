@@ -5,16 +5,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import com.example.newtineproject.R
-import com.example.newtineproject.graphs.navigation_bar_items.HomeNavGraph
 import com.example.newtineproject.graphs.navigation_bar_items.MyPageNavGraph
 import com.example.newtineproject.graphs.navigation_bar_items.NewTechNavGraph
 import com.example.newtineproject.graphs.navigation_bar_items.ScrapNavGraph
-import com.example.newtineproject.ui.screens.home.HomeScreen
-import com.example.newtineproject.ui.screens.home.article.ArticleScreen
-import com.example.newtineproject.ui.screens.home.habitsetting.HabitSettingScreen
-import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
+import com.example.newtineproject.graphs.navigation_bar_items.homeNavGraph
 
 @Composable
 fun MainNavGraph(
@@ -27,30 +22,10 @@ fun MainNavGraph(
         startDestination = NavigationBarScreen.Home.route
     ) {
         // Bottom bar navigation implementation
-        navigation(
-            route = NavigationBarScreen.Home.route,
-            startDestination = MainDetailScreen.Home.route
-        ) {
-            composable(route = MainDetailScreen.Home.route) {
-                HomeScreen(
-                    navController = navController,
-                    paddingValues = paddingValues
-                )
-            }
-            composable(route = "${MainDetailScreen.Article.route}/{indexFromDrawer}") { backStackEntry ->
-                ArticleScreen(
-                    navController = navController,
-                    indexFromDrawer = backStackEntry.arguments?.getString("indexFromDrawer") ?: "0"
-                )
-            }
-            composable(route = MainDetailScreen.Notification.route) {
-                NotificationScreen(navController = navController)
-            }
-            composable(route = MainDetailScreen.HabitSetting.route) {
-                HabitSettingScreen(navController = navController)
-            }
-
-        }
+        homeNavGraph(
+            navController = navController,
+            paddingValues = paddingValues
+        )
         composable(route = NavigationBarScreen.NewTech.route) {
             NewTechNavGraph(paddingValues = paddingValues)
         }
@@ -90,9 +65,3 @@ sealed class NavigationBarScreen(
     )
 }
 
-sealed class MainDetailScreen(val route: String) {
-    data object Home: MainDetailScreen(route = "HOME")
-    data object Notification: MainDetailScreen(route = "NOTIFICATION")
-    data object Article: MainDetailScreen(route = "ARTICLE")
-    data object HabitSetting: MainDetailScreen(route = "HABIT_SETTING")
-}

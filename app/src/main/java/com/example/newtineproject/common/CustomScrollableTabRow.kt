@@ -132,7 +132,7 @@ private enum class TabSlots {
     Divider,
     Indicator
 }
-
+//
 /**
  * The default padding from the starting edge before a tab in a [CustomScrollableTabRow].
  */

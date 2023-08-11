@@ -170,7 +170,7 @@ val notificationList = listOf(
     Notification(
         icon = Icons.Rounded.Star,
         category = "추천 뉴스",
-        timePassed = 1,
+        timePassed = 7,
         title = "긴급대출, 만기연장... 금융업계, 수해 지원 방안 내놔"
     ),
 )

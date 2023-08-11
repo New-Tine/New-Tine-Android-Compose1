@@ -1,33 +1,41 @@
 package com.example.newtineproject.graphs.navigation_bar_items
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.example.newtineproject.graphs.MainDetailScreen
+import androidx.navigation.navigation
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.ui.screens.home.HomeScreen
 import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.habitsetting.HabitSettingScreen
 import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
 
-@Composable
-fun HomeNavGraph(
-    navController: NavHostController = rememberNavController(),
+fun NavGraphBuilder.homeNavGraph(
+    navController: NavHostController,
     paddingValues: PaddingValues
 ) {
-    NavHost(
-        navController = navController,
+    navigation(
         route = NavigationBarScreen.Home.route,
         startDestination = HomeDetailScreen.Home.route
     ) {
         composable(route = HomeDetailScreen.Home.route) {
             HomeScreen(
-                navController = navController,
                 paddingValues = paddingValues
             )
+        }
+        composable(route = "${HomeDetailScreen.Article.route}/{indexFromDrawer}") { backStackEntry ->
+            ArticleScreen(
+                navController = navController,
+                indexFromDrawer = backStackEntry.arguments?.getString("indexFromDrawer") ?: "0",
+                paddingValues = paddingValues
+            )
+        }
+        composable(route = HomeDetailScreen.Notification.route) {
+            NotificationScreen(navController = navController)
+        }
+        composable(route = HomeDetailScreen.HabitSetting.route) {
+            HabitSettingScreen(navController = navController)
         }
 
     }

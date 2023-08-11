@@ -1,0 +1,426 @@
+[33mcommit a12097e1ffc66b3db0dd8f96d882ddccde675446[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/8/bottombar[m[33m, [m[1;31morigin/feature/8/bottombar[m[33m)[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Fri Aug 11 20:14:21 2023 +0900
+
+    REFACTOR: Delete unnecessary code
+    
+    Deleted unnecessary codes
+
+[33mcommit 87f15f9b0e0d5f49cf26efad47b830cb681d96e3[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Fri Aug 11 19:50:44 2023 +0900
+
+    REFACTOR: Hide bottom bar in notification screen
+    
+    Changed styles to make the bottom bar to be hidden when users tap on the
+    notification icon.
+
+[33mcommit 81625e84553df4b25a0f73b6f0b24e9ee9f02949[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Fri Aug 11 18:22:00 2023 +0900
+
+    REFACTOR: Correct the topAppBar's animation
+    
+    Changed a bit with the animation from topAppBar. There was a problem
+    with the topAppBar still being appeared for a very few seconds which
+    could be very unnatural so changed the animation style and now it works
+    totally fine. :)
+
+[33mcommit c54f0b3f8b70348b8ac443282029fc320f9ec9a5[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Fri Aug 11 04:52:39 2023 +0900
+
+    FEAT: Implement bottombar and navigations
+    
+    Fully implemented bottombar and navigations. with the
+    floating-action-buttons and modal-drawer-sheet, there were some
+    unnatural animations so covered it with extra animations.
+
+[33mcommit 078b6ada8f0f27be274a049d4b9e907df468beb2[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Fri Aug 11 03:15:45 2023 +0900
+
+    WIP: Set the modalDrawerSheet on top of the stack
+    
+    Changed the settings to let the modalDrawerSheet to be on top of the
+    stack. So now, whenever I tap on the menu button from the homescreen,
+    the modalDrawerSheet will come out on top of it and when I go to other
+    screens, the topAppBar will be invisible.
+    
+    And now, need to implement the navigation again cuz it makes some errors
+    again due to the structure modification.
+
+[33mcommit af281a97dc3729c2456b5e014693fdb51108306b[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Thu Aug 10 17:56:42 2023 +0900
+
+    WIP: Navigation implementation complete
+    
+    Completed navigation implementation but still need to modify the
+    structures. For example, need to let the ModalDrawerSheet to comes out
+    on top of all the layers from home.
+
+[33mcommit 9bc360ba969c24e069719a48e956d9a9c75d264b[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Thu Aug 10 01:59:50 2023 +0900
+
+    WIP: Implement navigation bar and navigations
+    
+    Implementing navigation bar and the navigations between the screens.
+    Still on progress. Need to find out the better structure for NavGraphs
+    and also need to manage with the padding values.
+
+[33mcommit 236e81647f6451b8904cb4b61ec41239998c1f84[m
+Author: unknown <world2222222222@gmail.com>
+Date:   Wed Aug 9 19:01:40 2023 +0900
+
+    WIP: Implement basic settings for bottom bar
+    
+    Implemented very first basic settings for bottom bar. The work is still
+    on progress.
+
+[33mcommit d38ca997f38a9d6cb6d0cc4465ed69ed40d95e64[m[33m ([m[1;31morigin/feature/9/searchscreen[m[33m, [m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Tue Aug 8 15:28:06 2023 +0900
+
+    Feat:User Db add
+
+[33mcommit e7c7472d22bcbb71d26ddfe173f2b6f751c7f01c[m
+Merge: 7c584fe 4fdf55c
+Author: oh-bom <108965609+oh-bom@users.noreply.github.com>
+Date:   Tue Aug 8 12:51:46 2023 +0900
+
+    Merge pull request #7 from New-Tine/refactor/5/article
+    
+    REFACTOR / FEAT: 기사 페이지 스타일 수정 및 네비게이션 기능 추가
+
+[33mcommit 4fdf55cbe141fcfb933d0ca3966c04c704ba5aba[m[33m ([m[1;31morigin/refactor/5/article[m[33m, [m[1;32mrefactor/5/article[m[33m)[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Tue Aug 8 00:44:25 2023 +0900
+
+    FEAT: Navigation from home to habitsetting
+    
+    Implemented navigation from HomScreen to HabitSetting. Also changed some
+    names of functions or files for better readability.
+
+[33mcommit 98aab9de942630c13f63b69f5fe27e32d083333b[m
+Merge: a4baea3 e72a7a8
+Author: world2222 <world2222@hanmail.net>
+Date:   Mon Aug 7 23:08:30 2023 +0900
+
+    Merge remote-tracking branch 'origin/refactor/5/article' into refactor/5/article
+
+[33mcommit a4baea3a5f27481ece60377f989fcfb2ed14c427[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Mon Aug 7 21:54:43 2023 +0900
+
+    REFACTOR: Add newtine icon / rename drawable items
+    
+    Added newtine icon next to '오늘의 뉴테크' in HomeScreen. Also, changed
+    the names of the items in drawable package for better readability.
+
+[33mcommit 4de3d979ac602baf76cd3fa5083d012e14c6b460[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Sun Aug 6 23:55:47 2023 +0900
+
+    REFACTOR: Refactor codes and styles
+    
+    Completely refactored all the codes and styles correctly same as the
+    design from Figma.
+    
+    Details
+    1. Changed the names of some files for better recognition.
+    2. Changed the color, structure etc for better style.
+
+[33mcommit 7c584fe8bb168833a4a4d7f985aecbeefb68e68a[m
+Merge: 38ba86a 7fc6012
+Author: world2222 <52661837+world2222@users.noreply.github.com>
+Date:   Mon Aug 7 22:08:57 2023 +0900
+
+    Merge pull request #6 from New-Tine/feature/2/mytech
+    
+    Feature/2/mytech
+
+[33mcommit e72a7a86b46c10f14acdac3786f2f9dd56814679[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Mon Aug 7 21:54:43 2023 +0900
+
+    REFACTOR: Add newtine icon / rename drawable items
+    
+    Added newtine icon next to '오늘의 뉴테크' in HomeScreen. Also, changed
+    the names of the items in drawable package for better readability.
+
+[33mcommit 7fc601210275b05b6742a0f6a5b771ab3075a211[m[33m ([m[1;31morigin/feature/2/mytech[m[33m, [m[1;32mfeature/2/mytech[m[33m)[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Mon Aug 7 11:38:32 2023 +0900
+
+    Refactor
+
+[33mcommit 049e8f78ee21a626daa3a90824ddad19fc1b440a[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Sun Aug 6 23:55:47 2023 +0900
+
+    REFACTOR: Refactor codes and styles
+    
+    Completely refactored all the codes and styles correctly same as the
+    design from Figma.
+    
+    Details
+    1. Changed the names of some files for better recognition.
+    2. Changed the color, structure etc for better style.
+
+[33mcommit d1e9bc4ee9a8118ca31570360b76547ab8ef2fcf[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 18:09:27 2023 +0900
+
+    Rename
+
+[33mcommit 924ff0da922a08d4e8c020bc6bd1610452eb5876[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 18:06:17 2023 +0900
+
+    Remove
+
+[33mcommit afedbb7a626d63ac9632f0d8743ef70f33d02ea9[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 18:00:18 2023 +0900
+
+    Refactor: code review
+
+[33mcommit 10eab56583a752b6a784c9f479b4c75f1a84d06f[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 16:08:14 2023 +0900
+
+    Refactor: add dependencies
+
+[33mcommit 083f34dfc81ab5551434d685280d3cf18f388489[m
+Merge: 0e22687 ff18700
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 15:51:58 2023 +0900
+
+    Merge remote-tracking branch 'origin/feature/2/mytech' into feature/2/mytech
+
+[33mcommit 0e22687eee183f5b446eaeb6a81dd6fbcfd6eac2[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:36:23 2023 +0900
+
+    re
+
+[33mcommit c90110bac8278f2b5f5e93004d8937ac93ad3cc5[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:24:20 2023 +0900
+
+    rebase
+
+[33mcommit 30bd76f5431977f0ca98f53d7bad477138032472[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    rebase
+
+[33mcommit 81dfa158f8833f855f3d74db61867762bc6d9748[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    REBASE
+
+[33mcommit 149f26397caccdbc625b78b4b68fc31e2a958c44[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:36:23 2023 +0900
+
+    FEAT:my tech, habbit making
+
+[33mcommit c0b07c1f887aa1eab6c1fc1310824f94fe2b9948[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:24:20 2023 +0900
+
+    REBASE
+
+[33mcommit 5c2330ad849c55b303ce0f004bc64334599fa85a[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    REBASE:onto develop
+
+[33mcommit 6800255ee09add9b1d4a8dccab540fe797b637be[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    REBASE:onto develop
+
+[33mcommit ff18700055dc723cf5a55392480f024b74271e7f[m
+Merge: 4c9abab a2400ca
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 15:31:33 2023 +0900
+
+    Refactor
+
+[33mcommit 4c9abab31fe1d91b3f6c49ceb00bc5392f614ccc[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:36:23 2023 +0900
+
+    FEAT:my tech, habbit making
+
+[33mcommit a0ce450cbec95e76aee1d95be63690b36fb11230[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:24:20 2023 +0900
+
+    REBASE
+
+[33mcommit 32c7a8fb445312bf018436a2be51c3a6de286e5b[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    REBASE:onto develop
+
+[33mcommit 55320e060f5e40608cea0aa4a779aec2cda5821a[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    REBASE:onto develop
+
+[33mcommit 38ba86ac626a18fff731067fd73973807af8aa71[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Sun Aug 6 15:05:22 2023 +0900
+
+    WIP: Refactor codes for restyling
+    
+    Refactoring codes for restyling. This is still in progress.
+
+[33mcommit a2400cac245b5b763aeb56c59f77c139f9811367[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:36:23 2023 +0900
+
+    FEAT:my tech, habbit making
+
+[33mcommit 1b4c07cc6d450061e48368469e9c2721e306b6e9[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Sun Aug 6 14:24:20 2023 +0900
+
+    FEAT:my tech, habbit making
+
+[33mcommit 4bbae5bd3901cf5ea89a8eca5c938f144b261d2c[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Sat Aug 5 00:48:01 2023 +0900
+
+    FIX: Fix conflicts with navigation
+    
+    1. Changed the name of PagerScreen to ArticleScreen.
+    
+    2. Fixed problems with navigation between HomeScreen and ArticleScreen.
+    
+    * For now, the conflicts has solved but still need to edit the names of some files for better readability.
+
+[33mcommit d40004e24169f484ee0044a11c04d81f706b9b85[m
+Merge: 4caded7 282c428
+Author: JisooJeong <113654733+JisooJudy@users.noreply.github.com>
+Date:   Fri Aug 4 18:13:44 2023 +0900
+
+    Merge pull request #3 from New-Tine/feature/3/categoryNews
+    
+    WIP: CategoryNewsScreen
+
+[33mcommit 282c428d0bc485c7c7e1117e0e98c9d3643797b8[m[33m ([m[1;31morigin/feature/3/categoryNews[m[33m, [m[1;32mfeature/3/categoryNews[m[33m)[m
+Merge: 77be272 4caded7
+Author: JisooJeong <113654733+JisooJudy@users.noreply.github.com>
+Date:   Fri Aug 4 18:02:24 2023 +0900
+
+    Merge branch 'develop' into feature/3/categoryNews
+
+[33mcommit 4caded70a27caba8e5097fa05cae56167ca662d3[m
+Merge: b235cdf c340ae9
+Author: oh-bom <108965609+oh-bom@users.noreply.github.com>
+Date:   Fri Aug 4 15:34:34 2023 +0900
+
+    Merge pull request #2 from New-Tine/feature/1/homescreen
+    
+    FEAT: 홈 화면 및 알림 화면 구현
+
+[33mcommit c340ae9cbc8a25fa63a6c22afd42cf0f3aaaf2a9[m[33m ([m[1;31morigin/feature/1/homescreen[m[33m, [m[1;32mfeature/1/homescreen[m[33m)[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Fri Aug 4 12:39:00 2023 +0900
+
+    FEAT: Implement HomeScreen and NotificationScreen
+    
+    Fully implemented HomeScreen and NotificationScreen.
+
+[33mcommit 411acbb6fdfe915b7282b38dea2e0fba74760cb5[m
+Merge: 2a9130e 43e6212
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Fri Aug 4 10:52:20 2023 +0900
+
+    Merge remote-tracking branch 'origin/feature/2/mytech' into feature/2/mytech
+
+[33mcommit 77be272692761af3b9446b06888976d1e05ecc33[m
+Author: JisooJudy <cjslove0530@gmail.com>
+Date:   Fri Aug 4 01:57:30 2023 +0900
+
+    WIP: CategoryNewsScreen
+
+[33mcommit 2a9130e520b44249bc40feb2f9f7534ef02163d8[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    FEAT: myPage-habbit achievement
+
+[33mcommit 43e621276f811bf0bfb7dec0dac2c41af729ef9f[m
+Author: oh-bom <spdlqj888888@gmail.com>
+Date:   Thu Aug 3 14:46:12 2023 +0900
+
+    myPage-habbit achievement
+
+[33mcommit a1648e1e042b88887c9f77b7d65a7cca94fe5214[m
+Author: unknown <world2222222222@gmail.com>
+Date:   Wed Aug 2 15:53:56 2023 +0900
+
+    WIP: Building home screen
+    
+    Pushing the files that has been edited. Basic structure has built.
+
+[33mcommit b235cdfca47886ca0faaea0c7737acdfc3fcb177[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: world2222 <52661837+world2222@users.noreply.github.com>
+Date:   Tue Aug 1 20:12:27 2023 +0900
+
+    Update README.md
+
+[33mcommit 7b5930ba2d353616293b4c5afc51f836eddb9067[m
+Author: unknown <world2222222222@gmail.com>
+Date:   Tue Aug 1 19:57:27 2023 +0900
+
+    FEAT: Implement notification screen
+    
+    Implemented notification screen and set all the graddle settings in a
+    proper settings.
+
+[33mcommit de6a45b11e95830c79cafc707c8908afad995261[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Tue Aug 1 03:10:55 2023 +0900
+
+    REFACTOR: Set color as value
+    
+    There's a hex color named 0xFF0094FF which is similar to light blue and it was written like "tint = Color(0xFF0094FF)". So for better color handling, I just set the value of the color in Color.kt file and wrote again like "tint = LightBlue".
+    
+    From now on, all the colors will be handled like this.
+
+[33mcommit ed3f6291608f17c1a0886a7de50e8fab6580111a[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Tue Aug 1 02:15:54 2023 +0900
+
+    REFACTOR: Change TextStyle to LocalTextStyle
+    
+    Changed all the 'TextStyle' into 'LocalTextStyle' to set the font details as same as the default one and just modify a few of it.
+
+[33mcommit bf38dd0db512bfd5445674a5f340e6d835351887[m
+Author: world2222 <world2222@hanmail.net>
+Date:   Tue Aug 1 00:44:58 2023 +0900
+
+    FEAT: Implement notification screen
+    
+    Implemented notification screen using scaffold with top app bar and
+    lazycolumn.
+
+[33mcommit cbf325c2d2588393d955b039479eebe36e3687a3[m
+Author: world2222 <52661837+world2222@users.noreply.github.com>
+Date:   Tue Aug 1 00:42:33 2023 +0900
+
+    Initial commit

@@ -4,14 +4,12 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.defaultDecayAnimationSpec
 import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkOut
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
@@ -35,7 +32,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -50,15 +46,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.home.Category
-import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.MainNavGraph
 import com.example.newtineproject.graphs.NavigationBarScreen
+import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeModalDrawerSheet
 import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NavigationBarColor
 
-@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(navController: NavHostController = rememberNavController()) {
@@ -68,9 +63,6 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
 
     val items = Category.values().map { it.categoryName }
     val selectedItem = remember { mutableStateOf(items[0]) }
-
-
-    var topBarShow by remember { mutableStateOf(true) }
 
 
     val navigationBarItems = listOf(
@@ -83,9 +75,9 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    val topBarVisible = MainDetailScreen.Home.route == currentDestination?.route
-    val bottomBarVisible = navigationBarItems.any {it.route == currentDestination?.route}
-    val fabVisible = NavigationBarScreen.Home.route == currentDestination?.route
+    val topBarVisible = currentDestination?.route == HomeDetailScreen.Home.route
+    val bottomBarVisible = currentDestination?.route != HomeDetailScreen.Notification.route
+    val fabVisible = currentDestination?.route == NavigationBarScreen.Home.route
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -114,16 +106,22 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                 }
             },
             bottomBar = {
-                NavigationBar(
-                    modifier = Modifier.shadow(elevation = 15.dp),
-                    containerColor = NavigationBarColor,
+                AnimatedVisibility(
+                    visible = bottomBarVisible,
+                    enter = slideInVertically(animationSpec = tween(durationMillis = 100)) { it / 2 },
+                    exit = slideOutVertically(animationSpec = tween(durationMillis = 100)) { it / 2 }
                 ) {
-                    navigationBarItems.forEach { screen ->
-                        AddItem(
-                            screen = screen,
-                            currentDestination = currentDestination,
-                            navController = navController
-                        )
+                    NavigationBar(
+                        modifier = Modifier.shadow(elevation = 15.dp),
+                        containerColor = NavigationBarColor,
+                    ) {
+                        navigationBarItems.forEach { screen ->
+                            AddItem(
+                                screen = screen,
+                                currentDestination = currentDestination,
+                                navController = navController
+                            )
+                        }
                     }
                 }
             },
@@ -142,7 +140,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                     ) {
                         FloatingActionButton(
                             onClick = {
-                                navController.navigate(MainDetailScreen.HabitSetting.route)
+                                navController.navigate(HomeDetailScreen.HabitSetting.route)
                             },
                             shape = CircleShape,
                             containerColor = LightBlue,

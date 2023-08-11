@@ -88,7 +88,6 @@ fun ArticleItem (
                 contentScale = ContentScale.FillBounds
             )
         }
-        Divider()
     }
 
 

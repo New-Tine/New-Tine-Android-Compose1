@@ -19,7 +19,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.theme.LightGray
 import kotlinx.coroutines.CoroutineScope
@@ -72,7 +71,7 @@ fun HomeModalDrawerSheet(
                     scope.launch { drawerState.close() }
                     // selectedItem.value = item
                     navController.navigate(
-                        route = "${MainDetailScreen.Article.route}/${items.indexOf(item)}"
+                        route = "${HomeDetailScreen.Article.route}/${items.indexOf(item)}"
                     )
                 },
                 modifier = Modifier

@@ -12,7 +12,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
-import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -51,7 +50,7 @@ fun HomeTopAppBar(
             }
             IconButton(
                 onClick = {
-                    navController.navigate(MainDetailScreen.Notification.route)
+                    navController.navigate(HomeDetailScreen.Notification.route)
                 },
             ) {
                 Icon(
