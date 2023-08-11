@@ -54,6 +54,7 @@ import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NavigationBarColor
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(navController: NavHostController = rememberNavController()) {
