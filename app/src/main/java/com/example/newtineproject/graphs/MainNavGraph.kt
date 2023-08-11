@@ -7,14 +7,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.newtineproject.R
-import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
+import com.example.newtineproject.graphs.navigation_bar_items.HomeNavGraph
+import com.example.newtineproject.graphs.navigation_bar_items.MyPageNavGraph
+import com.example.newtineproject.graphs.navigation_bar_items.NewTechNavGraph
+import com.example.newtineproject.graphs.navigation_bar_items.ScrapNavGraph
+import com.example.newtineproject.ui.screens.home.HomeScreen
 import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.habitsetting.HabitSettingScreen
 import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
-import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainHomeScreen
-import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainMyPageScreen
-import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainNewTechScreen
-import com.example.newtineproject.ui.screens.main.navigation_bar_screens.MainScrapScreen
 
 @Composable
 fun MainNavGraph(
@@ -32,7 +32,10 @@ fun MainNavGraph(
             startDestination = MainDetailScreen.Home.route
         ) {
             composable(route = MainDetailScreen.Home.route) {
-                MainHomeScreen(paddingValues = paddingValues)
+                HomeScreen(
+                    navController = navController,
+                    paddingValues = paddingValues
+                )
             }
             composable(route = "${MainDetailScreen.Article.route}/{indexFromDrawer}") { backStackEntry ->
                 ArticleScreen(
@@ -49,13 +52,13 @@ fun MainNavGraph(
 
         }
         composable(route = NavigationBarScreen.NewTech.route) {
-            MainNewTechScreen(paddingValues = paddingValues)
+            NewTechNavGraph(paddingValues = paddingValues)
         }
         composable(route = NavigationBarScreen.Scrap.route) {
-            MainScrapScreen(paddingValues = paddingValues)
+            ScrapNavGraph(paddingValues = paddingValues)
         }
         composable(route = NavigationBarScreen.MyPage.route) {
-            MainMyPageScreen(paddingValues = paddingValues)
+            MyPageNavGraph(paddingValues = paddingValues)
         }
     }
 }

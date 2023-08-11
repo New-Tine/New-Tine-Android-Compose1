@@ -2,17 +2,18 @@ package com.example.newtineproject.ui.screens.main
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.defaultDecayAnimationSpec
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -21,7 +22,6 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
-import androidx.compose.material3.FloatingActionButtonElevation
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationBar
@@ -35,13 +35,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.zIndex
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -53,7 +53,6 @@ import com.example.newtineproject.domain.model.home.Category
 import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.MainNavGraph
 import com.example.newtineproject.graphs.NavigationBarScreen
-import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeModalDrawerSheet
 import com.example.newtineproject.ui.screens.home.components.HomeTopAppBar
 import com.example.newtineproject.ui.theme.LightBlue
@@ -69,6 +68,9 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
 
     val items = Category.values().map { it.categoryName }
     val selectedItem = remember { mutableStateOf(items[0]) }
+
+
+    var topBarShow by remember { mutableStateOf(true) }
 
 
     val navigationBarItems = listOf(
@@ -99,7 +101,11 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
     ) {
         Scaffold(
             topBar = {
-                if (topBarVisible) {
+                AnimatedVisibility(
+                    visible = topBarVisible,
+                    enter = fadeIn(),
+                    exit = ExitTransition.None
+                ) {
                     HomeTopAppBar(
                         navController = navController,
                         drawerState = drawerState,
@@ -109,10 +115,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
             },
             bottomBar = {
                 NavigationBar(
+                    modifier = Modifier.shadow(elevation = 15.dp),
                     containerColor = NavigationBarColor,
-                    modifier = Modifier
-                        .shadow(elevation = 15.dp)
-                        .zIndex(1f)
                 ) {
                     navigationBarItems.forEach { screen ->
                         AddItem(

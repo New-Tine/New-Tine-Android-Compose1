@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.MainDetailScreen
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.ui.screens.home.HomeScreen
@@ -14,7 +15,7 @@ import com.example.newtineproject.ui.screens.home.notification.NotificationScree
 
 @Composable
 fun HomeNavGraph(
-    navController: NavHostController,
+    navController: NavHostController = rememberNavController(),
     paddingValues: PaddingValues
 ) {
     NavHost(
