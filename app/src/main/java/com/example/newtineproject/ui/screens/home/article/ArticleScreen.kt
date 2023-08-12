@@ -11,6 +11,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Tab
 import androidx.compose.material3.Text
 import androidx.compose.material3.CustomScrollableTabRow
+import androidx.compose.material3.Divider
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TabRowDefaults
@@ -34,13 +35,18 @@ import kotlinx.coroutines.launch
 @Composable
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalFoundationApi::class)
-fun ArticleScreen(navController: NavController, indexFromDrawer: String) {
+fun ArticleScreen(
+    navController: NavController,
+    indexFromDrawer: String,
+    paddingValues: PaddingValues
+) {
 
     val categories = Category.values().map { it.categoryName }
     val pagerState = rememberPagerState(initialPage = indexFromDrawer.toInt())
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             ArticleTopAppBar(navController = navController)
         },
@@ -210,6 +216,9 @@ fun CategoryNewsItScreen() {
             ) {
                 ArticleItem(article = article, onItemClick = {})
             }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
+            }
         }
     }
 
@@ -294,6 +303,9 @@ fun CategoryNewsPoliticScreen() {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 ArticleItem(article = article, onItemClick = {})
+            }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
             }
         }
     }

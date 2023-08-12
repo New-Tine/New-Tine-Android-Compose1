@@ -1,10 +1,7 @@
-package com.example.newtineproject.ui.screens.mytech
+package com.example.newtineproject.ui.screens.newtech.achievementstatus
 
 import android.app.DatePickerDialog
-import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -35,7 +32,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -48,6 +44,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
@@ -60,7 +59,7 @@ import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AchievementScreen() {
+fun AchievementStatus(navController: NavController) {
     val currentDate = LocalDate.now()
     val date=LocalDate.now()
     val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -101,7 +100,9 @@ fun AchievementScreen() {
                     Color.White),
                 navigationIcon = {
                     IconButton(
-                        onClick = { /* Handle back navigation */ }
+                        onClick = {
+                            navController.popBackStack()
+                        }
                     ) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = null)
                     }
@@ -115,7 +116,7 @@ fun AchievementScreen() {
                 }
             )
         },
-        content = {padding->
+        content = { padding->
             Column(
                 modifier = Modifier
                     .padding(20.dp)
@@ -344,6 +345,6 @@ fun MissionItem(goal: String) {
 @Composable
 fun AchievementPreview(){
     NewTineProjectTheme {
-        AchievementScreen()
+        AchievementStatus(navController = rememberNavController())
     }
 }

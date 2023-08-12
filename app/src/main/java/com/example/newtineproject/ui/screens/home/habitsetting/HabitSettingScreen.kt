@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.example.newtineproject.ui.screens.home.habbitsetting
+package com.example.newtineproject.ui.screens.home.habitsetting
 
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
@@ -47,6 +47,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.ui.theme.LightBlue
@@ -57,7 +58,7 @@ import java.util.Calendar
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HabitSettingScreen(navController: NavHostController) {
+fun HabitSettingScreen(navController: NavController) {
 
     val weekdays = arrayOf("월", "화", "수", "목", "금", "토", "일")
     val goalList = arrayOf(

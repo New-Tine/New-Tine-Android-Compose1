@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.mytech
+package com.example.newtineproject.ui.screens.newtech
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -34,14 +34,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
+import com.example.newtineproject.graphs.navigation_bar_items.NewTechDetailScreen
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyTech_Main(){
+fun NewTechScreen(navController: NavController) {
     var cnt_article=0
     var reading_time=0
     var goal_state= mutableMapOf<Int,String>(
@@ -160,7 +164,9 @@ fun MyTech_Main(){
                 }
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                              navController.navigate(route = NewTechDetailScreen.Status.route)
+                    },
                     modifier= Modifier
                         .fillMaxWidth()
                         .padding(top = 30.dp)
@@ -199,6 +205,6 @@ fun MyTech_Main(){
 @Composable
 fun GreetingPreview() {
     NewTineProjectTheme {
-        MyTech_Main()
+        NewTechScreen(navController = rememberNavController())
     }
 }
