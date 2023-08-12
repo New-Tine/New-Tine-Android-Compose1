@@ -32,6 +32,7 @@ import androidx.compose.material3.InputChipDefaults
 import androidx.compose.material3.InputChipDefaults.inputChipBorder
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -53,11 +54,10 @@ import com.example.newtineproject.domain.model.search.Recommendation
 import com.example.newtineproject.ui.screens.home.search.components.RealtimeArticleItem
 import com.example.newtineproject.ui.screens.home.search.components.RecentViewedItem
 import com.example.newtineproject.ui.screens.home.search.components.RecommendedArticleItem
-import com.google.android.material.search.SearchBar
 
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun SearchScreen(navController: NavController) {
     var text by remember { mutableStateOf("") }
@@ -75,8 +75,68 @@ fun SearchScreen(navController: NavController) {
                 .fillMaxWidth()
                 .background(color = Color.White)
         ) {
+            //SearchBar
+            SearchBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 10.dp)
+                    .background(Color.White),
+                query = text,
+                onQueryChange = {
+                    text = it
+                },
+                onSearch = {
+                    recentHistoryItems.add(text)
+                    text = ""
+                    active = false
 
-
+                },
+                active = active,
+                onActiveChange = {
+                    active = it
+                },
+                placeholder = {
+                    Text(
+                        text = "Search news",
+                        style = LocalTextStyle.current.copy(
+                            color = Color(0xFF9CA3AF)
+                        )
+                    )
+                },
+                leadingIcon = {
+                    IconButton(
+                        onClick = {
+                            navController.popBackStack()
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Search news"
+                        )
+                    }
+                },
+                trailingIcon = {
+                    if (active) {
+                        Icon(
+                            modifier = Modifier.clickable {
+                                if (text.isNotEmpty()) {
+                                    text = ""
+                                } else {
+                                    active = false
+                                }
+                            },
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "Close"
+                        )
+                    }
+                }
+            ) {
+                recentHistoryItems.forEach {
+                    Row(modifier = Modifier.padding(all = 14.dp)){
+                        Text(text = it)
+                    }
+                }
+            }
             Spacer(modifier = Modifier.height(22.dp))
             Text(
                 text = "최근 검색어",
@@ -95,6 +155,7 @@ fun SearchScreen(navController: NavController) {
             ){
                 recentHistoryItems.forEach {text->
                     InputChip(
+                        modifier = Modifier.padding(horizontal = 2.dp),
                         selected = selected,
                         onClick = {
                             /* go somewhere */
