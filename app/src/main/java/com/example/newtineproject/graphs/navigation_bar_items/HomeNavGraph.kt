@@ -10,6 +10,7 @@ import com.example.newtineproject.ui.screens.home.HomeScreen
 import com.example.newtineproject.ui.screens.home.article.ArticleScreen
 import com.example.newtineproject.ui.screens.home.habitsetting.HabitSettingScreen
 import com.example.newtineproject.ui.screens.home.notification.NotificationScreen
+import com.example.newtineproject.ui.screens.home.search.SearchScreen
 
 fun NavGraphBuilder.homeNavGraph(
     navController: NavHostController,
@@ -37,7 +38,9 @@ fun NavGraphBuilder.homeNavGraph(
         composable(route = HomeDetailScreen.HabitSetting.route) {
             HabitSettingScreen(navController = navController)
         }
-
+        composable(route = HomeDetailScreen.Search.route){
+            SearchScreen(navController = navController)
+        }
     }
 }
 
@@ -46,4 +49,5 @@ sealed class HomeDetailScreen(val route: String) {
     data object Notification: HomeDetailScreen(route = "NOTIFICATION")
     data object Article: HomeDetailScreen(route = "ARTICLE")
     data object HabitSetting: HomeDetailScreen(route = "HABIT_SETTING")
+    data object Search: HomeDetailScreen(route = "SEARCH")
 }

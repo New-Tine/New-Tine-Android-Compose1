@@ -40,7 +40,7 @@ fun HomeTopAppBar(
         actions = {
             IconButton(
                 onClick = {
-
+                    navController.navigate(HomeDetailScreen.Search.route)
                 },
             ) {
                 Icon(
