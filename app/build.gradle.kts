@@ -4,6 +4,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization") version "1.9.0"
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -61,7 +62,7 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.ui:ui-util:1.4.3")
+    implementation("androidx.compose.ui:ui-util:1.5.0")
     implementation("androidx.compose.material3:material3:1.1.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -87,7 +88,7 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.4.0")
 
     // Navigation
-    implementation("androidx.navigation:navigation-compose:2.6.0")
+    implementation("androidx.navigation:navigation-compose:2.7.0")
 
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")

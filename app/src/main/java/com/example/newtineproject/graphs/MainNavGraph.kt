@@ -1,5 +1,7 @@
 package com.example.newtineproject.graphs
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -19,7 +21,10 @@ fun MainNavGraph(
     NavHost (
         navController = navController,
         route = Graph.MAIN,
-        startDestination = NavigationBarScreen.Home.route
+        startDestination = NavigationBarScreen.Home.route,
+        // 화면 전환 시 크로스 페이드 효과 지우고 싶을 때 주석 처리 빼면 됨.
+//        enterTransition = { EnterTransition.None },
+//        exitTransition = { ExitTransition.None }
     ) {
         // Bottom bar navigation implementation
         homeNavGraph(

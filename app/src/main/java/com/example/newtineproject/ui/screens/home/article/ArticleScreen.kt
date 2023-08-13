@@ -42,7 +42,10 @@ fun ArticleScreen(
 ) {
 
     val categories = Category.values().map { it.categoryName }
-    val pagerState = rememberPagerState(initialPage = indexFromDrawer.toInt())
+    val pagerState = rememberPagerState(
+        pageCount = { categories.size },
+        initialPage = indexFromDrawer.toInt()
+    )
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -108,7 +111,6 @@ fun ArticleScreen(
                         )
                     )
                     HorizontalPager(
-                        pageCount = categories.size,
                         modifier = Modifier.fillMaxSize(),
                         state = pagerState
                     ) { tabId ->
