@@ -95,7 +95,7 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
             topBar = {
                 AnimatedVisibility(
                     visible = topBarVisible,
-                    enter = fadeIn(),
+                    enter = fadeIn(animationSpec = tween(durationMillis = 1000)),
                     exit = ExitTransition.None
                 ) {
                     HomeTopAppBar(

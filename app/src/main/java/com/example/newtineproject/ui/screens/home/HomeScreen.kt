@@ -15,19 +15,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
 
@@ -40,7 +39,7 @@ fun HomeScreen(
     Scaffold(
         modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
         topBar = {
-            CenterAlignedTopAppBar(
+            TopAppBar(
                 navigationIcon = {
                     IconButton(
                         onClick = { }
@@ -51,7 +50,14 @@ fun HomeScreen(
                         )
                     }
                 },
-                title = { Text(text = "") },
+                title = {
+                    Row {
+                        Image(
+                            painter = painterResource(id = R.drawable.newtine_topbar_logo),
+                            contentDescription = "newtine_topbar_logo"
+                        )
+                    }
+                },
                 actions = {
                     IconButton(
                         onClick = { },
