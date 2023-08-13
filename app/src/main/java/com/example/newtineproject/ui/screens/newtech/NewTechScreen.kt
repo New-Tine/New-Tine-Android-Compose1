@@ -176,10 +176,6 @@ fun NewTechScreen(navController: NavController) {
                     colors = ButtonDefaults.buttonColors(Color.White),
 
 
-
-
-
-
                 ) {
                     Text(text = "습관 달성 현황",
                         fontSize = 15.sp,
