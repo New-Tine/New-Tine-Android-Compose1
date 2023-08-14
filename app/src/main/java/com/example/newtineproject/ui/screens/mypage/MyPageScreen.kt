@@ -307,7 +307,7 @@ fun MyPageScreen(
                                             unselectedContentColor = Color.LightGray,
                                             onClick = {
                                                 coroutineScope.launch {
-                                                    pagerState.animateScrollToPage(index)
+                                                    pagerState.scrollToPage(index)
                                                 }
                                             }
                                         ){
@@ -331,7 +331,8 @@ fun MyPageScreen(
                             HorizontalPager(
                                 pageCount = myPageCategoryList.size,
                                 modifier = Modifier.fillMaxWidth(),
-                                state = pagerState
+                                state = pagerState,
+                                verticalAlignment = Alignment.Top
                             ) {tabId ->
                                 when(tabId){
                                     0 -> {

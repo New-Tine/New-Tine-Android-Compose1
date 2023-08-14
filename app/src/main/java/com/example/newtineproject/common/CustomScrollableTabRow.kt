@@ -101,7 +101,7 @@ fun CustomScrollableTabRow(
         }
     }
 }
-//
+
 @Immutable
 class TabPosition internal constructor(val left: Dp, val width: Dp) {
     private val right: Dp get() = left + width
