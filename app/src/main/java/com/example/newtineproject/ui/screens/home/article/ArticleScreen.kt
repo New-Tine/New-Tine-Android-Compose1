@@ -68,7 +68,7 @@ fun ArticleScreen(
                         indicator = { tabPositions ->
                             TabRowDefaults.Indicator(
                                 modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                                color = LightBlue // Change the color of the selected tab's bar here
+                                color = LightBlue
                             )
                         },
                         tabs = {

@@ -126,13 +126,14 @@ class TabPosition internal constructor(val left: Dp, val width: Dp) {
         return "TabPosition(left=$left, right=$right, width=$width)"
     }
 }
-
+//
 private enum class TabSlots {
     Tabs,
     Divider,
     Indicator
 }
-//
+
+
 /**
  * The default padding from the starting edge before a tab in a [CustomScrollableTabRow].
  */

@@ -1,7 +1,6 @@
 package com.example.newtineproject.graphs.navigation_bar_items
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -11,6 +10,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.newtineproject.R
+import com.example.newtineproject.domain.model.mypage.UserProfile
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.ui.screens.mypage.MyPageScreen
 import com.example.newtineproject.ui.screens.mypage.TmpNextScreen
@@ -30,7 +31,16 @@ fun MyPageNavGraph(
             startDestination = MyPageDetailScreen.MyPage.route
         ) {
             composable(route = MyPageDetailScreen.MyPage.route) {
-                MyPageScreen(navController = navController)
+                MyPageScreen(
+                    navController = navController,
+                    userProfile = UserProfile(
+                        userName = "정지수",
+                        userCointPoints = 1000,
+                        daysOfUsing = 3,
+                        interestKeyword = mutableListOf({"부동산"},{"안드로이드"},{"IT"},{"국제정치"},{"문화"},{"블록체인"},{"디자인"},{"여행"},{"등산"},{"공부"}),
+                        userImage = R.drawable.userpic
+                    )
+                )
             }
             composable(route = MyPageDetailScreen.Second.route) {
                 TmpNextScreen(navController = navController)
