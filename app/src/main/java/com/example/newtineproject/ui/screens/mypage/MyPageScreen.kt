@@ -5,6 +5,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
@@ -97,14 +98,18 @@ fun MyPageScreen(
                             Column(
                                 verticalArrangement = Arrangement.SpaceEvenly
                             ) {
-                                Image(
-                                    painter = painterResource(id = R.drawable.newtine_logo),
-                                    contentDescription = "newtine logo",
-                                    modifier = Modifier
-                                        .width(35.dp),
-                                    alignment = Alignment.Center
-
-                                )
+                                Box(
+                                    contentAlignment = Alignment.Center,
+                                    modifier = Modifier.width(145.dp)
+                                ){
+                                    Image(
+                                        painter = painterResource(id = R.drawable.newtine_logo),
+                                        contentDescription = "newtine logo",
+                                        modifier = Modifier
+                                            .width(35.dp),
+                                        alignment = Alignment.Center,
+                                        )
+                                }
                                 Text(
                                     text = userProfile.daysOfUsing.toString() + "일째 뉴틴 중",
                                     style = LocalTextStyle.current.copy(
@@ -148,18 +153,19 @@ fun MyPageScreen(
                             ){
                                 Row(
                                     modifier = Modifier.padding(end = 5.dp),
-                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    horizontalArrangement = Arrangement.Start,
                                     verticalAlignment = Alignment.CenterVertically
                                 ){
                                     Image(
                                         painter = painterResource(id = R.drawable.voucher),
                                         contentDescription = "gift voucher",
                                         modifier = Modifier
-                                            .width(50.dp)
-                                            .height(55.dp)
+                                            .width(39.dp)
+                                            .height(44.dp)
                                             .padding(start = 0.dp),
                                         contentScale = ContentScale.Crop
                                     )
+                                    Spacer(modifier = Modifier.width(8.dp))
                                     Text(text = "교환권 구매",
                                         fontSize = 18.sp,
                                         color = Color.White,

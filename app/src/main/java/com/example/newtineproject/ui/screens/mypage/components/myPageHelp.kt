@@ -52,7 +52,8 @@ fun myPageHelp() {
             ) {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Move on"
+                    contentDescription = "Move on",
+                    tint = Color.Gray
                 )
             }
         }
@@ -79,7 +80,8 @@ fun myPageHelp() {
             ) {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Move on"
+                    contentDescription = "Move on",
+                    tint = Color.Gray
                 )
             }
         }
@@ -106,7 +108,8 @@ fun myPageHelp() {
             ) {
                 Icon(
                     imageVector = Icons.Default.KeyboardArrowRight,
-                    contentDescription = "Move on"
+                    contentDescription = "Move on",
+                    tint = Color.Gray
                 )
             }
         }
