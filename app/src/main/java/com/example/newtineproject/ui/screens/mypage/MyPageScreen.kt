@@ -71,7 +71,8 @@ fun MyPageScreen(
             .background(color = Color.White),
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(text = "마이페이지") }
+                title = { Text(text = "마이페이지") },
+                modifier = Modifier.background(Color.White)
             )
         },
         content = {padding ->
@@ -81,6 +82,7 @@ fun MyPageScreen(
                         top = padding.calculateTopPadding() + 4.dp
                     )
                     .fillMaxSize()
+                    .background(Color.White)
             ) {
                 Column(
                     modifier = Modifier.weight(3f),
@@ -283,7 +285,8 @@ fun MyPageScreen(
                         ){
                             CustomScrollableTabRow(
                                 modifier = Modifier
-                                    .fillMaxWidth(),
+                                    .fillMaxWidth()
+                                    .background(Color.White),
                                 edgePadding = 17.dp,
                                 selectedTabIndex = pagerState.currentPage,
                                 divider = {},
@@ -296,7 +299,9 @@ fun MyPageScreen(
                                 tabs = {
                                     myPageCategoryList.forEachIndexed{ index, title ->
                                         Tab(
-                                            modifier = Modifier.padding(horizontal = 8.dp),
+                                            modifier = Modifier
+                                                .background(Color.White)
+                                                .padding(horizontal = 8.dp),
                                             selected = pagerState.currentPage == index,
                                             selectedContentColor = LightBlue,
                                             unselectedContentColor = Color.LightGray,
@@ -311,6 +316,7 @@ fun MyPageScreen(
                                                 horizontalArrangement = Arrangement.Start,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
+                                                    .background(Color.White)
                                                     .padding(vertical = 8.dp)
                                             ){
                                                 Text(

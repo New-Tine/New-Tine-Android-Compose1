@@ -101,7 +101,7 @@ fun CustomScrollableTabRow(
         }
     }
 }
-
+//
 @Immutable
 class TabPosition internal constructor(val left: Dp, val width: Dp) {
     private val right: Dp get() = left + width
@@ -132,7 +132,7 @@ private enum class TabSlots {
     Divider,
     Indicator
 }
-//
+
 
 /**
  * The default padding from the starting edge before a tab in a [CustomScrollableTabRow].
