@@ -48,6 +48,8 @@ import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.mypage.UserProfile
 import com.example.newtineproject.ui.screens.mypage.components.myPageActivity
+import com.example.newtineproject.ui.screens.mypage.components.myPageHelp
+import com.example.newtineproject.ui.screens.mypage.components.myPageSetting
 import com.example.newtineproject.ui.theme.LightBlue
 import kotlinx.coroutines.launch
 
@@ -326,9 +328,12 @@ fun MyPageScreen(
                                 state = pagerState
                             ) {tabId ->
                                 when(tabId){
-                                    0 -> {}
-                                    1 -> {}
-                                    2 -> {}
+                                    0 -> {
+                                        myPageActivity()}
+                                    1 -> {
+                                        myPageSetting()}
+                                    2 -> {
+                                        myPageHelp()}
                                 }
 
                             }

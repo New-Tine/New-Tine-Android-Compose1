@@ -126,7 +126,7 @@ class TabPosition internal constructor(val left: Dp, val width: Dp) {
         return "TabPosition(left=$left, right=$right, width=$width)"
     }
 }
-
+//
 private enum class TabSlots {
     Tabs,
     Divider,
