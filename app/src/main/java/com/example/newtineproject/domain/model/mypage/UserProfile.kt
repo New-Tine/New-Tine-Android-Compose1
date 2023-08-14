@@ -4,7 +4,7 @@ data class UserProfile(
     var userName: String,
     var userCointPoints: Int,
     var daysOfUsing: Int,
-    var interestKeyword: () -> String,
+    var interestKeyword: MutableList<() -> String>,
     var userImage: Int
 
 )

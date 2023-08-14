@@ -37,7 +37,7 @@ fun MyPageNavGraph(
                         userName = "정지수",
                         userCointPoints = 1000,
                         daysOfUsing = 3,
-                        interestKeyword = {"안드로이드"},
+                        interestKeyword = mutableListOf({"부동산"},{"안드로이드"},{"IT"},{"국제정치"},{"문화"},{"블록체인"},{"디자인"},{"여행"},{"등산"},{"공부"}),
                         userImage = R.drawable.userpic
                     )
                 )

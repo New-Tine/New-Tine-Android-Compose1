@@ -3,9 +3,10 @@ package com.example.newtineproject.ui.screens.mypage
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,12 +22,13 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
@@ -37,16 +39,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.mypage.UserProfile
-import com.example.newtineproject.graphs.navigation_bar_items.NewTechDetailScreen
 import com.example.newtineproject.ui.theme.LightBlue
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyPageScreen(
     navController: NavController,
     userProfile: UserProfile
 ) {
+
     Scaffold(
         modifier = Modifier
             .background(color = Color.White),
@@ -207,12 +209,47 @@ fun MyPageScreen(
                         )
                     )
                 }
-
+                FlowRow(
+                    modifier = Modifier
+                        .padding(horizontal = 15.dp)
+                        .padding(top = 20.dp)
+                ){
+                    userProfile.interestKeyword.forEach{
+                        SuggestionChip(
+                            modifier = Modifier
+                                .padding(horizontal = 2.dp),
+                            onClick = {
+                                      //관심키워드로 검색 결과 창 이동
+                            },
+                            label = {
+                                Text(
+                                    text = it.invoke(),
+                                    modifier = Modifier.padding(vertical = 4.dp),
+                                    style = LocalTextStyle.current.copy(
+                                        color = Color(0xFF9CA3AF),
+                                        fontSize = 14.sp,
+                                        fontWeight = FontWeight(400),
+                                        textAlign = TextAlign.Center
+                                    )
+                                )
+                            },
+                            shape = RoundedCornerShape(18.dp),
+                            border = SuggestionChipDefaults.suggestionChipBorder(
+                                borderColor = Color.LightGray,
+                                borderWidth = 1.dp
+                            ),
+                            colors = SuggestionChipDefaults.suggestionChipColors(
+                                Color.White
+                            )
+                        )
+                    }
+                }
             }
         }
     )
 
 }
+
 
 
 
