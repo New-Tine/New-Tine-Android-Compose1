@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -58,7 +60,7 @@ fun MyPageScreen(
                 modifier = Modifier
                     .padding(
                         top = padding.calculateTopPadding() + 4.dp
-                        )
+                    )
                     .fillMaxSize()
             ) {
                 Row(
@@ -157,25 +159,53 @@ fun MyPageScreen(
                     ){
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.Center
+                            horizontalArrangement = Arrangement.Start
                         ){
                             Image(
                                 painter = painterResource(id = R.drawable.coin),
                                 contentDescription = "coin",
                                 modifier = Modifier
-                                    .width(60.dp)
-                                    .height(65.dp),
+                                    .width(30.dp)
+                                    .height(35.dp),
                                 contentScale = ContentScale.Crop
                             )
+                            Spacer(modifier = Modifier.width(8.dp))
                             Text(text = userProfile.userCointPoints.toString()+" p",
                                 fontSize = 18.sp,
                                 color = Color.Black,
-                                textAlign = TextAlign.Center
                             )
                         }
-
-
                     }
+                }
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = 20.dp)
+                        .padding(top = 25.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(
+                        text = "관심사 키워드",
+                        style = LocalTextStyle.current.copy(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight(500),
+                            color = Color.Black
+                        )
+                    )
+
+                    ClickableText(
+                        text = AnnotatedString("수정하기"),
+                        onClick = {
+                                  //interestKeyword 수정하는 화면
+                        },
+                        style = LocalTextStyle.current.copy(
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight(400),
+                            color = Color(0xFF9CA3AF),
+                            letterSpacing = 0.43.sp
+                        )
+                    )
                 }
 
             }
