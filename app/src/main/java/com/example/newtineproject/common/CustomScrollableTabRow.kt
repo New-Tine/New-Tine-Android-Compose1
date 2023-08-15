@@ -115,7 +115,7 @@ class TabPosition internal constructor(val left: Dp, val width: Dp) {
 
         return true
     }
-
+//
     override fun hashCode(): Int {
         var result = left.hashCode()
         result = 31 * result + width.hashCode()
