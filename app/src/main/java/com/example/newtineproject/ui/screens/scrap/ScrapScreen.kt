@@ -186,6 +186,7 @@ fun ScrapScreen(navController: NavHostController = rememberNavController()) {
                         )
                     }
                 }
+                Spacer(modifier = Modifier.height(20.dp))
                 Column(
                     modifier = Modifier.fillMaxWidth()
                 ){
