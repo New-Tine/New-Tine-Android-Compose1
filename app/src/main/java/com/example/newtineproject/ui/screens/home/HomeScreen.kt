@@ -3,6 +3,7 @@ package com.example.newtineproject.ui.screens.home
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,6 +27,7 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -33,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.newtineproject.R
@@ -52,17 +55,35 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(it)
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 17.dp)
+                    .padding(horizontal = 17.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
             ){
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier
+                        .width(170.dp)
+                        .height(55.dp),
+                    shape = RoundedCornerShape(8.dp),
                 ) {
-                    Text(text = "습관 설정")
+                    Text(
+                        text = "습관 설정"
+                    )
+                }
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .width(170.dp)
+                        .height(55.dp),
+                    shape = RoundedCornerShape(8.dp),
+                ) {
+                    Text(
+                        text = "실시간 토론"
+                    )
                 }
             }
             Spacer(modifier = Modifier.height(15.dp))
@@ -127,7 +148,7 @@ fun TodayNewTechWithLogo(innerPadding: PaddingValues) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = innerPadding.calculateTopPadding(), start = 17.dp),
+            .padding(start = 17.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
