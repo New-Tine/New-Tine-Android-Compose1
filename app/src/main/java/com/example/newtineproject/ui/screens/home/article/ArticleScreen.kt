@@ -43,7 +43,7 @@ fun ArticleScreen(
 
     val categories = Category.values().map { it.categoryName }
     val pagerState = rememberPagerState(
-        pageCount = {indexFromDrawer.toInt()},
+        pageCount = { Category.values().size },
         initialPage = indexFromDrawer.toInt()
     )
     val coroutineScope = rememberCoroutineScope()

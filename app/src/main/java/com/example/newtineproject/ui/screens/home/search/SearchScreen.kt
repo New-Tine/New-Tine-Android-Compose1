@@ -1,6 +1,9 @@
 package com.example.newtineproject.ui.screens.home.search
 
 import android.annotation.SuppressLint
+import android.widget.SearchView
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,6 +36,8 @@ import androidx.compose.material3.InputChipDefaults.inputChipBorder
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarColors
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -54,6 +59,8 @@ import com.example.newtineproject.domain.model.search.Recommendation
 import com.example.newtineproject.ui.screens.home.search.components.RealtimeArticleItem
 import com.example.newtineproject.ui.screens.home.search.components.RecentViewedItem
 import com.example.newtineproject.ui.screens.home.search.components.RecommendedArticleItem
+import com.example.newtineproject.ui.theme.LightGray
+import com.example.newtineproject.ui.theme.SearchBarColor
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -79,7 +86,8 @@ fun SearchScreen(navController: NavController) {
             SearchBar(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
+                    .padding(horizontal = if (active) 0.dp else 16.dp)
+                    .animateContentSize()
                     .background(Color.White),
                 query = text,
                 onQueryChange = {
@@ -129,7 +137,8 @@ fun SearchScreen(navController: NavController) {
                             contentDescription = "Close"
                         )
                     }
-                }
+                },
+                colors = SearchBarDefaults.colors(containerColor = SearchBarColor)
             ) {
                 recentHistoryItems.forEach {
                     Row(modifier = Modifier.padding(all = 14.dp)){
