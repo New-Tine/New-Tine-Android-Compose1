@@ -43,7 +43,7 @@ fun ArticleScreen(
 
     val categories = Category.values().map { it.categoryName }
     val pagerState = rememberPagerState(
-        pageCount = { categories.size },
+        pageCount = {indexFromDrawer.toInt()},
         initialPage = indexFromDrawer.toInt()
     )
     val coroutineScope = rememberCoroutineScope()
@@ -115,9 +115,9 @@ fun ArticleScreen(
                         state = pagerState
                     ) { tabId ->
                         when (tabId) {
-                            0 -> CategoryNewsItScreen()
-                            1 -> CategoryNewsPoliticScreen()
-                            else -> CategoryNewsItScreen()
+                            0 -> {CategoryNewsItScreen()}
+                            1 -> {CategoryNewsPoliticScreen()}
+                            else -> {CategoryNewsItScreen()}
                         }
 
                     }

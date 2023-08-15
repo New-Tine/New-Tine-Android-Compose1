@@ -64,7 +64,10 @@ fun MyPageScreen(
     userProfile: UserProfile
 ) {
     val myPageCategoryList = listOf("활동 내역","설정","도움")
-    val pagerState = rememberPagerState(initialPage = 0)
+    val pagerState = rememberPagerState(
+        pageCount = {3},
+        initialPage = 0
+    )
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -335,7 +338,6 @@ fun MyPageScreen(
                                 }
                             )
                             HorizontalPager(
-                                pageCount = myPageCategoryList.size,
                                 modifier = Modifier.fillMaxWidth(),
                                 state = pagerState,
                                 verticalAlignment = Alignment.Top
