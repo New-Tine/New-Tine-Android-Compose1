@@ -35,7 +35,7 @@ fun ArticleTopAppBar(navController: NavController) {
         actions = {
             IconButton(
                 onClick = {
-
+                    navController.navigate(HomeDetailScreen.Search.route)
                 }
             ) {
                 Icon(

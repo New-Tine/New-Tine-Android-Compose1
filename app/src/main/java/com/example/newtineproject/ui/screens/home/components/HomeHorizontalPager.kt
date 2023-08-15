@@ -21,8 +21,6 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconToggleButton
@@ -30,7 +28,6 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -105,11 +102,11 @@ fun HomeHorizontalPager() {
                     }
             ) {
                 Column {
-                    ImageWithButtons(
-                        image = card.image,
-                        buttonList = card.buttonList
+                    ImagePart(
+                        image = card.image
                     )
                     NewsPart(
+                        buttonList = card.buttonList,
                         newsTitle = card.newsTitle,
                         press = card.press,
                         date = card.date,
@@ -170,62 +167,44 @@ fun HomeHorizontalPager() {
 }
 
 @Composable
-fun ImageWithButtons(
-    image: Any?,
-    buttonList: List<Category>
+fun ImagePart(
+    image: Any?
 ) {
-    Box {
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(image)
-                .crossfade(true)
-                .scale(Scale.FILL)
-                .build(),
-            contentDescription = null,
-            placeholder = painterResource(id = R.drawable.image_place_holder),
-            error = painterResource(id = R.drawable.image_error),
-            modifier = Modifier.height(175.dp),
-            contentScale = ContentScale.FillWidth
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 9.dp, vertical = 7.dp)
-        ) {
-            buttonList.map {
-                Spacer(modifier = Modifier.width(7.dp))
-                ButtonOnImage(it.categoryName)
-            }
-        }
-    }
+    AsyncImage(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(image)
+            .crossfade(true)
+            .scale(Scale.FILL)
+            .build(),
+        contentDescription = null,
+        placeholder = painterResource(id = R.drawable.image_place_holder),
+        error = painterResource(id = R.drawable.image_error),
+        modifier = Modifier.height(175.dp),
+        contentScale = ContentScale.FillWidth
+    )
 }
 
 
 @Composable
-fun ButtonOnImage(
+fun Buttons(
     categoryName: String
 ) {
-    CompositionLocalProvider(LocalRippleTheme provides RippleDetail.RippleCustomTheme) {
-        OutlinedButton(
-            onClick = { /*TODO*/ },
-            border = BorderStroke(1.dp, Color.White),
-            colors = ButtonDefaults.outlinedButtonColors(
-                containerColor = Color(0x4D000000),
-
-                ),
-            modifier = Modifier.defaultMinSize(minWidth = 1.dp, minHeight = 1.dp),
-            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 7.dp)
-        ) {
-            Text(
-                text = categoryName,
-                style = LocalTextStyle.current.copy(color = Color.White)
-            )
-        }
+    OutlinedButton(
+        onClick = { /*TODO*/ },
+        border = BorderStroke(1.dp, LightBlue),
+        modifier = Modifier.defaultMinSize(minWidth = 1.dp, minHeight = 1.dp),
+        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 7.dp)
+    ) {
+        Text(
+            text = categoryName,
+            style = LocalTextStyle.current.copy(color = LightBlue)
+        )
     }
 }
 
 @Composable
 fun NewsPart(
+    buttonList: List<Category>,
     newsTitle: String,
     press: String,
     date: String,
@@ -233,10 +212,17 @@ fun NewsPart(
 ) {
     Column(
         modifier = Modifier
-            .height(220.dp)
             .background(Color.White)
-            .padding(horizontal = 21.dp, vertical = 15.dp)
+            .padding(start = 21.dp, top = 10.dp, end = 21.dp, bottom = 21.dp)
     ) {
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            buttonList.map {
+                Buttons(it.categoryName)
+                Spacer(modifier = Modifier.width(7.dp))
+            }
+        }
         Text(
             text = newsTitle,
             style = LocalTextStyle.current.copy(
@@ -265,16 +251,6 @@ fun NewsPart(
                 )
             )
         }
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = newsContent,
-            style = LocalTextStyle.current.copy(
-                fontSize = 12.sp,
-                fontWeight = FontWeight(300),
-                color = NewsContent
-            ),
-            overflow = TextOverflow.Ellipsis
-        )
     }
 }
 

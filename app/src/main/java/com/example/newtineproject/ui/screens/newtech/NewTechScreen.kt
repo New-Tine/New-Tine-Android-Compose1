@@ -63,13 +63,6 @@ fun NewTechScreen(navController: NavController) {
                 title = { Text("뉴테크") },
                 modifier = Modifier.background(
                     Color.White),
-                navigationIcon = {
-                    IconButton(
-                        onClick = { /* Handle back navigation */ }
-                    ) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = null)
-                    }
-                },
                 actions = {
                     IconButton(
                         onClick = { /* Handle more button click */ }
