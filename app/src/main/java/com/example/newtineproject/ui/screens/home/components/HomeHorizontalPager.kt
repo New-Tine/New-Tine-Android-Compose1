@@ -66,7 +66,6 @@ fun HomeHorizontalPager() {
     )
 
     HorizontalPager(
-
         state = pagerState,
         beyondBoundsPageCount = 3,
         pageSpacing = 20.dp,
@@ -184,24 +183,6 @@ fun ImagePart(
     )
 }
 
-
-@Composable
-fun Buttons(
-    categoryName: String
-) {
-    OutlinedButton(
-        onClick = { /*TODO*/ },
-        border = BorderStroke(1.dp, LightBlue),
-        modifier = Modifier.defaultMinSize(minWidth = 1.dp, minHeight = 1.dp),
-        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 7.dp)
-    ) {
-        Text(
-            text = categoryName,
-            style = LocalTextStyle.current.copy(color = LightBlue)
-        )
-    }
-}
-
 @Composable
 fun NewsPart(
     buttonList: List<Category>,
@@ -213,7 +194,7 @@ fun NewsPart(
     Column(
         modifier = Modifier
             .background(Color.White)
-            .padding(start = 21.dp, top = 10.dp, end = 21.dp, bottom = 21.dp)
+            .padding(start = 21.dp, top = 8.dp, end = 21.dp, bottom = 21.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth()
@@ -223,11 +204,12 @@ fun NewsPart(
                 Spacer(modifier = Modifier.width(7.dp))
             }
         }
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = newsTitle,
             style = LocalTextStyle.current.copy(
-                fontSize = 16.sp,
-                fontWeight = FontWeight(500)
+                fontSize = 18.sp,
+                fontWeight = FontWeight(600)
             ),
             overflow = TextOverflow.Ellipsis
         )
@@ -254,10 +236,27 @@ fun NewsPart(
     }
 }
 
+@Composable
+fun Buttons(
+    categoryName: String
+) {
+    OutlinedButton(
+        onClick = { /*TODO*/ },
+        border = BorderStroke(1.dp, LightBlue),
+        modifier = Modifier.defaultMinSize(minWidth = 1.dp, minHeight = 1.dp),
+        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 5.8.dp)
+    ) {
+        Text(
+            text = categoryName,
+            style = LocalTextStyle.current.copy(color = LightBlue)
+        )
+    }
+}
+
 
 val tmpList = listOf(
     CardContents(
-        image = "https://picsum.photos/id/210/900/1000",
+        image = "https://picsum.photos/id/210/800/450",
         buttonList = listOf(Category.IT_SCIENCE, Category.INDUSTRY),
         newsTitle = "사우디 아라비아 왕세자가 반길 희소식, MS-블리자드 인수 청신호",
         press = "디지털 데일리",

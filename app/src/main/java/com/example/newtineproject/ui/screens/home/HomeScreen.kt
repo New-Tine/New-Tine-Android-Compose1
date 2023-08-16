@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -31,19 +33,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.newtineproject.R
+import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
+import com.example.newtineproject.ui.theme.HomeButtonBelowTopBarColor
 import com.example.newtineproject.ui.theme.LightBlue
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    navController: NavHostController
 ) {
     Scaffold(
         modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding()),
@@ -54,11 +62,11 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            ButtonsBelowTopBar(itemTextList = listOf("습관 설정", "실시간 토론"))
-            
+            ButtonsBelowTopBar(navController = navController)
+
             Spacer(modifier = Modifier.height(15.dp))
 
-            TodayNewTechWithLogo(innerPadding = it)
+            TodayNewTechWithLogo()
 
             ReadCountBox() // 파라미터에 몇 개 읽었는지 읽을 수 있도록 나중에 설정
 
@@ -66,41 +74,6 @@ fun HomeScreen(
 
             HomeHorizontalPager()
         }
-    }
-}
-
-
-@Composable
-fun ButtonsBelowTopBar(itemTextList: List<String>) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 17.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
-    ){
-        itemTextList.forEach { text ->
-            ButtonOf(buttonText = text)
-        }
-    }
-}
-
-@Composable
-fun ButtonOf(buttonText: String) {
-    Button(
-        onClick = { /*TODO*/ },
-        modifier = Modifier
-            .width(170.dp)
-            .height(55.dp),
-        shape = RoundedCornerShape(8.dp),
-        contentPadding = PaddingValues(start = 50.dp)
-    ) {
-        Text(
-            text = buttonText,
-            style = TextStyle(
-                fontSize = 16.sp,
-                color = Color(0xFF374151)
-            )
-        )
     }
 }
 
@@ -149,7 +122,59 @@ fun FakeTopAppBar() {
 }
 
 @Composable
-fun TodayNewTechWithLogo(innerPadding: PaddingValues) {
+fun ButtonsBelowTopBar(navController: NavHostController) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 17.dp, top = 10.dp, end = 17.dp, bottom = 4.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        ButtonOf(
+            buttonText = "습관 설정",
+            navController = navController,
+            destination = HomeDetailScreen.HabitSetting.route
+        )
+        ButtonOf(
+            buttonText = "실시간 토론",
+            navController = null,
+            destination = ""
+        )
+    }
+}
+
+@Composable
+fun ButtonOf(
+    buttonText: String,
+    navController: NavHostController?,
+    destination: String
+) {
+    Box {
+        Button(
+            onClick = { navController?.navigate(destination) },
+            modifier = Modifier
+                .width(170.dp)
+                .height(55.dp),
+            colors = ButtonDefaults.buttonColors(HomeButtonBelowTopBarColor),
+            shape = RoundedCornerShape(5.dp),
+            contentPadding = PaddingValues(start = 50.dp)
+        ) {
+            Text(
+                text = buttonText,
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    color = Color(0xFF374151)
+                )
+            )
+        }
+//        Image(
+//            painter = painterResource(id = R.drawable.button_habitsetting),
+//            contentDescription = "habitsetting_icon"
+//        )
+    }
+}
+
+@Composable
+fun TodayNewTechWithLogo() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -158,12 +183,10 @@ fun TodayNewTechWithLogo(innerPadding: PaddingValues) {
     ) {
         Text(
             text = "오늘의 뉴테크",
-            style = MaterialTheme.typography.titleLarge
-            // figma랑 똑같이 구현할 시 (폰트도 추가 고려)
-//                        style = LocalTextStyle.current.copy(
-//                            fontSize = 24.sp,
-//                            fontWeight = FontWeight(600)
-//                        )
+            style = LocalTextStyle.current.copy(
+                fontSize = 21.sp,
+                fontWeight = FontWeight(600)
+            )
         )
         Image(
             painter = painterResource(id = R.drawable.newtine_logo),
@@ -183,12 +206,30 @@ fun ReadCountBox() {
             .padding(horizontal = 17.dp, vertical = 10.dp)
             .height(55.dp)
             .clip(shape = RoundedCornerShape(5.dp))
-            .background(LightBlue),
+            .background(
+                Brush.horizontalGradient(
+                    listOf(LightBlue, Color(0xFF13B5FF))
+                )
+            ),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             modifier = Modifier.padding(start = 17.dp),
-            text = "현재 2개 읽으셨어요",
+            text = "현재 ",
+            style = LocalTextStyle.current.copy(
+                fontSize = 18.sp,
+                color = Color.White
+            )
+        )
+        Text(
+            text = "2",
+            style = LocalTextStyle.current.copy(
+                fontSize = 25.sp,
+                color = Color.White
+            )
+        )
+        Text(
+            text = "개 읽으셨어요",
             style = LocalTextStyle.current.copy(
                 fontSize = 18.sp,
                 color = Color.White
