@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -27,7 +26,6 @@ import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,14 +33,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.newtineproject.R
 import com.example.newtineproject.ui.screens.home.components.HomeHorizontalPager
 import com.example.newtineproject.ui.theme.LightBlue
 
-@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(
@@ -57,35 +54,8 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 17.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ){
-                Button(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .width(170.dp)
-                        .height(55.dp),
-                    shape = RoundedCornerShape(8.dp),
-                ) {
-                    Text(
-                        text = "습관 설정"
-                    )
-                }
-                Button(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .width(170.dp)
-                        .height(55.dp),
-                    shape = RoundedCornerShape(8.dp),
-                ) {
-                    Text(
-                        text = "실시간 토론"
-                    )
-                }
-            }
+            ButtonsBelowTopBar(itemTextList = listOf("습관 설정", "실시간 토론"))
+            
             Spacer(modifier = Modifier.height(15.dp))
 
             TodayNewTechWithLogo(innerPadding = it)
@@ -96,6 +66,41 @@ fun HomeScreen(
 
             HomeHorizontalPager()
         }
+    }
+}
+
+
+@Composable
+fun ButtonsBelowTopBar(itemTextList: List<String>) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 17.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ){
+        itemTextList.forEach { text ->
+            ButtonOf(buttonText = text)
+        }
+    }
+}
+
+@Composable
+fun ButtonOf(buttonText: String) {
+    Button(
+        onClick = { /*TODO*/ },
+        modifier = Modifier
+            .width(170.dp)
+            .height(55.dp),
+        shape = RoundedCornerShape(8.dp),
+        contentPadding = PaddingValues(start = 50.dp)
+    ) {
+        Text(
+            text = buttonText,
+            style = TextStyle(
+                fontSize = 16.sp,
+                color = Color(0xFF374151)
+            )
+        )
     }
 }
 
