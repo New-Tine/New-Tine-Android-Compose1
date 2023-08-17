@@ -4,6 +4,7 @@ package com.example.newtineproject.ui.screens.home.habitsetting
 
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -52,6 +54,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -127,7 +130,6 @@ fun HabitSettingScreen(navController: NavController) {
                         .padding(10.dp)
                         .padding(top = 50.dp)
                         .fillMaxWidth()
-                        .weight(4f)
                 ) {
                     Text(
                         text = "1단계-읽을 시간",
@@ -350,22 +352,44 @@ fun HabitSettingScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(10.dp)
-                        .weight(1f)
                 ) {
-                    Button(
-                        onClick = {
-                                  navController.popBackStack()
-                        },
+                    Box(
                         modifier = Modifier
-                            .fillMaxWidth(),
-                        shape = RoundedCornerShape(4.dp),
-                        colors = ButtonDefaults.buttonColors(LightBlue),
+                            .height(200.dp)
+                    ){
+                        Column {
+                            Spacer(modifier = Modifier.height(100.dp))
+                            Button(
+                                onClick = {
+                                    navController.popBackStack()
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                shape = RoundedCornerShape(4.dp),
+                                colors = ButtonDefaults.buttonColors(LightBlue),
+                            ) {
+                                Text(
+                                    modifier = Modifier
+                                        .padding(top = 7.dp, bottom = 7.dp),
+                                    text = "습관 설정 완료",
+                                    color = Color.White,
+                                    style = LocalTextStyle.current.copy(
+                                        fontSize = 17.sp
+                                    )
+                                )
+                            }
+                        }
 
-                        ) {
-                        Text(
-                            text = "습관 설정 완료",
-                            color = Color.White,
+                        Image(
+                            painter = painterResource(id = R.drawable.calendar_habitsetting),
+                            contentDescription = "calendar",
+                            modifier = Modifier
+                                .offset(x = 260.dp, y = 55.dp)
+                                .size(100.dp)
+
                         )
+
                     }
                 }
             }
@@ -373,6 +397,8 @@ fun HabitSettingScreen(navController: NavController) {
         }
     )
 }
+
+
 
 @Composable
 fun WeekdaysItem(day: String) {
