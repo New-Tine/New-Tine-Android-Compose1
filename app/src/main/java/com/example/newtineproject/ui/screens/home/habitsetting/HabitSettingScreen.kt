@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -48,6 +47,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.TopEnd
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -58,15 +58,12 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
-import com.example.newtineproject.ui.theme.NewTineProjectTheme
 import java.util.Calendar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -125,7 +122,9 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
         },
         content = {
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceBetween
             ){
                 Column(
                     modifier = Modifier
@@ -300,7 +299,7 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
                                 cursorBrush = SolidColor(Color.Transparent)
                             )
                             Text(
-                                text = " 개 남기기",
+                                text = " 개 읽기",
                                 color = Color.Black,
                                 modifier = Modifier
                                     .padding(top = 10.dp)
@@ -356,39 +355,35 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
                         .padding(10.dp)
                 ) {
                     Box(
-                        modifier = Modifier
-                            .height(200.dp)
                     ){
-                        Column {
-                            Spacer(modifier = Modifier.height(100.dp))
-                            Button(
-                                onClick = {
-                                    navController.popBackStack()
-                                },
+                        Button(
+                            onClick = {
+                                navController.popBackStack()
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                            shape = RoundedCornerShape(4.dp),
+                            colors = ButtonDefaults.buttonColors(LightBlue),
+                        ) {
+                            Text(
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(10.dp),
-                                shape = RoundedCornerShape(4.dp),
-                                colors = ButtonDefaults.buttonColors(LightBlue),
-                            ) {
-                                Text(
-                                    modifier = Modifier
-                                        .padding(top = 7.dp, bottom = 7.dp),
-                                    text = "습관 설정 완료",
-                                    color = Color.White,
-                                    style = LocalTextStyle.current.copy(
-                                        fontSize = 17.sp
-                                    )
+                                    .padding(top = 7.dp, bottom = 7.dp),
+                                text = "습관 설정 완료",
+                                color = Color.White,
+                                style = LocalTextStyle.current.copy(
+                                    fontSize = 17.sp
                                 )
-                            }
+                            )
                         }
 
                         Image(
                             painter = painterResource(id = R.drawable.calendar_habitsetting),
                             contentDescription = "calendar",
                             modifier = Modifier
-                                .offset(x = 260.dp, y = 55.dp)
-                                .size(100.dp)
+                                .fillMaxWidth()
+                                .size(80.dp),
+                            alignment = TopEnd
 
                         )
 
