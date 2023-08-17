@@ -1,10 +1,12 @@
 package com.example.newtineproject.ui.screens.home.search.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
@@ -46,9 +48,9 @@ fun RealtimeArticleItem(
                 )
             )
             Spacer(modifier = Modifier.width(16.dp))
-            Icon(
-                painterResource(id = realtimeArticle.icon),
-                tint = Color.Red,
+            Image(
+                modifier = Modifier.fillMaxWidth(0.1f),
+                painter = painterResource(id = realtimeArticle.icon),
                 contentDescription = null
             )
             Spacer(modifier = Modifier.width(16.dp))
