@@ -15,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -45,7 +47,7 @@ fun RealtimeArticleItem(
             )
             Spacer(modifier = Modifier.width(16.dp))
             Icon(
-                imageVector = realtimeArticle.icon,
+                painterResource(id = realtimeArticle.icon),
                 tint = Color.Red,
                 contentDescription = null
             )

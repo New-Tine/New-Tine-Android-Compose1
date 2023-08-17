@@ -1,9 +1,7 @@
 package com.example.newtineproject.ui.screens.home.search
 
 import android.annotation.SuppressLint
-import android.widget.SearchView
 import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -16,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -25,7 +24,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -36,7 +34,6 @@ import androidx.compose.material3.InputChipDefaults.inputChipBorder
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarColors
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,6 +44,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -59,7 +57,6 @@ import com.example.newtineproject.domain.model.search.Recommendation
 import com.example.newtineproject.ui.screens.home.search.components.RealtimeArticleItem
 import com.example.newtineproject.ui.screens.home.search.components.RecentViewedItem
 import com.example.newtineproject.ui.screens.home.search.components.RecommendedArticleItem
-import com.example.newtineproject.ui.theme.LightGray
 import com.example.newtineproject.ui.theme.SearchBarColor
 
 
@@ -69,7 +66,7 @@ import com.example.newtineproject.ui.theme.SearchBarColor
 fun SearchScreen(navController: NavController) {
     var text by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
-    var recentHistoryItems = remember {
+    val recentHistoryItems = remember {
         mutableStateListOf("뉴스")
     }
     var selected by remember { mutableStateOf(false) }
@@ -141,9 +138,20 @@ fun SearchScreen(navController: NavController) {
                 colors = SearchBarDefaults.colors(containerColor = SearchBarColor)
             ) {
                 recentHistoryItems.forEach {
-                    Row(modifier = Modifier.padding(all = 14.dp)){
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { }
+                            .padding(horizontal = 16.dp, vertical = 18.dp)
+                    ){
+                        Icon(
+                            painter = painterResource(R.drawable.search_history),
+                            contentDescription = "search_history"
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
                         Text(text = it)
                     }
+                    Divider()
                 }
             }
             Spacer(modifier = Modifier.height(22.dp))
@@ -171,7 +179,7 @@ fun SearchScreen(navController: NavController) {
                         },
                         label = {
                             Text(
-                                text = "$text",
+                                text = text,
                                 modifier = Modifier.padding(vertical = 4.dp),
                                 style = LocalTextStyle.current.copy(
                                     color = Color.Gray,
@@ -319,17 +327,17 @@ val recommendationList = listOf(
 val realtimeArticleList = listOf(
     RealtimeArticle(
         number = 1,
-        icon = Icons.Default.KeyboardArrowUp,
+        icon = R.drawable.realtime_article_arrow_up,
         title = "상반기 K팝 수출액 최고치, 미국.."
     ),
     RealtimeArticle(
         number = 2,
-        icon = Icons.Default.Add,
+        icon = R.drawable.realtime_article_new,
         title = "하한가 사태, 주식 시장 불안 영향.."
     ),
     RealtimeArticle(
         number = 3,
-        icon = Icons.Default.KeyboardArrowDown,
+        icon = R.drawable.realtime_article_arrow_down,
         title = "영화 ‘엘리멘탈’ 관객 돌파 속도 .."
     ),
 
