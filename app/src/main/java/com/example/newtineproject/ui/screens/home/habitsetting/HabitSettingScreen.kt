@@ -381,7 +381,7 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
                             painter = painterResource(id = R.drawable.calendar_habitsetting),
                             contentDescription = "calendar",
                             modifier = Modifier
-                                .fillMaxWidth()
+                                .fillMaxWidth(0.95f)
                                 .size(80.dp),
                             alignment = TopEnd
 
