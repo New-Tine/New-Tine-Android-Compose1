@@ -22,7 +22,8 @@ fun NavGraphBuilder.homeNavGraph(
     ) {
         composable(route = HomeDetailScreen.Home.route) {
             HomeScreen(
-                paddingValues = paddingValues
+                paddingValues = paddingValues,
+                navController = navController
             )
         }
         composable(route = "${HomeDetailScreen.Article.route}/{indexFromDrawer}") { backStackEntry ->

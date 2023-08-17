@@ -77,7 +77,6 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
 
     val topBarVisible = currentDestination?.route == HomeDetailScreen.Home.route
     val bottomBarVisible = currentDestination?.route != HomeDetailScreen.Notification.route
-    val fabVisible = currentDestination?.route == NavigationBarScreen.Home.route
 
     ModalNavigationDrawer(
         drawerState = drawerState,
@@ -120,59 +119,6 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                                 screen = screen,
                                 currentDestination = currentDestination,
                                 navController = navController
-                            )
-                        }
-                    }
-                }
-            },
-            floatingActionButton = {
-                Row(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .fillMaxWidth(0.915f),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    AnimatedVisibility(
-                        visible = topBarVisible,
-                        enter = slideInHorizontally(animationSpec = tween(durationMillis = 100)),
-                        exit = slideOutHorizontally(animationSpec = tween(durationMillis = 100))
-                    ) {
-                        FloatingActionButton(
-                            onClick = {
-                                navController.navigate(HomeDetailScreen.HabitSetting.route)
-                            },
-                            shape = CircleShape,
-                            containerColor = LightBlue,
-                            contentColor = Color.White,
-                            modifier = Modifier.width(256.dp),
-                            elevation = FloatingActionButtonDefaults.elevation(5.dp)
-                        ) {
-                            Text(
-                                text = "나만의 습관 설정",
-                            )
-                        }
-                    }
-                    AnimatedVisibility(
-                        visible = topBarVisible,
-                        enter = slideInHorizontally(
-                            animationSpec = tween(durationMillis = 80),
-                            initialOffsetX = { it / 2 }
-                        ),
-                        exit = slideOutHorizontally(
-                            animationSpec = tween(durationMillis = 80),
-                            targetOffsetX = { it / 2 }
-                        )
-                    ) {
-                        FloatingActionButton(
-                            onClick = { /*TODO*/ },
-                            shape = CircleShape,
-                            containerColor = LightBlue,
-                            contentColor = Color.White,
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.home_chat),
-                                contentDescription = null,
                             )
                         }
                     }
