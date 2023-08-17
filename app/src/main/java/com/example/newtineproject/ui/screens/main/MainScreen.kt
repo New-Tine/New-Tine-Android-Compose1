@@ -88,7 +88,8 @@ fun MainScreen(navController: NavHostController = rememberNavController()) {
                 scope = scope,
                 navController = navController
             )
-        }
+        },
+        gesturesEnabled = topBarVisible
     ) {
         Scaffold(
             topBar = {
