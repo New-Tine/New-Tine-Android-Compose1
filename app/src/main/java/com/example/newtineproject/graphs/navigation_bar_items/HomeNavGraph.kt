@@ -37,7 +37,10 @@ fun NavGraphBuilder.homeNavGraph(
             NotificationScreen(navController = navController)
         }
         composable(route = HomeDetailScreen.HabitSetting.route) {
-            HabitSettingScreen(navController = navController)
+            HabitSettingScreen(
+                navController = navController,
+                paddingValues = paddingValues
+            )
         }
         composable(route = HomeDetailScreen.Search.route){
             SearchScreen(navController = navController)

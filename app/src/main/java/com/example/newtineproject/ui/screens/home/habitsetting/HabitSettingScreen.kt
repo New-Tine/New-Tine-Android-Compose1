@@ -10,6 +10,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -71,7 +72,7 @@ import java.util.Calendar
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun HabitSettingScreen(navController: NavController) {
+fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValues) {
 
     var textInt = remember { mutableStateOf("  ")}
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -103,6 +104,7 @@ fun HabitSettingScreen(navController: NavController) {
     )
 
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("나의 습관 형성") },
@@ -434,11 +436,3 @@ fun WeekdaysItem(day: String) {
     Spacer(modifier = Modifier.padding(end = 5.dp))
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun HabitSettingPreview() {
-    NewTineProjectTheme {
-        HabitSettingScreen(navController = rememberNavController())
-    }
-}
