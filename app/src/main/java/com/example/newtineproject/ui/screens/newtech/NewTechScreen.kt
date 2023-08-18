@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
@@ -131,14 +130,13 @@ fun NewTechScreen(navController: NavController) {
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight(),
-                        horizontalArrangement = Arrangement.SpaceEvenly
+                        horizontalArrangement = Arrangement.SpaceEvenly,
                     ){
 
                         Box{
                             Card(
                                 shape = RoundedCornerShape(4.dp),
                                 modifier = Modifier
-                                    .padding(20.dp)
                                     .graphicsLayer {
                                         shape = RoundedCornerShape(4.dp)
                                         shadowElevation = 10f
@@ -170,12 +168,10 @@ fun NewTechScreen(navController: NavController) {
                                 }
                             }
                         }
-
                         Box{
                             Card(
                                 shape = RoundedCornerShape(4.dp),
                                 modifier = Modifier
-                                    .padding(20.dp)
                                     .graphicsLayer {
                                         shape = RoundedCornerShape(4.dp)
                                         shadowElevation = 10f
@@ -206,9 +202,8 @@ fun NewTechScreen(navController: NavController) {
                                 }
                             }
                         }
-
-
                     }
+                    Spacer(modifier = Modifier.height(30.dp))
 
                     Box(){
                         GradientButton(
