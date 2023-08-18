@@ -46,6 +46,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.graphs.navigation_bar_items.NewTechDetailScreen
+import com.example.newtineproject.ui.screens.newtech.components.ProgressBars
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 
@@ -118,23 +119,9 @@ fun NewTechScreen(navController: NavController) {
                         )
                     )
 
+                    Spacer(modifier = Modifier.height(30.dp))
                     //place mission coin flag here
-                    Box (
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentHeight()
-                            .padding(top = 30.dp)
-                    ){
-                        Image(
-                            painter = painterResource(id = R.drawable.coin2)
-                            , contentDescription = "coin"
-                            , modifier = Modifier
-                                .wrapContentHeight()
-                                .wrapContentWidth()
-
-                        )
-                    }
+                    ProgressBars(count = 3)
 
                 }
                 Column(
