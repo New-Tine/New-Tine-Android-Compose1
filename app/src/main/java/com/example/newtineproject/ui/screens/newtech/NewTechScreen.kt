@@ -1,7 +1,6 @@
 package com.example.newtineproject.ui.screens.newtech
 
 import android.annotation.SuppressLint
-import android.hardware.lights.Light
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -46,7 +45,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.graphs.navigation_bar_items.NewTechDetailScreen
 import com.example.newtineproject.ui.screens.newtech.components.ProgressBars
-import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 
 
@@ -67,12 +65,9 @@ fun NewTechScreen(navController: NavController) {
 
 
     Scaffold(
-        modifier = Modifier.background(Color.White),
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text("뉴테크") },
-                modifier = Modifier.background(
-                    Color.White),
                 actions = {
                     IconButton(
                         onClick = { /* Handle more button click */ }
@@ -94,7 +89,6 @@ fun NewTechScreen(navController: NavController) {
                     modifier = Modifier
                         .padding(top = padding.calculateTopPadding())
                         .padding(10.dp)
-                        .background(Color.White)
                         .fillMaxWidth()
 
                 ) {

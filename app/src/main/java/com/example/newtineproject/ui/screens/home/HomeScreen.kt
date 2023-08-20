@@ -62,17 +62,27 @@ fun HomeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(it)
+                .padding(it),
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            ButtonsBelowTopBar(navController = navController)
+            Column(
+                modifier = Modifier.padding(top = 20.dp)
+            ){
+                ButtonsBelowTopBar(navController = navController)
 
-            Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(15.dp))
+            }
+            Column(
+                modifier = Modifier.padding(bottom = 50.dp)
+            ){
+                TodayNewTechAndReadCountBoxWithCoins()
 
-            TodayNewTechAndReadCountBoxWithCoins()
+                Spacer(modifier = Modifier.height(10.dp))
 
-            Spacer(modifier = Modifier.height(10.dp))
+                HomeHorizontalPager()
+            }
 
-            HomeHorizontalPager()
+
         }
     }
 }

@@ -86,7 +86,6 @@ fun MyPageScreen(
                         top = padding.calculateTopPadding() + 4.dp
                     )
                     .fillMaxSize()
-                    .background(Color.White)
             ) {
                 Column(
                     modifier = Modifier.weight(3f),
@@ -295,7 +294,7 @@ fun MyPageScreen(
                             CustomScrollableTabRow(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .background(Color.White),
+                                    ,
                                 edgePadding = 17.dp,
                                 selectedTabIndex = pagerState.currentPage,
                                 divider = {},
@@ -309,7 +308,6 @@ fun MyPageScreen(
                                     myPageCategoryList.forEachIndexed{ index, title ->
                                         Tab(
                                             modifier = Modifier
-                                                .background(Color.White)
                                                 .padding(horizontal = 8.dp),
                                             selected = pagerState.currentPage == index,
                                             selectedContentColor = LightBlue,
@@ -325,7 +323,6 @@ fun MyPageScreen(
                                                 horizontalArrangement = Arrangement.Start,
                                                 modifier = Modifier
                                                     .fillMaxWidth()
-                                                    .background(Color.White)
                                                     .padding(vertical = 8.dp)
                                             ){
                                                 Text(

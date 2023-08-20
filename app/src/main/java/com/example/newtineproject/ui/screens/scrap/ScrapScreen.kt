@@ -64,12 +64,9 @@ fun ScrapScreen(navController: NavHostController = rememberNavController()) {
     }
 
     Scaffold(
-        modifier = Modifier
-            .background(color = Color.White),
         topBar = {
             CenterAlignedTopAppBar(
                 title = { Text(text = "스크랩") },
-                modifier = Modifier.background(Color.White),
                 actions = {
                     ClickableText(
                         text = AnnotatedString("편집"),
@@ -94,7 +91,6 @@ fun ScrapScreen(navController: NavHostController = rememberNavController()) {
                         top = padding.calculateTopPadding() + 4.dp
                     )
                     .fillMaxSize()
-                    .background(Color.White)
             ){
                 Row(
                     modifier = Modifier
