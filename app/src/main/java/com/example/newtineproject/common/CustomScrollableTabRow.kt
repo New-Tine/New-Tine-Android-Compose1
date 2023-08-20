@@ -105,7 +105,7 @@ fun CustomScrollableTabRow(
 @Immutable
 class TabPosition internal constructor(val left: Dp, val width: Dp) {
     private val right: Dp get() = left + width
-
+//
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is TabPosition) return false
