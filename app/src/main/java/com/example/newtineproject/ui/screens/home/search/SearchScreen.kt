@@ -172,7 +172,8 @@ fun SearchScreen(navController: NavController) {
             ){
                 recentHistoryItems.forEach {text->
                     InputChip(
-                        modifier = Modifier.padding(horizontal = 2.dp),
+                        modifier = Modifier
+                            .height(35.dp),
                         selected = selected,
                         onClick = {
                             /* go somewhere */
@@ -180,7 +181,7 @@ fun SearchScreen(navController: NavController) {
                         label = {
                             Text(
                                 text = text,
-                                modifier = Modifier.padding(vertical = 4.dp),
+                                modifier = Modifier.padding(start = 4.dp),
                                 style = LocalTextStyle.current.copy(
                                     color = Color.Gray,
                                     fontWeight = FontWeight(400),
@@ -194,13 +195,20 @@ fun SearchScreen(navController: NavController) {
                         ),
                         colors = InputChipDefaults.inputChipColors(Color.White),
                         trailingIcon = {
-                            Icon(
-                                //chip has to be removed once clicked
-                                imageVector = Icons.Default.Close,
-                                tint = Color.LightGray,
-                                contentDescription = "Close Chip",
-                                modifier = Modifier.size(InputChipDefaults.AvatarSize),
-                            )
+                            IconButton(
+                                onClick = {
+                                    recentHistoryItems.remove(text)
+                                }
+                            ) {
+                                Icon(
+                                    //chip has to be removed once clicked
+                                    imageVector = Icons.Default.Close,
+                                    tint = Color.LightGray,
+                                    contentDescription = "Close Chip",
+                                    modifier = Modifier.size(InputChipDefaults.AvatarSize),
+                                )
+                            }
+
                         }
                     )
                 }
