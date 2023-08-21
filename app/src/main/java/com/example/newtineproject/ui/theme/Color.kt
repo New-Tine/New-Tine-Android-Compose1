@@ -20,6 +20,8 @@ val White=Color(0xffffffff)
 val LightGrey= Color(0xffE5E7EB)
 val MiddleGrey=Color(0xffD2D5DA)
 val Grey=Color(0xff6D7280)
+val textInputGrey=Color(0xffF3F4F6)
+val DarkGrey=Color(0xff374151)
 
 //현종
 val LightGray = Color(0xFF6D7280)
