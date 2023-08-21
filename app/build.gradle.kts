@@ -116,4 +116,15 @@ dependencies {
     // Gson
     implementation ("com.google.code.gson:gson:2.10.1")
 
+
+    // Ktor
+    val ktor_version = "2.3.3"
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+    // Serialization
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
 }
