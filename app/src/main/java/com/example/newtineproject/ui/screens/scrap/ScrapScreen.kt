@@ -209,74 +209,98 @@ fun DesignFolderList() {
             thumbnail = R.drawable.article1,
             publication = "연합뉴스",
             timePassed = 1,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "세계 첫 모바일 길잡이 티맵...22년 만에 가입자 2000만 명 태웠다",
             thumbnail = R.drawable.article2,
             publication = "연합뉴스",
             timePassed = 1,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "네이버 마켓에 이미지 솔루션 내놨더니 \"매출 3배 껑충\"",
             thumbnail = R.drawable.article3,
             publication = "연합뉴스",
-            timePassed = 2
+            timePassed = 2,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "지질연, 호주 퀸스랜드와 핵심광물 공동연구 추진",
             thumbnail = R.drawable.article4,
             publication = "한국일보",
-            timePassed = 2
+            timePassed = 2,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "사우디 왕세자가 반길 희소식, \n" +
                     "MS-블리자드 인수 청신호",
             thumbnail = R.drawable.article5,
             publication = "전자신문",
-            timePassed = 3
+            timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "길 잃은 수제맥주…프리미엄 가치 앞세워 경쟁력 회복해야",
             thumbnail = R.drawable.article6,
             publication = "아시아경제",
-            timePassed = 3
+            timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "트위터 잡는다던 스레드 '출시효과 반짝'이었나…이용자 70% 급감",
             thumbnail = R.drawable.article7,
             publication = "한국경제",
             timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "사우디 아라비아 왕세자가 반길 \n" +
                     "희소식, MS-블리자드 인수 청신호",
             thumbnail = R.drawable.article8,
             publication = "디지털 데일리",
-            timePassed = 4
+            timePassed = 4,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "환경부 \"테슬라 모델Y, 전기차 보조금 전액 받기 어려워\"",
             thumbnail = R.drawable.article9,
             publication = "연합뉴스",
-            timePassed = 5
+            timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "\"경영보다 컴공 전공자 필요\"…IT 신입채용 두배 늘린 한은\n",
             thumbnail = R.drawable.article10,
             publication = "서울경제신문",
-            timePassed = 5
+            timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "‘프론트엔드냐, 백엔드냐’를 고민하는 당신에게\n",
             thumbnail = R.drawable.article11,
             publication = "요즘IT",
             timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "하이투자 “삼성전기 삼화콘덴서 포함 MLCC업체, IT용 부품 재고조정 일단락”",
             thumbnail = R.drawable.article12,
             publication = "Business Post",
             timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         )
     )
 
@@ -310,74 +334,98 @@ fun NewsLetterFolderList() {
             thumbnail = R.drawable.article1,
             publication = "연합뉴스",
             timePassed = 1,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "세계 첫 모바일 길잡이 티맵...22년 만에 가입자 2000만 명 태웠다",
             thumbnail = R.drawable.article2,
             publication = "연합뉴스",
             timePassed = 1,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "네이버 마켓에 이미지 솔루션 내놨더니 \"매출 3배 껑충\"",
             thumbnail = R.drawable.article3,
             publication = "연합뉴스",
-            timePassed = 2
+            timePassed = 2,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "지질연, 호주 퀸스랜드와 핵심광물 공동연구 추진",
             thumbnail = R.drawable.article4,
             publication = "한국일보",
-            timePassed = 2
+            timePassed = 2,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "사우디 왕세자가 반길 희소식, \n" +
                     "MS-블리자드 인수 청신호",
             thumbnail = R.drawable.article5,
             publication = "전자신문",
-            timePassed = 3
+            timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "길 잃은 수제맥주…프리미엄 가치 앞세워 경쟁력 회복해야",
             thumbnail = R.drawable.article6,
             publication = "아시아경제",
-            timePassed = 3
+            timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "트위터 잡는다던 스레드 '출시효과 반짝'이었나…이용자 70% 급감",
             thumbnail = R.drawable.article7,
             publication = "한국경제",
             timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "사우디 아라비아 왕세자가 반길 \n" +
                     "희소식, MS-블리자드 인수 청신호",
             thumbnail = R.drawable.article8,
             publication = "디지털 데일리",
-            timePassed = 4
+            timePassed = 4,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "환경부 \"테슬라 모델Y, 전기차 보조금 전액 받기 어려워\"",
             thumbnail = R.drawable.article9,
             publication = "연합뉴스",
-            timePassed = 5
+            timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "\"경영보다 컴공 전공자 필요\"…IT 신입채용 두배 늘린 한은\n",
             thumbnail = R.drawable.article10,
             publication = "서울경제신문",
-            timePassed = 5
+            timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "‘프론트엔드냐, 백엔드냐’를 고민하는 당신에게\n",
             thumbnail = R.drawable.article11,
             publication = "요즘IT",
             timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "하이투자 “삼성전기 삼화콘덴서 포함 MLCC업체, IT용 부품 재고조정 일단락”",
             thumbnail = R.drawable.article12,
             publication = "Business Post",
             timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         )
     )
 
@@ -411,74 +459,98 @@ fun InterestListFolderList() {
             thumbnail = R.drawable.article1,
             publication = "연합뉴스",
             timePassed = 1,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "세계 첫 모바일 길잡이 티맵...22년 만에 가입자 2000만 명 태웠다",
             thumbnail = R.drawable.article2,
             publication = "연합뉴스",
             timePassed = 1,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "네이버 마켓에 이미지 솔루션 내놨더니 \"매출 3배 껑충\"",
             thumbnail = R.drawable.article3,
             publication = "연합뉴스",
-            timePassed = 2
+            timePassed = 2,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "지질연, 호주 퀸스랜드와 핵심광물 공동연구 추진",
             thumbnail = R.drawable.article4,
             publication = "한국일보",
-            timePassed = 2
+            timePassed = 2,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "사우디 왕세자가 반길 희소식, \n" +
                     "MS-블리자드 인수 청신호",
             thumbnail = R.drawable.article5,
             publication = "전자신문",
-            timePassed = 3
+            timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "길 잃은 수제맥주…프리미엄 가치 앞세워 경쟁력 회복해야",
             thumbnail = R.drawable.article6,
             publication = "아시아경제",
-            timePassed = 3
+            timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "트위터 잡는다던 스레드 '출시효과 반짝'이었나…이용자 70% 급감",
             thumbnail = R.drawable.article7,
             publication = "한국경제",
             timePassed = 3,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "사우디 아라비아 왕세자가 반길 \n" +
                     "희소식, MS-블리자드 인수 청신호",
             thumbnail = R.drawable.article8,
             publication = "디지털 데일리",
-            timePassed = 4
+            timePassed = 4,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "환경부 \"테슬라 모델Y, 전기차 보조금 전액 받기 어려워\"",
             thumbnail = R.drawable.article9,
             publication = "연합뉴스",
-            timePassed = 5
+            timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "\"경영보다 컴공 전공자 필요\"…IT 신입채용 두배 늘린 한은\n",
             thumbnail = R.drawable.article10,
             publication = "서울경제신문",
-            timePassed = 5
+            timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "‘프론트엔드냐, 백엔드냐’를 고민하는 당신에게\n",
             thumbnail = R.drawable.article11,
             publication = "요즘IT",
             timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         ),
         Article(
             title = "하이투자 “삼성전기 삼화콘덴서 포함 MLCC업체, IT용 부품 재고조정 일단락”",
             thumbnail = R.drawable.article12,
             publication = "Business Post",
             timePassed = 5,
+            category = "IT",
+            contents = "기사 내용~"
         )
     )
 
