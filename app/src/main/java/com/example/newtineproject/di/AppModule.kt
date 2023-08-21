@@ -2,6 +2,7 @@ package com.example.newtineproject.di
 
 import com.example.newtineproject.data.remote.NewsRankingApiService
 import com.example.newtineproject.data.remote.NewsRankingApiServiceImpl
+import com.example.newtineproject.domain.repository.SearchRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
