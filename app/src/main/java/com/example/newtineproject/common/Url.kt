@@ -5,5 +5,5 @@ object Url {
 
     const val HOME_NEWS = "$BASE_URL/news/"
 
-    const val SEARCH_RANKING = "$BASE_URL/news/ranking"
+    const val SEARCH_RANKING = "$HOME_NEWS/ranking"
 }

@@ -1,11 +1,16 @@
 package com.example.newtineproject.data.remote.dto
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class NewsRanking(
+    @SerialName("code")
     val code: Int,
+    @SerialName("isSuccess")
     val isSuccess: Boolean,
+    @SerialName("message")
     val message: String,
-    val result: List<Result>
+    @SerialName("result")
+    val news: List<News>
 )

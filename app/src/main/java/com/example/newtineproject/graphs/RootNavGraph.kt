@@ -1,17 +1,10 @@
 package com.example.newtineproject.graphs
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.newtineproject.ui.screens.login.KaKaoAuthViewModel
-import com.example.newtineproject.ui.screens.login.MyApplication
 import com.example.newtineproject.ui.screens.login.screens.LLoginScreen
-import com.example.newtineproject.ui.screens.login.screens.LoginScreen
-import com.example.newtineproject.ui.screens.login.screens.SignupFinishScreen
-import com.example.newtineproject.ui.screens.login.screens.SignupIdPwScreen
-import com.example.newtineproject.ui.screens.main.MainScreen
 
 @Composable
 fun RootNavGraph(navController: NavHostController) {
