@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.newtineproject.data.remote.NewsRankingService
 import com.example.newtineproject.graphs.RootNavGraph
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 import dagger.hilt.android.AndroidEntryPoint

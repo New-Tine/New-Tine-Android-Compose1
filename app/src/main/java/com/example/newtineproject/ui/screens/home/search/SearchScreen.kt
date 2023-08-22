@@ -38,6 +38,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -50,6 +51,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.newtineproject.R
+import com.example.newtineproject.data.remote.NewsRankingService
+import com.example.newtineproject.data.remote.dto.NewsRanking
 import com.example.newtineproject.domain.model.search.RealtimeArticle
 import com.example.newtineproject.domain.model.search.RecentViewedArticle
 import com.example.newtineproject.domain.model.search.Recommendation
@@ -72,6 +75,34 @@ fun SearchScreen(
         mutableStateListOf("뉴스")
     }
     var selected by remember { mutableStateOf(false) }
+
+    val service = NewsRankingService.create()
+
+    val news = produceState(
+        initialValue = NewsRanking(
+            code = 0,
+            isSuccess = false,
+            message = "",
+            result = emptyList()
+        ),
+        producer = {
+            value = service.getNews()
+        }
+    )
+
+    val realtimeArticleList = news.value.result.mapIndexed { index, newsItem ->
+        val iconResId = when {
+            index % 3 == 0 -> R.drawable.realtime_article_arrow_up
+            index % 3 == 1 -> R.drawable.realtime_article_new
+            else -> R.drawable.realtime_article_arrow_down
+        }
+
+        RealtimeArticle(
+            number = index + 1,
+            icon = iconResId,
+            title = newsItem.title
+        )
+    }
 
     Scaffold(
 
@@ -333,25 +364,6 @@ val recommendationList = listOf(
     )
 
 )
-
-val realtimeArticleList = listOf(
-    RealtimeArticle(
-        number = 1,
-        icon = R.drawable.realtime_article_arrow_up,
-        title = "상반기 K팝 수출액 최고치, 미국.."
-    ),
-    RealtimeArticle(
-        number = 2,
-        icon = R.drawable.realtime_article_new,
-        title = "하한가 사태, 주식 시장 불안 영향.."
-    ),
-    RealtimeArticle(
-        number = 3,
-        icon = R.drawable.realtime_article_arrow_down,
-        title = "영화 ‘엘리멘탈’ 관객 돌파 속도 .."
-    ),
-
-    )
 
 val recentViewedList = listOf(
     RecentViewedArticle(

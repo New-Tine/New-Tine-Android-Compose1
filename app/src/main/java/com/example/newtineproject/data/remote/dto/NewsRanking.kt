@@ -12,5 +12,5 @@ data class NewsRanking(
     @SerialName("message")
     val message: String,
     @SerialName("result")
-    val news: List<News>
+    val result: List<Result>
 )
