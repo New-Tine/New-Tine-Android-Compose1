@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization") version "1.9.0"
     id("androidx.navigation.safeargs")
+
 }
 
 android {
@@ -107,5 +108,12 @@ dependencies {
     implementation ("com.kakao.sdk:v2-talk:2.15.0") // 친구, 메시지(카카오톡)
     implementation ("com.kakao.sdk:v2-friend:2.15.0") // 카카오톡 소셜 피커, 리소스 번들 파일 포함
 
+    //retrofit2
+    val retrofit_version="2.9.0"
+    implementation ("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation ("com.squareup.retrofit2:converter-gson:$retrofit_version")
+
+    // Gson
+    implementation ("com.google.code.gson:gson:2.10.1")
 
 }

@@ -65,7 +65,7 @@ import retrofit2.Response
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navController: NavHostController = rememberNavController()) {
+fun LoginScreen_test(navController: NavHostController = rememberNavController()) {
     val viewModel=viewModel<KaKaoAuthViewModel>()
 
     val textIdState= remember { mutableStateOf("") }
@@ -138,7 +138,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                         unfocusedContainerColor =textInputGrey
                     )
 
-                )
+                    )
 
                 Row (
                     modifier = Modifier
@@ -176,6 +176,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                     onClick =
                     {
                         //여기서 id와 pw가 같으면
+                        //navController.navigate(NavigationBarScreen.Home.route)
                         var isBlankExists = false
                         var isPwSame = false
                         if (textIdState.value.isBlank() || textPwState.value.isBlank()) {
@@ -196,85 +197,84 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                         if (!isBlankExists) {
                             // Retrofit을 사용하여 POST 요청 생성
                             val postData = Retrofit_LoginPost(email, password)
+                            val ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjRAdGVzdC5jb20iLCJyb2xlcyI6IlVTRVIiLCJpYXQiOjE2OTI3MjM1OTEsImV4cCI6MTY5MzkzMzE5MX0.3Tyg-5b9ZTx80HbtPIERLpPi0tgbPyI4VJguX5ESD6s"
+                            val bearerToken = "Bearer $ACCESS_TOKEN"
                             val retrofitInterface = RetrofitClient().getRetrofitInterface()
 
 
                             retrofitInterface.LoginPost(postData)?.enqueue(object : retrofit2.Callback<Retrofit_LoginResult?> {
-                                override fun onResponse(
-                                    call: Call<Retrofit_LoginResult?>,
-                                    response: Response<Retrofit_LoginResult?>
-                                ) {
-                                    if (response.isSuccessful) {
-                                        // HTTP 상태 코드 확인
-                                        val statusCode = response.code()
-                                        when (statusCode) {
-                                            200 -> {
-                                                // HTTP 상태 코드 200 (성공)인 경우
-                                                val result = response.body()
-                                                if (result != null) {
-                                                    // result를 사용하여 추가 처리 수행
-                                                    Log.d("retrofit", "onResponse: Success")
-                                                    Log.d(
-                                                        "retrofit",
-                                                        "userId: ${result.userId}"
-                                                    )
-                                                    Log.d("retrofit", "email: ${result.email}")
-                                                    Log.d(
-                                                        "retrofit",
-                                                        "accessToken: ${result.accessToken}"
-                                                    )
-                                                    Log.d(
-                                                        "retrofit",
-                                                        "refreshToken: ${result.refreshToken}"
-                                                    )
-                                                } else {
-                                                    // 서버에서 유효한 응답을 받지 못한 경우
+                                    override fun onResponse(
+                                        call: Call<Retrofit_LoginResult?>,
+                                        response: Response<Retrofit_LoginResult?>
+                                    ) {
+                                        if (response.isSuccessful) {
+                                            // HTTP 상태 코드 확인
+                                            val statusCode = response.code()
+                                            when (statusCode) {
+                                                200 -> {
+                                                    // HTTP 상태 코드 200 (성공)인 경우
+                                                    val result = response.body()
+                                                    if (result != null) {
+                                                        // result를 사용하여 추가 처리 수행
+                                                        Log.d("retrofit", "onResponse: Success")
+                                                        Log.d(
+                                                            "retrofit",
+                                                            "userId: ${result.userId}"
+                                                        )
+                                                        Log.d("retrofit", "email: ${result.email}")
+                                                        Log.d(
+                                                            "retrofit",
+                                                            "accessToken: ${result.accessToken}"
+                                                        )
+                                                        Log.d(
+                                                            "retrofit",
+                                                            "refreshToken: ${result.refreshToken}"
+                                                        )
+                                                    } else {
+                                                        // 서버에서 유효한 응답을 받지 못한 경우
+                                                        Log.e(
+                                                            "retrofit",
+                                                            "onResponse: Response body is null"
+                                                        )
+                                                    }
+                                                }
+
+                                                400 -> {
+                                                    // HTTP 상태 코드 400 (Bad Request)인 경우
+                                                    Log.e("retrofit", "onResponse: Bad Request")
+                                                    // 에러 처리 로직
+                                                }
+
+                                                401 -> {
+                                                    // HTTP 상태 코드 401 (Unauthorized)인 경우
+                                                    Log.e("retrofit", "onResponse: Unauthorized")
+                                                    // 에러 처리 로직
+                                                }
+                                                // 다른 HTTP 상태 코드에 대한 처리 추가
+                                                else -> {
                                                     Log.e(
                                                         "retrofit",
-                                                        "onResponse: Response body is null"
+                                                        "onResponse: Unexpected Status Code $statusCode"
                                                     )
+                                                    // 기타 예외 상황 처리
                                                 }
                                             }
-
-                                            400 -> {
-                                                // HTTP 상태 코드 400 (Bad Request)인 경우
-                                                Log.e("retrofit", "onResponse: Bad Request")
-                                                // 에러 처리 로직
-                                            }
-
-                                            401 -> {
-                                                // HTTP 상태 코드 401 (Unauthorized)인 경우
-                                                Log.e("retrofit", "onResponse: Unauthorized")
-                                                // 에러 처리 로직
-                                            }
-                                            // 다른 HTTP 상태 코드에 대한 처리 추가
-                                            else -> {
-                                                Log.e(
-                                                    "retrofit",
-                                                    "onResponse: Unexpected Status Code $statusCode"
-                                                )
-                                                // 기타 예외 상황 처리
-                                            }
+                                        } else {
+                                            Log.e("retrofit", "onResponse: Request Failed")
+                                            // 응답이 성공하지 않은 경우에 대한 처리
                                         }
-                                    } else {
-                                        Log.e("retrofit", "onResponse: Request Failed")
-                                        // 응답이 성공하지 않은 경우에 대한 처리
                                     }
-                                }
 
-                                override fun onFailure(
-                                    call: Call<Retrofit_LoginResult?>,
-                                    t: Throwable
-                                ) {
-                                    Log.e("retrofit", "onFailure: ${t.message}")
-                                    // 네트워크 요청 실패에 대한 처리
-                                }
-                            })
+                                    override fun onFailure(
+                                        call: Call<Retrofit_LoginResult?>,
+                                        t: Throwable
+                                    ) {
+                                        Log.e("retrofit", "onFailure: ${t.message}")
+                                        // 네트워크 요청 실패에 대한 처리
+                                    }
+                                })
 
                         }
-
-                        navController.navigate(SignupScreen.GotoMain.route)
-
                     },
                     colors= ButtonDefaults.buttonColors(LightBlue),
                     modifier = Modifier
@@ -362,4 +362,9 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
 
 
 
+    }
+
+@Preview
+@Composable
+fun LoginPreview(){
 }

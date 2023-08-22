@@ -48,24 +48,45 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.graphs.RootNavGraph
+import com.example.newtineproject.ui.screens.login.screens.SignupIdPwScreen
+import com.example.newtineproject.ui.screens.login.screens.SignupIdPwScreen_test
+import com.example.newtineproject.ui.screens.login.server.RetrofitClient
+import com.example.newtineproject.ui.screens.login.server.RetrofitInterface
+import com.example.newtineproject.ui.screens.login.server.Retrofit_SignupPost
 import com.example.newtineproject.ui.theme.Grey
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
 import com.example.newtineproject.ui.theme.NewTineProjectTheme
 import com.kakao.sdk.common.util.Utility
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginActivity:ComponentActivity() {
     private val kaKaoAuthViewModel : KaKaoAuthViewModel by viewModels()
-    val preference: SharedPreferences =getSharedPreferences("Signup", Context.MODE_PRIVATE)
 
+    private lateinit var retrofitClient:RetrofitClient
+    private lateinit var retrofitInterface:RetrofitInterface
+    private lateinit var preference:SharedPreferences
+
+//    val test_email:String="test@gmail.com"
+//    val test_pw:String="testpw"
+//
+//    private val token:String="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlcjRAdGVzdC5jb20iLCJyb2xlcyI6IlVTRVIiLCJpYXQiOjE2OTI2OTM4NjQsImV4cCI6MTY5MzkwMzQ2NH0.cPJt1wCMKOFDBXPc5MW-2oX-0dA3dq_wwGeG56T5EnE"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            setContent {
+        val preference: SharedPreferences =getSharedPreferences("Signup", Context.MODE_PRIVATE)
 
-            }
+        setContent{
+            //SignupIdPwScreen_test(navController = rememberNavController(),preference)
+            com.example.newtineproject.ui.screens.login.screens.LoginScreen_test(navController=rememberNavController())
         }
+
+        }
+
+
 }

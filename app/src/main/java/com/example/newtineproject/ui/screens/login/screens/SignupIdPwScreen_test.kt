@@ -51,7 +51,7 @@ import androidx.compose.material3.Text as Text
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SignupIdPwScreen(navController: NavController) {
+fun SignupIdPwScreen_test(navController: NavController,sharedPreferences: SharedPreferences) {
     val textIdState= remember { mutableStateOf("") }
     val textPwState= remember { mutableStateOf("") }
     val textRePwState= remember { mutableStateOf("") }
@@ -63,7 +63,7 @@ fun SignupIdPwScreen(navController: NavController) {
         scaffoldState=scaffoldState,
 
 
-        topBar = {
+    topBar = {
             SignupTopAppBar(navController = navController)
         },
         content = { padding ->
@@ -185,6 +185,7 @@ fun SignupIdPwScreen(navController: NavController) {
                 Spacer(modifier = Modifier.weight(1f))
 
                 Button(onClick = {
+                    //navController.navigate(SignupScreen.Profile.route)
 
                     var isBlankExists=false
                     var isPwSame=false
@@ -197,10 +198,11 @@ fun SignupIdPwScreen(navController: NavController) {
                     }
 
                     if(!isBlankExists&& isPwSame){
-//                        val editor=sharedPreferences.edit()
-//                        editor.putString("email",textIdState.value)
-//                        editor.putString("password",textPwState.value)
-//                        editor.apply()
+                        val editor=sharedPreferences.edit()
+                        editor.putString("email",textIdState.value)
+                        editor.putString("password",textPwState.value)
+                        editor.apply()
+                        //navController.navigate(SignupScreen.Profile.route)
                         val email = textIdState.value
                         val password = textPwState.value
                         val isBlankExists = email.isBlank() || password.isBlank()
@@ -274,7 +276,6 @@ fun SignupIdPwScreen(navController: NavController) {
                         }
 
                     }
-                    navController.navigate(SignupScreen.Profile.route)
 
                 },
                     colors = ButtonDefaults.buttonColors(LightBlue),
