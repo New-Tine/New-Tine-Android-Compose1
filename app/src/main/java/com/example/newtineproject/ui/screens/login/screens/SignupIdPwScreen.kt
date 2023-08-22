@@ -101,7 +101,10 @@ fun SignupIdPwScreen(navController: NavController) {
                                 )
                                 .height(50.dp)
                                 .width(230.dp),
-                            placeholder = { Text(text = "아이디(4자리 이상)") },
+                            placeholder = { Text(
+                                text = "아이디(4자리 이상)",
+                                fontSize = 15.sp
+                            ) },
                             colors = TextFieldDefaults.colors(
                                 focusedContainerColor = textInputGrey,
                                 unfocusedContainerColor =textInputGrey
@@ -126,7 +129,11 @@ fun SignupIdPwScreen(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    Text(text = "* 사용 가능한 아이디입니다", color = LightBlue)
+                    Text(
+                        text = "* 사용 가능한 아이디입니다",
+                        color = LightBlue,
+                        fontSize = 13.sp
+                    )
 
 
                 }
@@ -145,7 +152,10 @@ fun SignupIdPwScreen(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                         ,
-                        placeholder = { Text(text = "비밀번호 설정(8자리 이상)") },
+                        placeholder = { Text(
+                            text = "비밀번호 설정(8자리 이상)",
+                            fontSize = 15.sp
+                        ) },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
                             unfocusedContainerColor =textInputGrey
@@ -163,7 +173,10 @@ fun SignupIdPwScreen(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                         ,
-                        placeholder = { Text(text = "비밀번호 재입력") }
+                        placeholder = { Text(
+                            text = "비밀번호 재입력",
+                            fontSize = 15.sp
+                        ) }
                         ,colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
                             unfocusedContainerColor =textInputGrey
@@ -171,7 +184,11 @@ fun SignupIdPwScreen(navController: NavController) {
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))
-                    Text(text = "* 입력한 비밀번호와 일치합니다", color = LightBlue)
+                    Text(
+                        text = "* 입력한 비밀번호와 일치합니다",
+                        color = LightBlue,
+                        fontSize = 13.sp
+                    )
 
                 }
 

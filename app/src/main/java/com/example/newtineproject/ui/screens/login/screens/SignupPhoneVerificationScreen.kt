@@ -86,7 +86,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                         )
                         .fillMaxWidth()
                         .height(50.dp),
-                    placeholder = { Text(text = "이름") },
+                    placeholder = { Text(text = "이름", fontSize = 15.sp) },
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = textInputGrey,
                         unfocusedContainerColor =textInputGrey
@@ -109,7 +109,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                             )
                             .height(50.dp)
                             .width(230.dp),
-                        placeholder = { Text(text = "휴대폰 번호(-제외)") },
+                        placeholder = { Text(text = "휴대폰 번호(-제외)", fontSize = 15.sp) },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
                             unfocusedContainerColor =textInputGrey
@@ -149,7 +149,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                         )
                         .fillMaxWidth()
                         .height(50.dp),
-                    placeholder = { Text(text = "인증번호 입력") },
+                    placeholder = { Text(text = "인증번호 입력", fontSize = 15.sp) },
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = textInputGrey,
                         unfocusedContainerColor =textInputGrey
@@ -157,7 +157,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(text = "* 인증되었습니다", color = LightBlue)
+                Text(text = "* 인증되었습니다", color = LightBlue, fontSize = 13.sp)
 
 
                 Spacer(modifier = Modifier.weight(1f))

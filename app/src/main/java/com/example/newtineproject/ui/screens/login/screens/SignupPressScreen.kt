@@ -2,26 +2,22 @@ package com.example.newtineproject.ui.screens.login.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,8 +25,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -74,33 +72,37 @@ fun SignupPressScreen(navController: NavController){
         content={padding->
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 70.dp, start = 20.dp, end = 20.dp)
-                    .wrapContentHeight()
+                    .fillMaxSize()
+                    .padding(top = 70.dp, start = 20.dp, end = 20.dp),
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Text(
-                    text = "구독하고 싶은",
-                    fontSize = 25.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
+                Column(
+                    modifier = Modifier.fillMaxWidth()
+                ){
+                    Text(
+                        text = "구독하고 싶은",
+                        fontSize = 25.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
 
 
-                )
-                Text(
-                    text = "언론사를 선택해주세요",
-                    fontSize = 25.sp,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "언론사를 선택해주세요",
+                        fontSize = 25.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Bold
 
 
-                )
-                Text(
-                    text = "관심 언론사 3개 이상을 선택해 주세요",
-                    fontSize = 15.sp,
-                    color= Grey,
-                    modifier = Modifier.padding(top=7.dp)
+                    )
+                    Text(
+                        text = "관심 언론사 3개 이상을 선택해 주세요",
+                        fontSize = 15.sp,
+                        color= Grey,
+                        modifier = Modifier.padding(top=7.dp)
 
-                )
+                    )
+                }
 
                 Column(
                     modifier = Modifier
@@ -147,43 +149,41 @@ fun SignupPressScreen(navController: NavController){
 
                     }
 
+                    Spacer(modifier = Modifier.height(25.dp))
+
+                    Button(onClick = { /*TODO*/ },
+                        colors = ButtonDefaults.buttonColors(Color.Transparent)
+                        , modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(text = "건너뛰기",
+                            color = Grey
+                        )
+
+                    }
+
+                    Button(onClick = {
+                        navController.navigate(SignupScreen.Topics.route)
+                    },
+                        colors = ButtonDefaults.buttonColors(LightBlue),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp)
+                            .height(50.dp),
+
+                        shape = RoundedCornerShape(2.dp)
+
+
+                    ) {
+                        Text(text = "다음",
+                            color = Color.White,
+                            fontSize = 15.sp
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
 
                 }
-
-
-                Spacer(modifier = Modifier.height(25.dp))
-
-                Button(onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(Color.Transparent)
-                    , modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(text = "건너뛰기",
-                        color = Grey
-                    )
-
-                }
-
-                Button(onClick = {
-                    navController.navigate(SignupScreen.Topics.route)
-                },
-                    colors = ButtonDefaults.buttonColors(LightBlue),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.dp)
-                        .height(50.dp),
-
-                    shape = RoundedCornerShape(2.dp)
-
-
-                ) {
-                    Text(text = "다음",
-                        color = Color.White,
-                        fontSize = 15.sp
-                    )
-
-
-                }
-
 
             }
 
@@ -198,30 +198,34 @@ fun pressList(imageIndex:Int,pressName:String){
     var checked by rememberSaveable {
         mutableStateOf(false)
     }
+    Box(
 
-
-    Column(
-        modifier = Modifier.padding(end=5.dp),
-        Arrangement.Center
+    ){
+        Column(
+            modifier = Modifier
+                .padding(start = 5.dp,end=5.dp, top = 5.dp, bottom = 5.dp),
+            Arrangement.Center
         ) {
 
-            Image(painter = painterResource(id = imageIndex)
-                , contentDescription ="${pressName}"
-                ,Modifier.size(100.dp)
-                )
+            Image(
+                painter = painterResource(id = imageIndex),
+                contentDescription ="${pressName}",
+                Modifier.size(100.dp),
+                contentScale = ContentScale.Crop
+            )
 
             Row (
                 modifier = Modifier
                     .padding(10.dp)
-                    .wrapContentWidth()
-
+                    .wrapContentWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ){
 
                 Text(text = "${pressName}",
                     Modifier.padding(end=5.dp),
-                    fontSize = 15.sp
-                    )
-                
+                    fontSize = 12.sp
+                )
+
                 Spacer(modifier = Modifier.padding(end=5.dp))
 
                 Checkbox(checked = checked, onCheckedChange = {checked=it}
@@ -256,7 +260,11 @@ fun pressList(imageIndex:Int,pressName:String){
 
 
         }
+    }
+
 }
+
+
 @Preview
 @Composable
 fun SignupPressPreview(){
