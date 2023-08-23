@@ -69,4 +69,9 @@ data class Retrofit_GetUserInfoResult(
     @Expose
     var name: String,
 
+    )
+
+data class Retrofit_verifyEmailResult(
+    @Expose
+    var verifyEmailString:String,
 )

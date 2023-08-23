@@ -2,6 +2,7 @@ package com.example.newtineproject.ui.screens.login.screens
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -43,8 +44,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.components.SignupTopAppBar
+import com.example.newtineproject.ui.screens.login.server.RetrofitClient
+import com.example.newtineproject.ui.screens.login.server.Retrofit_verifyEmailResult
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.textInputGrey
+import retrofit2.Call
+import retrofit2.Response
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -56,6 +61,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
     var verifyState by rememberSaveable {
         mutableStateOf(false)
     }
+    var verifyAnswer:String=""
     val context= LocalContext.current
 
     androidx.compose.material.Scaffold(
@@ -129,8 +135,63 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
 
                     Button(
                         onClick = {
-                                  //api 요청
-                                  showToast(context,"인증 메일이 전송되었습니다! 인증을 완료해주세요!")
+                            //retrofit 이메일 인증 요청
+                            val email=textEmailState.value
+                            val retrofitInterface=RetrofitClient().getRetrofitInterface()
+                            retrofitInterface.verifyEmail(email)?.enqueue(object :retrofit2.Callback<String?> {
+                                override fun onResponse(
+                                    call: Call<String?>,
+                                    response: Response<String?>
+                                ) {
+                                    if(response.isSuccessful){
+                                        val statusCode=response.code()
+                                        when(statusCode){
+                                            200->{
+                                                verifyAnswer=response.body().toString()
+                                                Log.d("retrofit",verifyAnswer)
+
+                                            }
+                                            400 -> {
+                                                // HTTP 상태 코드 400 (Bad Request)인 경우
+                                                Log.e("retrofit", "onResponse: Bad Request")
+                                                // 에러 처리 로직
+                                            }
+
+                                            401 -> {
+                                                // HTTP 상태 코드 401 (Unauthorized)인 경우
+                                                Log.e("retrofit", "onResponse: Unauthorized")
+                                                // 에러 처리 로직
+                                            }
+                                            // 다른 HTTP 상태 코드에 대한 처리 추가
+                                            else -> {
+                                                Log.e(
+                                                    "retrofit",
+                                                    "onResponse: Unexpected Status Code $statusCode"
+                                                )
+
+                                            }
+
+                                        }
+
+                                    }
+                                    else{
+                                        Log.e("retrofit", "onResponse: Request Failed~")
+                                        val errorBody = response.errorBody()?.string()
+                                        Log.e("retrofit", "Error Body: $errorBody")
+
+                                    }
+                                }
+
+                                override fun onFailure(
+                                    call: Call<String?>,
+                                    t: Throwable
+                                ) {
+                                    Log.e("retrofit", "onResponse: Request Failed")
+
+                                }
+                            })
+
+                            showToast(context,"인증 메일이 전송되었습니다! 인증을 완료해주세요!")
                         },
                         colors = ButtonDefaults.buttonColors(Color.DarkGray),
                         shape = RoundedCornerShape(30.dp),
@@ -173,7 +234,9 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                     Button(
                         onClick = {
                             //우선은 클릭시 , 나중에 api 연결
-                            verifyState=true
+                            if(verifyAnswer.equals(textVerifyState.value)){
+                                verifyState=true
+                            }
                         },
                         colors = ButtonDefaults.buttonColors(Color.DarkGray),
                         shape = RoundedCornerShape(30.dp),
