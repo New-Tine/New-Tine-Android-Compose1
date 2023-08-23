@@ -23,6 +23,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.newtineproject.domain.model.article.Article
 
 @Composable
@@ -78,8 +79,8 @@ fun ArticleItem (
                     )
                 }
             }
-            Image(
-                painter = painterResource(id = article.thumbnail),
+            AsyncImage(
+                model = article.thumbnail,
                 contentDescription = "thumbnail Image",
                 modifier = Modifier
                     .width(100.dp)

@@ -51,8 +51,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.newtineproject.R
-import com.example.newtineproject.data.remote.NewsRankingService
-import com.example.newtineproject.data.remote.dto.NewsRanking
+import com.example.newtineproject.data.remote.news_ranking_service.NewsRankingService
+import com.example.newtineproject.data.remote.dto.news_ranking.NewsRanking
 import com.example.newtineproject.domain.model.search.RealtimeArticle
 import com.example.newtineproject.domain.model.search.RecentViewedArticle
 import com.example.newtineproject.domain.model.search.Recommendation

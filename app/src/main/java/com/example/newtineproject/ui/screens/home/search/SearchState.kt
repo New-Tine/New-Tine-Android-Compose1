@@ -1,7 +1,7 @@
 package com.example.newtineproject.ui.screens.home.search
 
 
-import com.example.newtineproject.data.remote.dto.Result
+import com.example.newtineproject.data.remote.dto.news_ranking.Result
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
