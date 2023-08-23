@@ -38,7 +38,7 @@ fun MyPageNavGraph(
                MyPageScreen(
                     navController = navController,
                     userProfile = UserProfile(
-                        userName = getUserEmail(context).toString(),
+                        userName = getUserNickName(context).toString(),
                         userCointPoints = 1000,
                         daysOfUsing = 3,
                         interestKeyword = mutableListOf({"부동산"},{"안드로이드"},{"IT"},{"국제정치"},{"문화"},{"블록체인"},{"디자인"},{"여행"},{"등산"},),
@@ -53,9 +53,9 @@ fun MyPageNavGraph(
     }
 }
 
-fun getUserEmail(context: Context): String? {
-    val preference = context.getSharedPreferences("Login", Context.MODE_PRIVATE)
-    return preference.getString("user_email", null)
+fun getUserNickName(context: Context): String? {
+    val preference = context.getSharedPreferences("User_info", Context.MODE_PRIVATE)
+    return preference.getString("user_nickname", null)
 }
 
 

@@ -1,6 +1,8 @@
 package com.example.newtineproject.ui.screens.mypage
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -39,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -50,11 +53,22 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.mypage.UserProfile
+import com.example.newtineproject.graphs.SignupScreen
+import com.example.newtineproject.ui.screens.login.screens.getUserToken
+import com.example.newtineproject.ui.screens.login.screens.saveUserToken
+import com.example.newtineproject.ui.screens.login.screens.showToast
+import com.example.newtineproject.ui.screens.login.server.RetrofitClient
+import com.example.newtineproject.ui.screens.login.server.Retrofit_GetUserInfoResult
+import com.example.newtineproject.ui.screens.login.server.Retrofit_LoginPost
+import com.example.newtineproject.ui.screens.login.server.Retrofit_LoginResult
 import com.example.newtineproject.ui.screens.mypage.components.myPageActivity
 import com.example.newtineproject.ui.screens.mypage.components.myPageHelp
 import com.example.newtineproject.ui.screens.mypage.components.myPageSetting
 import com.example.newtineproject.ui.theme.LightBlue
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class,
     ExperimentalFoundationApi::class
@@ -71,6 +85,64 @@ fun MyPageScreen(
         initialPage = 0
     )
     val coroutineScope = rememberCoroutineScope()
+
+    //retrofit userInfo Get
+    val context= LocalContext.current
+    val ACCESS_TOKEN = getUserToken(context)
+    val bearerToken = "Bearer $ACCESS_TOKEN"
+
+    val retrofitInterface = RetrofitClient().getRetrofitInterface() // Retrofit 인터페이스 생성
+
+    // getUserInfo 함수 호출
+    retrofitInterface.getUserInfo(bearerToken)?.enqueue(object : retrofit2.Callback<Retrofit_GetUserInfoResult?> {
+        override fun onResponse(
+            call: Call<Retrofit_GetUserInfoResult?>,
+            response: Response<Retrofit_GetUserInfoResult?>) {
+            if (response.isSuccessful) {
+
+                val statusCode=response.code()
+                when(statusCode){
+                    200->{
+                        // 응답 처리
+                        val result = response.body()
+                        //user email 저장->my page 닉네임
+                        val preference=context.getSharedPreferences("User_info",Context.MODE_PRIVATE)
+                        val editor=preference.edit()
+                        editor.putString("user_nickname",result?.nickname.toString())
+                        editor.apply()
+                    }
+                    400 -> {
+                        // HTTP 상태 코드 400 (Bad Request)인 경우
+                        Log.e("retrofit", "onResponse: Bad Request")
+                        // 에러 처리 로직
+                    }
+
+                    401 -> {
+                        // HTTP 상태 코드 401 (Unauthorized)인 경우
+                        Log.e("retrofit", "onResponse: Unauthorized")
+                        // 에러 처리 로직
+                    }
+                    // 다른 HTTP 상태 코드에 대한 처리 추가
+                    else -> {
+                        Log.e(
+                            "retrofit",
+                            "onResponse: Unexpected Status Code $statusCode"
+                        )
+
+                    }
+                }
+
+            } else {
+                Log.e("retrofit", "onResponse: Request Failed")
+
+            }
+        }
+
+        override fun onFailure(call: Call<Retrofit_GetUserInfoResult?>, t: Throwable) {
+            Log.e("retrofit", "onResponse: Request Failed")
+            // 네트워크 요청 실패 처리
+        }
+    })
 
     Scaffold(
         modifier = Modifier

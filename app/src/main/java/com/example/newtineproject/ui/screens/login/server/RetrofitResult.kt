@@ -51,3 +51,22 @@ data class Retrofit_LoginResult(
     var refreshToken:String,
 
     )
+
+data class Retrofit_GetUserInfoResult(
+    @SerializedName("userId")
+    @Expose
+    var userId:Int,
+
+    @SerializedName("nickname")
+    @Expose
+    var nickname: String,
+
+    @SerializedName("email")
+    @Expose
+    var email: String,
+
+    @SerializedName("name")
+    @Expose
+    var name: String,
+
+)

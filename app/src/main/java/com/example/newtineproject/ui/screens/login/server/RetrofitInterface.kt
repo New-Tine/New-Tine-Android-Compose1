@@ -28,5 +28,9 @@ interface RetrofitInterface {
 
     ): retrofit2.Call<Retrofit_LoginResult?>?
 
+    @GET("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/info")
+    fun getUserInfo(
+        @Header("Authorization") authorizationHeader: String
+    ):retrofit2.Call<Retrofit_GetUserInfoResult?>?
 
 }
