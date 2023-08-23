@@ -1,5 +1,7 @@
 package com.example.newtineproject
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +17,8 @@ import com.example.newtineproject.ui.theme.NewTineProjectTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val preference: SharedPreferences =getSharedPreferences("Login", Context.MODE_PRIVATE)
+
         setContent {
             NewTineProjectTheme {
                 // A surface container using the 'background' color from the theme
