@@ -1,6 +1,7 @@
 package com.example.newtineproject.ui.screens.login.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,8 +18,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.SnackbarDuration
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,10 +37,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -59,6 +64,8 @@ import com.example.newtineproject.ui.theme.Grey
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
 import com.example.newtineproject.ui.theme.textInputGrey
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
 
@@ -67,12 +74,15 @@ import retrofit2.Response
 @Composable
 fun LoginScreen(navController: NavHostController = rememberNavController()) {
     val viewModel=viewModel<KaKaoAuthViewModel>()
+    val context= LocalContext.current
 
     val textIdState= remember { mutableStateOf("") }
     val textPwState= remember { mutableStateOf("") }
     var loginState by rememberSaveable {
         mutableStateOf(false)
     }
+    val coroutineScope= rememberCoroutineScope()
+    val scaffoldState= rememberScaffoldState()
 
     Scaffold(
 
@@ -109,7 +119,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                             shape = RoundedCornerShape(10.dp)
                         )
                     ,
-                    placeholder = {Text(text="아이디")},
+                    placeholder = {Text(text="이메일")},
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = textInputGrey,
                         unfocusedContainerColor =textInputGrey
@@ -181,17 +191,12 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                         if (textIdState.value.isBlank() || textPwState.value.isBlank()) {
                             isBlankExists = true
                         }
-//                            val editor=sharedPreferences.edit()
-//                            editor.putString("email",textIdState.value)
-//                            editor.putString("password",textPwState.value)
-//                            editor.apply()
-                        //navController.navigate(SignupScreen.Profile.route)
+
                         var email = textIdState.value
                         var password = textPwState.value
                         isBlankExists = email.isBlank() || password.isBlank()
                         email="testuser4@test.com"
                         password="testuser4"
-
 
                         if (!isBlankExists) {
                             // Retrofit을 사용하여 POST 요청 생성
@@ -213,28 +218,46 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                                 val result = response.body()
                                                 if (result != null) {
                                                     // result를 사용하여 추가 처리 수행
-                                                    Log.d("retrofit", "onResponse: Success")
-                                                    Log.d(
-                                                        "retrofit",
-                                                        "userId: ${result.userId}"
-                                                    )
-                                                    Log.d("retrofit", "email: ${result.email}")
-                                                    Log.d(
-                                                        "retrofit",
-                                                        "accessToken: ${result.accessToken}"
-                                                    )
-                                                    Log.d(
-                                                        "retrofit",
-                                                        "refreshToken: ${result.refreshToken}"
-                                                    )
+//                                                    Log.d("retrofit", "onResponse: Success")
+//                                                    Log.d(
+//                                                        "retrofit",
+//                                                        "userId: ${result.userId}"
+//                                                    )
+//                                                    Log.d("retrofit", "email: ${result.email}")
+//                                                    Log.d(
+//                                                        "retrofit",
+//                                                        "accessToken: ${result.accessToken}"
+//                                                    )
+//                                                    Log.d(
+//                                                        "retrofit",
+//                                                        "refreshToken: ${result.refreshToken}"
+//                                                    )
+                                                    saveUserToken(context, result?.accessToken.toString() ?: "null")
+
+                                                    Log.d("gerUserToken", getUserToken(context).toString())
+
+                                                    coroutineScope.launch {
+                                                        scaffoldState.snackbarHostState.showSnackbar(
+                                                            message = "로그인이 완료되었습니다!",
+                                                            duration = SnackbarDuration.Short
+                                                        )
+                                                        delay(2000)
+
+                                                    }
+
+                                                    navController.navigate(SignupScreen.GotoMain.route)
+
+
                                                 } else {
                                                     // 서버에서 유효한 응답을 받지 못한 경우
                                                     Log.e(
                                                         "retrofit",
                                                         "onResponse: Response body is null"
                                                     )
+
                                                 }
                                             }
+
 
                                             400 -> {
                                                 // HTTP 상태 코드 400 (Bad Request)인 경우
@@ -259,6 +282,12 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                     } else {
                                         Log.e("retrofit", "onResponse: Request Failed")
                                         // 응답이 성공하지 않은 경우에 대한 처리
+                                        coroutineScope.launch {
+                                            scaffoldState.snackbarHostState.showSnackbar(
+                                                message = "로그인이 실패하였습니다! 회원가입을 먼저 진행해 주세요!",
+                                                duration = SnackbarDuration.Short
+                                            )
+                                        }
                                     }
                                 }
 
@@ -268,12 +297,30 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                 ) {
                                     Log.e("retrofit", "onFailure: ${t.message}")
                                     // 네트워크 요청 실패에 대한 처리
+                                    coroutineScope.launch {
+                                        scaffoldState.snackbarHostState.showSnackbar(
+                                            message = "로그인이 실패하였습니다! 회원가입을 먼저 진행해 주세요!",
+                                            duration = SnackbarDuration.Short
+                                        )
+                                    }
                                 }
                             })
 
                         }
+                        else{
+                            coroutineScope.launch {
+                                scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "이메일과 비밀번호를 다시 확인해 주세요!",
+                                    duration = SnackbarDuration.Short
+                                )
+                            }
 
-                        navController.navigate(SignupScreen.GotoMain.route)
+
+                        }
+
+
+
+
 
                     },
                     colors= ButtonDefaults.buttonColors(LightBlue),
@@ -362,4 +409,15 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
 
 
 
+}
+fun saveUserToken(context: Context,token:String){
+    val preference=context.getSharedPreferences("Login",Context.MODE_PRIVATE)
+    val editor=preference.edit()
+    editor.putString("user_token",token)
+    editor.apply()
+}
+
+fun getUserToken(context:Context):String?{
+    val preference=context.getSharedPreferences("Login",Context.MODE_PRIVATE)
+    return preference.getString("user_token",null)
 }

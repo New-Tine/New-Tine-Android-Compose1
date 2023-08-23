@@ -42,6 +42,10 @@ import com.example.newtineproject.ui.theme.textInputGrey
 import kotlinx.coroutines.launch
 import androidx.compose.material.SnackbarDuration
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import com.example.newtineproject.ui.screens.login.server.RetrofitClient
 import com.example.newtineproject.ui.screens.login.server.Retrofit_SignupPost
 import retrofit2.Call
@@ -58,6 +62,13 @@ fun SignupIdPwScreen(navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
+    var isPwSame by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+    var isValidEmail by rememberSaveable {
+        mutableStateOf(false)
+    }
 
     Scaffold(
         scaffoldState=scaffoldState,
@@ -75,7 +86,7 @@ fun SignupIdPwScreen(navController: NavController) {
                         .fillMaxWidth()
 
                 ){
-                    Text(text = "아이디와 비밀번호를",
+                    Text(text = "이메일과 비밀번호를",
                         fontSize = 25.sp,
                         fontWeight = FontWeight.Bold
 
@@ -106,7 +117,7 @@ fun SignupIdPwScreen(navController: NavController) {
                                 )
                                 .height(50.dp)
                                 .width(230.dp),
-                            placeholder = { Text(text = "아이디(4자리 이상)") },
+                            placeholder = { Text(text = "이메일") },
                             colors = TextFieldDefaults.colors(
                                 focusedContainerColor = textInputGrey,
                                 unfocusedContainerColor =textInputGrey
@@ -115,7 +126,9 @@ fun SignupIdPwScreen(navController: NavController) {
 
 
                         Button(
-                            onClick = { /*TODO*/ },
+                            onClick = {
+                                isValidEmail=true
+                            },
                             colors = ButtonDefaults.buttonColors(Color.DarkGray),
                             shape = RoundedCornerShape(30.dp),
 
@@ -131,7 +144,15 @@ fun SignupIdPwScreen(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(10.dp))
 
-                    Text(text = "* 사용 가능한 아이디입니다", color = LightBlue)
+                    if(isValidEmail){
+                        Text(text = "* 사용 가능한 이메일입니다", color = LightBlue)
+                        // 비밀번호 일치 여부를 확인하고 상태 업데이트
+                        LaunchedEffect(textPwState.value, textRePwState.value) {
+                            isPwSame = textPwState.value == textRePwState.value
+                        }
+
+                    }
+
 
 
                 }
@@ -176,7 +197,12 @@ fun SignupIdPwScreen(navController: NavController) {
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))
-                    Text(text = "* 입력한 비밀번호와 일치합니다", color = LightBlue)
+
+                    if(isPwSame){
+                        Text(text = "* 입력한 비밀번호와 일치합니다", color = LightBlue)
+
+                    }
+
 
                 }
 
@@ -187,85 +213,72 @@ fun SignupIdPwScreen(navController: NavController) {
                 Button(onClick = {
 
                     var isBlankExists=false
-                    var isPwSame=false
                     if(textIdState.value.isBlank()|| textPwState.value.isBlank()||textRePwState.value.isBlank()){
                         isBlankExists=true
                     }
 
-                    if(textPwState.value==textRePwState.value){
-                        isPwSame=true
-                    }
+//                    if(textPwState.value==textRePwState.value){
+//                        isPwSame=true
+//                    }
 
                     if(!isBlankExists&& isPwSame){
-//                        val editor=sharedPreferences.edit()
-//                        editor.putString("email",textIdState.value)
-//                        editor.putString("password",textPwState.value)
-//                        editor.apply()
+
                         val email = textIdState.value
                         val password = textPwState.value
                         val isBlankExists = email.isBlank() || password.isBlank()
 
-                        if (!isBlankExists) {
-                            // Retrofit을 사용하여 POST 요청 생성
-                            val postData = Retrofit_SignupPost(email, password)
-                            val ACCESS_TOKEN = "your_access_token_here"
-                            val bearerToken = "Bearer $ACCESS_TOKEN"
-                            val retrofitInterface = RetrofitClient().getRetrofitInterface()
+                        // Retrofit을 사용하여 POST 요청 생성
+                        val postData = Retrofit_SignupPost(email, password)
+                        val ACCESS_TOKEN = "your_access_token_here"
+                        val bearerToken = "Bearer $ACCESS_TOKEN"
+                        val retrofitInterface = RetrofitClient().getRetrofitInterface()
 
 
-                            retrofitInterface.SignupPost(postData)?.enqueue(object : retrofit2.Callback<Void>{
-                                override fun onResponse(
-                                    call: Call<Void>,
-                                    response: Response<Void>
-                                ) {
-                                    if (response.isSuccessful) {
-                                        // HTTP 상태 코드 확인
-                                        val statusCode = response.code()
-                                        when (statusCode) {
-                                            200 -> {
-                                                // HTTP 상태 코드 200 (성공)인 경우
-                                                Log.d("retrofit", "onResponse: Success")
-                                                // result를 사용하여 추가 처리 수행
-                                            }
-                                            400 -> {
-                                                // HTTP 상태 코드 400 (Bad Request)인 경우
-                                                Log.e("retrofit", "onResponse: Bad Request")
-                                                // 에러 처리 로직
-                                            }
-                                            401 -> {
-                                                // HTTP 상태 코드 401 (Unauthorized)인 경우
-                                                Log.e("retrofit", "onResponse: Unauthorized")
-                                                // 에러 처리 로직
-                                            }
-                                            // 다른 HTTP 상태 코드에 대한 처리 추가
-                                            else -> {
-                                                Log.e("retrofit", "onResponse: Unexpected Status Code $statusCode")
-                                                // 기타 예외 상황 처리
-                                            }
+                        retrofitInterface.SignupPost(postData)?.enqueue(object : retrofit2.Callback<Void>{
+                            override fun onResponse(
+                                call: Call<Void>,
+                                response: Response<Void>
+                            ) {
+                                if (response.isSuccessful) {
+                                    // HTTP 상태 코드 확인
+                                    val statusCode = response.code()
+                                    when (statusCode) {
+                                        200 -> {
+                                            // HTTP 상태 코드 200 (성공)인 경우
+                                            Log.d("retrofit", "onResponse: Success")
+                                            // result를 사용하여 추가 처리 수행
                                         }
-                                    } else {
-                                        Log.e("retrofit", "onResponse: Request Failed")
-                                        // 응답이 성공하지 않은 경우에 대한 처리
+                                        400 -> {
+                                            // HTTP 상태 코드 400 (Bad Request)인 경우
+                                            Log.e("retrofit", "onResponse: Bad Request")
+                                            // 에러 처리 로직
+                                        }
+                                        401 -> {
+                                            // HTTP 상태 코드 401 (Unauthorized)인 경우
+                                            Log.e("retrofit", "onResponse: Unauthorized")
+                                            // 에러 처리 로직
+                                        }
+                                        // 다른 HTTP 상태 코드에 대한 처리 추가
+                                        else -> {
+                                            Log.e("retrofit", "onResponse: Unexpected Status Code $statusCode")
+                                            // 기타 예외 상황 처리
+                                        }
                                     }
+                                } else {
+                                    Log.e("retrofit", "onResponse: Request Failed")
+                                    // 응답이 성공하지 않은 경우에 대한 처리
                                 }
-
-                                override fun onFailure(call: Call<Void?>, t: Throwable) {
-                                    Log.e("retrofit", "onFailure: ${t.message}")
-                                    // 네트워크 요청 실패에 대한 처리
-                                }
-                            })
-                        } else {
-                            coroutineScope.launch {
-                                scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "이메일과 비밀번호를 다시 확인해주세요!",
-                                    duration = SnackbarDuration.Short
-                                )
                             }
-                        }
+
+                            override fun onFailure(call: Call<Void?>, t: Throwable) {
+                                Log.e("retrofit", "onFailure: ${t.message}")
+                                // 네트워크 요청 실패에 대한 처리
+                            }
+                        })
+                        navController.navigate(SignupScreen.Profile.route)
 
                     }
                     else{
-
                         coroutineScope.launch {
                             scaffoldState.snackbarHostState.showSnackbar(
                                 message = "이메일과 비밀번호를 다시 확인해주세요!",
@@ -274,7 +287,6 @@ fun SignupIdPwScreen(navController: NavController) {
                         }
 
                     }
-                    navController.navigate(SignupScreen.Profile.route)
 
                 },
                     colors = ButtonDefaults.buttonColors(LightBlue),
