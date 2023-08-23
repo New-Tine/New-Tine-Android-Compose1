@@ -1,14 +1,10 @@
 package com.example.newtineproject.graphs
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.article.Article
 import com.example.newtineproject.graphs.navigation_bar_items.HomeDetailScreen
 import com.example.newtineproject.ui.screens.home.article.ArticleDetailScreen
@@ -137,9 +133,8 @@ fun NavGraphBuilder.ArticleNavGraph(
         composable(route="${ArticleScreen.ArticleDetail.route}/{articleIndex}"){ backStackEntry->
 
             ArticleDetailScreen(
-                navController = navController,
-                articleIndex = backStackEntry.arguments?.getString("articleIndex")?.toInt()?:0,
-                articleList = articleLists)
+                navController = navController, newsId = backStackEntry.arguments?.getInt("articleIndex")?: 0
+                )
         }
 
 

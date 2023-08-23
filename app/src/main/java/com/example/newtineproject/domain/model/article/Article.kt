@@ -8,5 +8,5 @@ data class Article(
     val publication: String,
     val timePassed: Int,
     val contents:String,
-    val category:String,
+    val category: String,
 )
