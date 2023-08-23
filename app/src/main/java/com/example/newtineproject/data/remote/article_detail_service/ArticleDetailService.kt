@@ -6,6 +6,8 @@ import com.example.newtineproject.data.remote.news_ranking_service.NewsRankingSe
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
@@ -14,7 +16,7 @@ interface ArticleDetailService {
     suspend fun getEachArticleDetail(newsId: Long): ArticleDetail
 
     companion object {
-        fun create(): ArticleDetailService {
+        fun create(bearerToken: String): ArticleDetailService {
             return ArticleDetailServiceImpl(
                 client = HttpClient(Android) {
                     install(ContentNegotiation) {
@@ -23,6 +25,9 @@ interface ArticleDetailService {
                             isLenient = true
                             ignoreUnknownKeys = true
                         })
+                    }
+                    defaultRequest {
+                        header("Authorization", "Bearer $bearerToken")
                     }
                 }
             )

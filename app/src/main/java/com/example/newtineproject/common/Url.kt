@@ -19,7 +19,7 @@ object Url {
     const val ARTICLES_CULTURE = "$ARTICLES/문화"
     const val ARTICLES_SPORTS = "$ARTICLES/스포츠"
 
-    const val EACH_ARTICLE = "http://ec2-43-202-57-66.ap-northeast-2.compute.amazonaws.com:8080/news"
+    const val EACH_ARTICLE = "http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/news"
 
     //const val EACH_ARTICLE_NUM = "$EACH_ARTICLE/${newsId}"
 }
