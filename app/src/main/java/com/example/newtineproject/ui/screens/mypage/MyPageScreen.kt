@@ -43,9 +43,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
 import com.example.newtineproject.domain.model.mypage.UserProfile
 import com.example.newtineproject.ui.screens.mypage.components.myPageActivity
@@ -283,6 +285,8 @@ fun MyPageScreen(
                         )
                     }
                 )
+                
+                Spacer(modifier = Modifier.height(20.dp))
 
                 Column(
                     modifier = Modifier.weight(2f),
@@ -295,7 +299,7 @@ fun MyPageScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     ,
-                                edgePadding = 17.dp,
+                                edgePadding = 10.dp,
                                 selectedTabIndex = pagerState.currentPage,
                                 divider = {},
                                 indicator = { tabPositions ->
@@ -335,7 +339,9 @@ fun MyPageScreen(
                                 }
                             )
                             HorizontalPager(
-                                modifier = Modifier.fillMaxWidth(),
+                                modifier = Modifier.fillMaxWidth()
+                                    .padding(top=0.dp)
+                                ,
                                 state = pagerState,
                                 verticalAlignment = Alignment.Top
                             ) {tabId ->

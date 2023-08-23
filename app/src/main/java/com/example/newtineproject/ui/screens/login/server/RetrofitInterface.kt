@@ -22,7 +22,7 @@ interface RetrofitInterface {
 
     ): retrofit2.Call<Void>
 
-    @POST("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/signin")
+    @POST("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/signin/")
     fun LoginPost(
         @Body postData:Retrofit_LoginPost,
 

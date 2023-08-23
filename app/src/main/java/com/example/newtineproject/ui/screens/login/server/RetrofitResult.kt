@@ -12,6 +12,14 @@ data class Retrofit_SignupPost(
     @Expose
     var password:String,
 
+    @SerializedName("nickname")
+    @Expose
+    var nickname:String,
+
+    @SerializedName("name")
+    @Expose
+    var name:String,
+
 )
 
 data class Retrofit_LoginPost(

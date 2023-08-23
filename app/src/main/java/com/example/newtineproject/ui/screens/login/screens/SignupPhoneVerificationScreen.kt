@@ -1,6 +1,7 @@
 package com.example.newtineproject.ui.screens.login.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -23,10 +24,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -45,8 +51,12 @@ import com.example.newtineproject.ui.theme.textInputGrey
 @Composable
 fun SignupPhoneVerificationScreen(navController: NavController) {
     val textNameState= remember { mutableStateOf("") }
-    val textPhoneState= remember { mutableStateOf("") }
+    val textEmailState= remember { mutableStateOf("") }
     val textVerifyState= remember { mutableStateOf("") }
+    var verifyState by rememberSaveable {
+        mutableStateOf(false)
+    }
+    val context= LocalContext.current
 
     androidx.compose.material.Scaffold(
         topBar = {
@@ -100,8 +110,8 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                         .fillMaxWidth(),
                     Arrangement.SpaceBetween
                 ) {
-                    androidx.compose.material3.TextField(value = textPhoneState.value,
-                        onValueChange = { textValue -> textPhoneState.value = textValue },
+                    androidx.compose.material3.TextField(value = textEmailState.value,
+                        onValueChange = { textValue -> textEmailState.value = textValue },
                         modifier = Modifier
                             .background(
                                 textInputGrey,
@@ -109,7 +119,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                             )
                             .height(50.dp)
                             .width(230.dp),
-                        placeholder = { Text(text = "휴대폰 번호(-제외)", fontSize = 15.sp) },
+                        placeholder = { Text(text = "이메일 입력", fontSize = 15.sp) },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
                             unfocusedContainerColor =textInputGrey
@@ -118,14 +128,17 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
 
 
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                                  //api 요청
+                                  showToast(context,"인증 메일이 전송되었습니다! 인증을 완료해주세요!")
+                        },
                         colors = ButtonDefaults.buttonColors(Color.DarkGray),
                         shape = RoundedCornerShape(30.dp),
 
 
                         ) {
                         Text(
-                            text = "인증받기",
+                            text = "인증요청",
                             color = Color.White
                         )
 
@@ -137,35 +150,82 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(20.dp))
 
 
-
-
-
-                androidx.compose.material3.TextField(value = textVerifyState.value,
-                    onValueChange = { textValue -> textVerifyState.value = textValue },
-                    modifier = Modifier
-                        .background(
-                            textInputGrey,
-                            shape = RoundedCornerShape(10.dp)
+                Row (
+                    modifier=Modifier.fillMaxWidth(),
+                    Arrangement.SpaceBetween
+                ){
+                    androidx.compose.material3.TextField(value = textVerifyState.value,
+                        onValueChange = { textValue -> textVerifyState.value = textValue },
+                        modifier = Modifier
+                            .background(
+                                textInputGrey,
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .width(230.dp)
+                            .height(50.dp),
+                        placeholder = { Text(text = "인증번호 입력", fontSize = 15.sp) },
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = textInputGrey,
+                            unfocusedContainerColor =textInputGrey
                         )
-                        .fillMaxWidth()
-                        .height(50.dp),
-                    placeholder = { Text(text = "인증번호 입력", fontSize = 15.sp) },
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = textInputGrey,
-                        unfocusedContainerColor =textInputGrey
                     )
-                )
+
+                    Button(
+                        onClick = {
+                            //우선은 클릭시 , 나중에 api 연결
+                            verifyState=true
+                        },
+                        colors = ButtonDefaults.buttonColors(Color.DarkGray),
+                        shape = RoundedCornerShape(30.dp),
+
+
+                        ) {
+                        Text(
+                            text = "인증확인",
+                            color = Color.White
+                        )
+
+                    }
+
+
+                }
+
 
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(text = "* 인증되었습니다", color = LightBlue, fontSize = 13.sp)
 
+                Row(
+                    modifier=Modifier.fillMaxWidth()
+                ) {
+                    if(verifyState){
+                        Text(text = "* 인증되었습니다", color = LightBlue, fontSize = 13.sp)
+                        // 비밀번호 일치 여부를 확인하고 상태 업데이트
+//                    LaunchedEffect(textPwState.value, textRePwState.value) {
+//                        isPwSame = textPwState.value == textRePwState.value
+//                    }
+
+                    }
+
+
+                }
 
                 Spacer(modifier = Modifier.weight(1f))
 
                 Button(
                     onClick = {
+                        if(verifyState){
+                            //sharedpreference name 저장
+                            val preference=context.getSharedPreferences("Signup", Context.MODE_PRIVATE)
+                            val editor=preference.edit()
+                            editor.putString("user_name",textNameState.value)
+                            editor.apply()
 
-                        navController.navigate(SignupScreen.Press.route)
+                            navController.navigate(SignupScreen.Press.route)
+
+                        }
+                        else{
+                            showToast(context,"이메일 인증을 완료해 주세요!")
+                        }
+
                     },
                     colors = ButtonDefaults.buttonColors(LightBlue),
                     modifier = Modifier

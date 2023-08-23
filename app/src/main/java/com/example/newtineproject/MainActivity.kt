@@ -18,6 +18,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val preference: SharedPreferences =getSharedPreferences("Login", Context.MODE_PRIVATE)
+        val singup_preference:SharedPreferences=getSharedPreferences("Signup",Context.MODE_PRIVATE)
 
         setContent {
             NewTineProjectTheme {

@@ -28,7 +28,7 @@ fun myPageActivity() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 25.dp)
+            .padding(top = 15.dp)
     ){
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,

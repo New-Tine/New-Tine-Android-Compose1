@@ -229,7 +229,14 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                                         "retrofit",
                                                         "refreshToken: ${result.refreshToken}"
                                                     )
+
                                                     saveUserToken(context, result?.accessToken.toString() ?: "null")
+
+                                                    //user email 저장->my page 닉네임
+                                                    val preference=context.getSharedPreferences("Login",Context.MODE_PRIVATE)
+                                                    val editor=preference.edit()
+                                                    editor.putString("user_email",result.email)
+                                                    editor.apply()
 
                                                     Log.d("gerUserToken", getUserToken(context).toString())
 
