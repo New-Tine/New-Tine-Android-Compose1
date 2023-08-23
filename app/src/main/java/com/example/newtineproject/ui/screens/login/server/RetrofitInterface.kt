@@ -36,6 +36,6 @@ interface RetrofitInterface {
     @GET("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/login/mailConfirm")
     fun verifyEmail(
         @Query("email") email:String,
-    ):retrofit2.Call<String>?
+    ):retrofit2.Call<Retrofit_verifyEmailResult>?
 
 }

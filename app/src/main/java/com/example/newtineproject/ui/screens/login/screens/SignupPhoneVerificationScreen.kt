@@ -124,7 +124,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                                 shape = RoundedCornerShape(10.dp)
                             )
                             .height(50.dp)
-                            .width(230.dp),
+                            .width(240.dp),
                         placeholder = { Text(text = "이메일 입력", fontSize = 15.sp) },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
@@ -138,16 +138,18 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                             //retrofit 이메일 인증 요청
                             val email=textEmailState.value
                             val retrofitInterface=RetrofitClient().getRetrofitInterface()
-                            retrofitInterface.verifyEmail(email)?.enqueue(object :retrofit2.Callback<String?> {
+                            retrofitInterface.verifyEmail(email)?.enqueue(object :retrofit2.Callback<Retrofit_verifyEmailResult?> {
                                 override fun onResponse(
-                                    call: Call<String?>,
-                                    response: Response<String?>
+                                    call: Call<Retrofit_verifyEmailResult?>,
+                                    response: Response<Retrofit_verifyEmailResult?>
                                 ) {
                                     if(response.isSuccessful){
                                         val statusCode=response.code()
                                         when(statusCode){
                                             200->{
-                                                verifyAnswer=response.body().toString()
+                                                val result = response.body()
+
+                                                verifyAnswer=result?.mailConfirmNum.toString()
                                                 Log.d("retrofit",verifyAnswer)
 
                                             }
@@ -183,7 +185,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                                 }
 
                                 override fun onFailure(
-                                    call: Call<String?>,
+                                    call: Call<Retrofit_verifyEmailResult?>,
                                     t: Throwable
                                 ) {
                                     Log.e("retrofit", "onResponse: Request Failed")
@@ -222,7 +224,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                                 textInputGrey,
                                 shape = RoundedCornerShape(10.dp)
                             )
-                            .width(230.dp)
+                            .width(240.dp)
                             .height(50.dp),
                         placeholder = { Text(text = "인증번호 입력", fontSize = 15.sp) },
                         colors = TextFieldDefaults.colors(
@@ -237,7 +239,9 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                             if(verifyAnswer.equals(textVerifyState.value)){
                                 verifyState=true
                             }
-                            verifyState=true
+                            else{
+                                showToast(context,"인증번호가 일치하지 않습니다!")
+                            }
                         },
                         colors = ButtonDefaults.buttonColors(Color.DarkGray),
                         shape = RoundedCornerShape(30.dp),

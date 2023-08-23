@@ -72,6 +72,7 @@ data class Retrofit_GetUserInfoResult(
     )
 
 data class Retrofit_verifyEmailResult(
+    @SerializedName("mailConfirmNum")
     @Expose
-    var verifyEmailString:String,
+    var mailConfirmNum:String,
 )
