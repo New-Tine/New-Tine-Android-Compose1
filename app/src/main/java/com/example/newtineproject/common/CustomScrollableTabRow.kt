@@ -28,7 +28,7 @@ fun CustomScrollableTabRow(
         TabRowDefaults.Indicator(
             Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
         )
-    },
+    },//
     divider: @Composable () -> Unit = @Composable {
         Divider()
     },

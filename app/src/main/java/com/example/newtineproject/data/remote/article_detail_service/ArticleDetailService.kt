@@ -11,7 +11,7 @@ import kotlinx.serialization.json.Json
 
 interface ArticleDetailService {
 
-    suspend fun getEachArticleDetail(): ArticleDetail
+    suspend fun getEachArticleDetail(newsId: Long): ArticleDetail
 
     companion object {
         fun create(): ArticleDetailService {

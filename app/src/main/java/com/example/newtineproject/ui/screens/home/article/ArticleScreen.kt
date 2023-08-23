@@ -177,6 +177,7 @@ fun CategoryNewsItScreen(navController: NavController) {
             ) {
                 ArticleItem(article = article, onItemClick = {
                     Log.d("index",index.toString())
+
                     navController.navigate("${com.example.newtineproject.graphs.ArticleScreen.ArticleDetail.route}/${article.id}")
                 })
             }
