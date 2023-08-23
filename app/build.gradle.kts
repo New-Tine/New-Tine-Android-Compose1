@@ -5,7 +5,6 @@ plugins {
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization") version "1.9.0"
     id("androidx.navigation.safeargs")
-
 }
 
 android {
@@ -77,6 +76,7 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:2.47")
     kapt("com.google.dagger:hilt-android-compiler:2.47")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
@@ -116,4 +116,18 @@ dependencies {
     // Gson
     implementation ("com.google.code.gson:gson:2.10.1")
 
+
+    // Ktor
+    val ktor_version = "2.3.3"
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-client-serialization:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+
+    // Serialization
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
 }

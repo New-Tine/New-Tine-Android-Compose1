@@ -1,7 +1,6 @@
 package com.example.newtineproject.ui.screens.scrap
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -204,99 +203,111 @@ fun ScrapScreen(navController: NavHostController = rememberNavController()) {
 fun DesignFolderList() {
     val articleLists = listOf(
         Article(
+            id = 0,
             title = "필즈상 수상 1주년…'허준이 수학\n" +
                     "난제 연구소' 모레 연다",
-            thumbnail = R.drawable.article1,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 1,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "세계 첫 모바일 길잡이 티맵...22년 만에 가입자 2000만 명 태웠다",
-            thumbnail = R.drawable.article2,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 1,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "네이버 마켓에 이미지 솔루션 내놨더니 \"매출 3배 껑충\"",
-            thumbnail = R.drawable.article3,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 2,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "지질연, 호주 퀸스랜드와 핵심광물 공동연구 추진",
-            thumbnail = R.drawable.article4,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "한국일보",
             timePassed = 2,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "사우디 왕세자가 반길 희소식, \n" +
                     "MS-블리자드 인수 청신호",
-            thumbnail = R.drawable.article5,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "전자신문",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "길 잃은 수제맥주…프리미엄 가치 앞세워 경쟁력 회복해야",
-            thumbnail = R.drawable.article6,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "아시아경제",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "트위터 잡는다던 스레드 '출시효과 반짝'이었나…이용자 70% 급감",
-            thumbnail = R.drawable.article7,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "한국경제",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "사우디 아라비아 왕세자가 반길 \n" +
                     "희소식, MS-블리자드 인수 청신호",
-            thumbnail = R.drawable.article8,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "디지털 데일리",
             timePassed = 4,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "환경부 \"테슬라 모델Y, 전기차 보조금 전액 받기 어려워\"",
-            thumbnail = R.drawable.article9,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "\"경영보다 컴공 전공자 필요\"…IT 신입채용 두배 늘린 한은\n",
-            thumbnail = R.drawable.article10,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "서울경제신문",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "‘프론트엔드냐, 백엔드냐’를 고민하는 당신에게\n",
-            thumbnail = R.drawable.article11,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "요즘IT",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "하이투자 “삼성전기 삼화콘덴서 포함 MLCC업체, IT용 부품 재고조정 일단락”",
-            thumbnail = R.drawable.article12,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "Business Post",
             timePassed = 5,
             category = "IT",
@@ -329,99 +340,111 @@ fun DesignFolderList() {
 fun NewsLetterFolderList() {
     val articleLists = listOf(
         Article(
+            id = 0,
             title = "필즈상 수상 1주년…'허준이 수학\n" +
                     "난제 연구소' 모레 연다",
-            thumbnail = R.drawable.article1,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 1,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "세계 첫 모바일 길잡이 티맵...22년 만에 가입자 2000만 명 태웠다",
-            thumbnail = R.drawable.article2,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 1,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "네이버 마켓에 이미지 솔루션 내놨더니 \"매출 3배 껑충\"",
-            thumbnail = R.drawable.article3,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 2,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "지질연, 호주 퀸스랜드와 핵심광물 공동연구 추진",
-            thumbnail = R.drawable.article4,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "한국일보",
             timePassed = 2,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "사우디 왕세자가 반길 희소식, \n" +
                     "MS-블리자드 인수 청신호",
-            thumbnail = R.drawable.article5,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "전자신문",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "길 잃은 수제맥주…프리미엄 가치 앞세워 경쟁력 회복해야",
-            thumbnail = R.drawable.article6,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "아시아경제",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "트위터 잡는다던 스레드 '출시효과 반짝'이었나…이용자 70% 급감",
-            thumbnail = R.drawable.article7,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "한국경제",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "사우디 아라비아 왕세자가 반길 \n" +
                     "희소식, MS-블리자드 인수 청신호",
-            thumbnail = R.drawable.article8,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "디지털 데일리",
             timePassed = 4,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "환경부 \"테슬라 모델Y, 전기차 보조금 전액 받기 어려워\"",
-            thumbnail = R.drawable.article9,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "\"경영보다 컴공 전공자 필요\"…IT 신입채용 두배 늘린 한은\n",
-            thumbnail = R.drawable.article10,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "서울경제신문",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "‘프론트엔드냐, 백엔드냐’를 고민하는 당신에게\n",
-            thumbnail = R.drawable.article11,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "요즘IT",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "하이투자 “삼성전기 삼화콘덴서 포함 MLCC업체, IT용 부품 재고조정 일단락”",
-            thumbnail = R.drawable.article12,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "Business Post",
             timePassed = 5,
             category = "IT",
@@ -454,99 +477,111 @@ fun NewsLetterFolderList() {
 fun InterestListFolderList() {
     val articleLists = listOf(
         Article(
+            id = 0,
             title = "필즈상 수상 1주년…'허준이 수학\n" +
                     "난제 연구소' 모레 연다",
-            thumbnail = R.drawable.article1,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 1,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "세계 첫 모바일 길잡이 티맵...22년 만에 가입자 2000만 명 태웠다",
-            thumbnail = R.drawable.article2,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 1,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "네이버 마켓에 이미지 솔루션 내놨더니 \"매출 3배 껑충\"",
-            thumbnail = R.drawable.article3,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 2,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "지질연, 호주 퀸스랜드와 핵심광물 공동연구 추진",
-            thumbnail = R.drawable.article4,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "한국일보",
             timePassed = 2,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "사우디 왕세자가 반길 희소식, \n" +
                     "MS-블리자드 인수 청신호",
-            thumbnail = R.drawable.article5,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "전자신문",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "길 잃은 수제맥주…프리미엄 가치 앞세워 경쟁력 회복해야",
-            thumbnail = R.drawable.article6,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "아시아경제",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "트위터 잡는다던 스레드 '출시효과 반짝'이었나…이용자 70% 급감",
-            thumbnail = R.drawable.article7,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "한국경제",
             timePassed = 3,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "사우디 아라비아 왕세자가 반길 \n" +
                     "희소식, MS-블리자드 인수 청신호",
-            thumbnail = R.drawable.article8,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "디지털 데일리",
             timePassed = 4,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "환경부 \"테슬라 모델Y, 전기차 보조금 전액 받기 어려워\"",
-            thumbnail = R.drawable.article9,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "연합뉴스",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "\"경영보다 컴공 전공자 필요\"…IT 신입채용 두배 늘린 한은\n",
-            thumbnail = R.drawable.article10,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "서울경제신문",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "‘프론트엔드냐, 백엔드냐’를 고민하는 당신에게\n",
-            thumbnail = R.drawable.article11,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "요즘IT",
             timePassed = 5,
             category = "IT",
             contents = "기사 내용~"
         ),
         Article(
+            id = 0,
             title = "하이투자 “삼성전기 삼화콘덴서 포함 MLCC업체, IT용 부품 재고조정 일단락”",
-            thumbnail = R.drawable.article12,
+            thumbnail = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg",
             publication = "Business Post",
             timePassed = 5,
             category = "IT",

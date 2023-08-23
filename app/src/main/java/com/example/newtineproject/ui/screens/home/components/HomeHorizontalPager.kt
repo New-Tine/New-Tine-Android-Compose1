@@ -79,25 +79,8 @@ fun HomeHorizontalPager() {
                 modifier = Modifier
                     .padding(top = 10.dp)
                     .graphicsLayer {
-                        // For better animation but need to put bookmark on the other part
-//                        val pageOffset =
-//                            ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
                         shape = RoundedCornerShape(10.dp)
                         shadowElevation = 10f
-//                        lerp(
-//                            start = 0.85f,
-//                            stop = 1f,
-//                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-//                        )
-//                            .also { scale ->
-//                                scaleX = scale
-//                                scaleY = scale
-//                            }
-//                        alpha = lerp(
-//                            start = 0.5f,
-//                            stop = 1f,
-//                            fraction = 1f - pageOffset.coerceIn(0f, 1f)
-//                        )
                     }
             ) {
                 Column {
