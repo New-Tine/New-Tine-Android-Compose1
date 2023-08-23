@@ -152,12 +152,13 @@ fun CategoryNewsItScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
             category = "IT",
-            contents = "기사 내용~"
+            contents = result.content
         )
     }
 
@@ -176,8 +177,7 @@ fun CategoryNewsItScreen(navController: NavController) {
             ) {
                 ArticleItem(article = article, onItemClick = {
                     Log.d("index",index.toString())
-                    navController.navigate("${com.example.newtineproject.graphs.ArticleScreen.ArticleDetail.route}/$index")
-
+                    navController.navigate("${com.example.newtineproject.graphs.ArticleScreen.ArticleDetail.route}/${article.id}")
                 })
             }
 
@@ -204,12 +204,13 @@ fun CategoryNewsPoliticScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
-            category = "IT",
-            contents = "기사 내용~"
+            category = "Politics",
+            contents = result.content
         )
     }
     val listState = rememberLazyListState()
@@ -247,12 +248,13 @@ fun CategoryNewsEconomyScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
-            category = "IT",
-            contents = "기사 내용~"
+            category = "Economy",
+            contents = result.content
         )
     }
     val listState = rememberLazyListState()
@@ -290,12 +292,13 @@ fun CategoryNewsIndustryScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
-            category = "IT",
-            contents = "기사 내용~"
+            category = "Industry",
+            contents = result.content
         )
     }
     val listState = rememberLazyListState()
@@ -333,12 +336,13 @@ fun CategoryNewsSocietyScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
-            category = "IT",
-            contents = "기사 내용~"
+            category = "Society",
+            contents = result.content
         )
     }
     val listState = rememberLazyListState()
@@ -376,12 +380,13 @@ fun CategoryNewsCultureScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
-            category = "IT",
-            contents = "기사 내용~"
+            category = "Culture",
+            contents = result.content
         )
     }
     val listState = rememberLazyListState()
@@ -419,12 +424,13 @@ fun CategoryNewsSportsScreen(navController: NavController) {
 
     val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
+            id = result.newsId,
             title = result.title,
             thumbnail = result.imgUrl,
             publication = result.pressName,
             timePassed = index + 1,
-            category = "IT",
-            contents = "기사 내용~"
+            category = "Sports",
+            contents = result.content
         )
     }
     val listState = rememberLazyListState()

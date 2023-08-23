@@ -67,7 +67,6 @@ import com.example.newtineproject.ui.theme.SearchBarColor
 @Composable
 fun SearchScreen(
     navController: NavController,
-    viewModel: SearchViewModel = hiltViewModel()
 ) {
     var text by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
