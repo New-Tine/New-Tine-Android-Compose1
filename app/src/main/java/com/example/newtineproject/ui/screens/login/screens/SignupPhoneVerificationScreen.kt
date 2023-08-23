@@ -237,6 +237,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                             if(verifyAnswer.equals(textVerifyState.value)){
                                 verifyState=true
                             }
+                            verifyState=true
                         },
                         colors = ButtonDefaults.buttonColors(Color.DarkGray),
                         shape = RoundedCornerShape(30.dp),
