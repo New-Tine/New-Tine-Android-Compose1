@@ -53,80 +53,6 @@ fun ArticleScreen(
     )
     val coroutineScope = rememberCoroutineScope()
 
-
-
-    val articlesPolitics = produceState(
-        initialValue = Articles(
-            code = 0,
-            isSuccess = false,
-            message = "",
-            result = emptyList()
-        ),
-        producer = {
-            value = service.getArticlesPolitics()
-        }
-    )
-
-    val articlesEconomy = produceState(
-        initialValue = Articles(
-            code = 0,
-            isSuccess = false,
-            message = "",
-            result = emptyList()
-        ),
-        producer = {
-            value = service.getArticlesEconomy()
-        }
-    )
-
-    val articlesIndustry = produceState(
-        initialValue = Articles(
-            code = 0,
-            isSuccess = false,
-            message = "",
-            result = emptyList()
-        ),
-        producer = {
-            value = service.getArticlesIndustry()
-        }
-    )
-
-    val articlesSociety = produceState(
-        initialValue = Articles(
-            code = 0,
-            isSuccess = false,
-            message = "",
-            result = emptyList()
-        ),
-        producer = {
-            value = service.getArticlesSociety()
-        }
-    )
-
-    val articlesCulture = produceState(
-        initialValue = Articles(
-            code = 0,
-            isSuccess = false,
-            message = "",
-            result = emptyList()
-        ),
-        producer = {
-            value = service.getArticlesCulture()
-        }
-    )
-
-    val articlesSports = produceState(
-        initialValue = Articles(
-            code = 0,
-            isSuccess = false,
-            message = "",
-            result = emptyList()
-        ),
-        producer = {
-            value = service.getArticlesSports()
-        }
-    )
-
     Scaffold(
         modifier = Modifier.padding(paddingValues),
         topBar = {
@@ -196,9 +122,12 @@ fun ArticleScreen(
                         when (tabId) {
                             0 -> {CategoryNewsItScreen(navController)}
                             1 -> {CategoryNewsPoliticScreen(navController)}
-                            else -> {CategoryNewsItScreen(navController)}
+                            2 -> {CategoryNewsEconomyScreen(navController = navController)}
+                            3 -> {CategoryNewsIndustryScreen(navController = navController)}
+                            4 -> {CategoryNewsSocietyScreen(navController = navController)}
+                            5 -> {CategoryNewsCultureScreen(navController = navController)}
+                            else -> {CategoryNewsSportsScreen(navController = navController)}
                         }
-
                     }
                 }
             )
@@ -209,7 +138,7 @@ fun ArticleScreen(
 @Composable
 fun CategoryNewsItScreen(navController: NavController) {
 
-    val articlesIt = produceState(
+    val articles = produceState(
         initialValue = Articles(
             code = 0,
             isSuccess = false,
@@ -221,7 +150,7 @@ fun CategoryNewsItScreen(navController: NavController) {
         }
     )
 
-    val articleLists = articlesIt.value.result.mapIndexed { index, result ->
+    val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
             title = result.title,
             thumbnail = result.imgUrl,
@@ -246,7 +175,6 @@ fun CategoryNewsItScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 ArticleItem(article = article, onItemClick = {
-                    val index=index.toString()
                     Log.d("index",index.toString())
                     navController.navigate("${com.example.newtineproject.graphs.ArticleScreen.ArticleDetail.route}/$index")
 
@@ -257,26 +185,12 @@ fun CategoryNewsItScreen(navController: NavController) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))
             }
         }
-
-//        items(articleLists) { article ->
-//            Row(
-//                modifier = Modifier.fillMaxWidth()
-//            ) {
-//                ArticleItem(article = article, onItemClick = {
-//                    //navController.navigate(ArticleDetailScreen(ArticleScreen.ArticleDetail.route)
-//                })
-//            }
-//            if (articleLists.indexOf(article) != articleLists.size - 1) {
-//                Divider(modifier = Modifier.padding(horizontal = 17.dp))
-//            }
-//        }
     }
-
 }
 
 @Composable
 fun CategoryNewsPoliticScreen(navController: NavController) {
-    val articlesPolitics = produceState(
+    val articles = produceState(
         initialValue = Articles(
             code = 0,
             isSuccess = false,
@@ -288,7 +202,7 @@ fun CategoryNewsPoliticScreen(navController: NavController) {
         }
     )
 
-    val articleLists = articlesPolitics.value.result.mapIndexed { index, result ->
+    val articleLists = articles.value.result.mapIndexed { index, result ->
         Article(
             title = result.title,
             thumbnail = result.imgUrl,
@@ -315,5 +229,219 @@ fun CategoryNewsPoliticScreen(navController: NavController) {
             }
         }
     }
+}
 
+@Composable
+fun CategoryNewsEconomyScreen(navController: NavController) {
+    val articles = produceState(
+        initialValue = Articles(
+            code = 0,
+            isSuccess = false,
+            message = "",
+            result = emptyList()
+        ),
+        producer = {
+            value = service.getArticlesEconomy()
+        }
+    )
+
+    val articleLists = articles.value.result.mapIndexed { index, result ->
+        Article(
+            title = result.title,
+            thumbnail = result.imgUrl,
+            publication = result.pressName,
+            timePassed = index + 1,
+            category = "IT",
+            contents = "기사 내용~"
+        )
+    }
+    val listState = rememberLazyListState()
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        state = listState,
+    ) {
+        items(articleLists) { article ->
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ArticleItem(article = article, onItemClick = {})
+            }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun CategoryNewsIndustryScreen(navController: NavController) {
+    val articles = produceState(
+        initialValue = Articles(
+            code = 0,
+            isSuccess = false,
+            message = "",
+            result = emptyList()
+        ),
+        producer = {
+            value = service.getArticlesIndustry()
+        }
+    )
+
+    val articleLists = articles.value.result.mapIndexed { index, result ->
+        Article(
+            title = result.title,
+            thumbnail = result.imgUrl,
+            publication = result.pressName,
+            timePassed = index + 1,
+            category = "IT",
+            contents = "기사 내용~"
+        )
+    }
+    val listState = rememberLazyListState()
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        state = listState,
+    ) {
+        items(articleLists) { article ->
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ArticleItem(article = article, onItemClick = {})
+            }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun CategoryNewsSocietyScreen(navController: NavController) {
+    val articles = produceState(
+        initialValue = Articles(
+            code = 0,
+            isSuccess = false,
+            message = "",
+            result = emptyList()
+        ),
+        producer = {
+            value = service.getArticlesSociety()
+        }
+    )
+
+    val articleLists = articles.value.result.mapIndexed { index, result ->
+        Article(
+            title = result.title,
+            thumbnail = result.imgUrl,
+            publication = result.pressName,
+            timePassed = index + 1,
+            category = "IT",
+            contents = "기사 내용~"
+        )
+    }
+    val listState = rememberLazyListState()
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        state = listState,
+    ) {
+        items(articleLists) { article ->
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ArticleItem(article = article, onItemClick = {})
+            }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun CategoryNewsCultureScreen(navController: NavController) {
+    val articles = produceState(
+        initialValue = Articles(
+            code = 0,
+            isSuccess = false,
+            message = "",
+            result = emptyList()
+        ),
+        producer = {
+            value = service.getArticlesCulture()
+        }
+    )
+
+    val articleLists = articles.value.result.mapIndexed { index, result ->
+        Article(
+            title = result.title,
+            thumbnail = result.imgUrl,
+            publication = result.pressName,
+            timePassed = index + 1,
+            category = "IT",
+            contents = "기사 내용~"
+        )
+    }
+    val listState = rememberLazyListState()
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        state = listState,
+    ) {
+        items(articleLists) { article ->
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ArticleItem(article = article, onItemClick = {})
+            }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun CategoryNewsSportsScreen(navController: NavController) {
+    val articles = produceState(
+        initialValue = Articles(
+            code = 0,
+            isSuccess = false,
+            message = "",
+            result = emptyList()
+        ),
+        producer = {
+            value = service.getArticlesSports()
+        }
+    )
+
+    val articleLists = articles.value.result.mapIndexed { index, result ->
+        Article(
+            title = result.title,
+            thumbnail = result.imgUrl,
+            publication = result.pressName,
+            timePassed = index + 1,
+            category = "IT",
+            contents = "기사 내용~"
+        )
+    }
+    val listState = rememberLazyListState()
+
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        state = listState,
+    ) {
+        items(articleLists) { article ->
+            Row(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ArticleItem(article = article, onItemClick = {})
+            }
+            if (articleLists.indexOf(article) != articleLists.size - 1) {
+                Divider(modifier = Modifier.padding(horizontal = 17.dp))
+            }
+        }
+    }
 }
