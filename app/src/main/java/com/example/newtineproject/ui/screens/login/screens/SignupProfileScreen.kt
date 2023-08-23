@@ -1,5 +1,6 @@
 package com.example.newtineproject.ui.screens.login.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -33,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,6 +53,7 @@ import com.example.newtineproject.ui.theme.textInputGrey
 @Composable
 fun SignupProfileScreen(navController: NavController){
     val nickNameState=remember{ mutableStateOf("") }
+    val context= LocalContext.current
 
     Scaffold (
         topBar = {
@@ -143,7 +146,17 @@ fun SignupProfileScreen(navController: NavController){
                 Spacer(modifier = Modifier.weight(1f))
 
                 Button(onClick = {
-                    navController.navigate(SignupScreen.PhoneVerification.route)
+                    if(nickNameState.value.isBlank()){
+                        showToast(context,"닉네임을 입력해주세요!")
+                    }
+                    else{
+                        //sharedpreference id, pw 저장
+                        val preference=context.getSharedPreferences("Signup", Context.MODE_PRIVATE)
+                        val editor=preference.edit()
+                        editor.putString("user_nickname",nickNameState.value)
+                        editor.apply()
+                        navController.navigate(SignupScreen.PhoneVerification.route)
+                    }
                 },
                     colors = ButtonDefaults.buttonColors(LightBlue),
                     modifier = Modifier

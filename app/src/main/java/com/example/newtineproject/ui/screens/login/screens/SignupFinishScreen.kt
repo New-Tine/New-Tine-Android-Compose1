@@ -85,7 +85,7 @@ fun SignupFinishScreen(navController: NavController) {
 
 
             Button(onClick = {
-                             navController.navigate(SignupScreen.GotoMain.route)
+                             navController.navigate(SignupScreen.Login.route)
             },
                 colors = ButtonDefaults.buttonColors(LightBlue),
                 modifier = Modifier

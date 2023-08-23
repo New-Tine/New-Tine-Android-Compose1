@@ -1,6 +1,8 @@
 package com.example.newtineproject.ui.screens.login.screens
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,6 +33,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -39,9 +42,13 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.components.SignupTopAppBar
+import com.example.newtineproject.ui.screens.login.server.RetrofitClient
+import com.example.newtineproject.ui.screens.login.server.Retrofit_SignupPost
 import com.example.newtineproject.ui.theme.Grey
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
+import retrofit2.Call
+import retrofit2.Response
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
@@ -54,6 +61,8 @@ fun SignupAgreementScreen(navController: NavController) {
     var checked by rememberSaveable {
         mutableStateOf(false)
     }
+
+    val context= LocalContext.current
 
     var isLazyColumnVisible by rememberSaveable { mutableStateOf(true) }
     var allAgreementsChecked by rememberSaveable { mutableStateOf(false) }
@@ -151,7 +160,64 @@ fun SignupAgreementScreen(navController: NavController) {
 
             Button(
                 onClick = {
+
+                    //한꺼번에 retrofit으로 전송
+                    // Retrofit을 사용하여 POST 요청 생성
+                    val email= getUserInfo(context,"user_email").toString()
+                    val password= getUserInfo(context,"user_password").toString()
+                    val nickname= getUserInfo(context,"user_nickname").toString()
+                    val name= getUserInfo(context,"user_name").toString()
+                    Log.d("retrofit","${email} ${password} ${nickname} ${name}")
+
+                    val postData = Retrofit_SignupPost(email, password,nickname,name)
+
+                    val retrofitInterface = RetrofitClient().getRetrofitInterface()
+                    retrofitInterface.SignupPost(postData)?.enqueue(object : retrofit2.Callback<Void>{
+                        override fun onResponse(
+                            call: Call<Void>,
+                            response: Response<Void>
+                        ) {
+                            if (response.isSuccessful) {
+                                // HTTP 상태 코드 확인
+                                val statusCode = response.code()
+                                when (statusCode) {
+                                    200 -> {
+                                        // HTTP 상태 코드 200 (성공)인 경우
+                                        Log.d("retrofit", "onResponse: Success")
+                                        // result를 사용하여 추가 처리 수행
+
+                                    }
+                                    400 -> {
+                                        // HTTP 상태 코드 400 (Bad Request)인 경우
+                                        Log.e("retrofit", "onResponse: Bad Request")
+                                        // 에러 처리 로직
+                                    }
+                                    401 -> {
+                                        // HTTP 상태 코드 401 (Unauthorized)인 경우
+                                        Log.e("retrofit", "onResponse: Unauthorized")
+                                        // 에러 처리 로직
+                                    }
+                                    // 다른 HTTP 상태 코드에 대한 처리 추가
+                                    else -> {
+                                        Log.e("retrofit", "onResponse: Unexpected Status Code $statusCode")
+                                        // 기타 예외 상황 처리
+                                    }
+                                }
+                            } else {
+                                Log.e("retrofit", "onResponse: Request Failed")
+                                // 응답이 성공하지 않은 경우에 대한 처리
+                            }
+                        }
+
+                        override fun onFailure(call: Call<Void?>, t: Throwable) {
+                            Log.e("retrofit", "onFailure: ${t.message}")
+                            // 네트워크 요청 실패에 대한 처리
+                        }
+                    })
+
                     navController.navigate(SignupScreen.Finish.route)
+
+
                 },
                 colors = ButtonDefaults.buttonColors(LightBlue),
                 modifier = Modifier
@@ -196,6 +262,11 @@ fun itemsList(text:String, agreementChecked: MutableState<Boolean>){
     }
 
 
+}
+
+fun getUserInfo(context:Context,key:String):String?{
+    val preference=context.getSharedPreferences("Signup",Context.MODE_PRIVATE)
+    return preference.getString("${key}",null)
 }
 
 @Preview

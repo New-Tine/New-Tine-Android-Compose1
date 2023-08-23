@@ -12,6 +12,14 @@ data class Retrofit_SignupPost(
     @Expose
     var password:String,
 
+    @SerializedName("nickname")
+    @Expose
+    var nickname:String,
+
+    @SerializedName("name")
+    @Expose
+    var name:String,
+
 )
 
 data class Retrofit_LoginPost(
@@ -43,3 +51,28 @@ data class Retrofit_LoginResult(
     var refreshToken:String,
 
     )
+
+data class Retrofit_GetUserInfoResult(
+    @SerializedName("userId")
+    @Expose
+    var userId:Int,
+
+    @SerializedName("nickname")
+    @Expose
+    var nickname: String,
+
+    @SerializedName("email")
+    @Expose
+    var email: String,
+
+    @SerializedName("name")
+    @Expose
+    var name: String,
+
+    )
+
+data class Retrofit_verifyEmailResult(
+    @SerializedName("mailConfirmNum")
+    @Expose
+    var mailConfirmNum:String,
+)

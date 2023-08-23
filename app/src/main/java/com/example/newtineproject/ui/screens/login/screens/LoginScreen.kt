@@ -229,7 +229,14 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                                         "retrofit",
                                                         "refreshToken: ${result.refreshToken}"
                                                     )
+
                                                     saveUserToken(context, result?.accessToken.toString() ?: "null")
+
+                                                    //user email 저장->my page 닉네임
+                                                    val preference=context.getSharedPreferences("User_info",Context.MODE_PRIVATE)
+                                                    val editor=preference.edit()
+                                                    editor.putString("user_email",result.email)
+                                                    editor.apply()
 
                                                     Log.d("gerUserToken", getUserToken(context).toString())
 
@@ -392,14 +399,14 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
 
 }
 fun saveUserToken(context: Context,token:String){
-    val preference=context.getSharedPreferences("Login",Context.MODE_PRIVATE)
+    val preference=context.getSharedPreferences("User_info",Context.MODE_PRIVATE)
     val editor=preference.edit()
     editor.putString("user_token",token)
     editor.apply()
 }
 
 fun getUserToken(context:Context):String?{
-    val preference=context.getSharedPreferences("Login",Context.MODE_PRIVATE)
+    val preference=context.getSharedPreferences("User_info",Context.MODE_PRIVATE)
     return preference.getString("user_token",null)
 }
 

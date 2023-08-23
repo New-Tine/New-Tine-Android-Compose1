@@ -22,11 +22,20 @@ interface RetrofitInterface {
 
     ): retrofit2.Call<Void>
 
-    @POST("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/signin")
+    @POST("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/signin/")
     fun LoginPost(
         @Body postData:Retrofit_LoginPost,
 
     ): retrofit2.Call<Retrofit_LoginResult?>?
 
+    @GET("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/info")
+    fun getUserInfo(
+        @Header("Authorization") authorizationHeader: String
+    ):retrofit2.Call<Retrofit_GetUserInfoResult?>?
+
+    @GET("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/login/mailConfirm")
+    fun verifyEmail(
+        @Query("email") email:String,
+    ):retrofit2.Call<Retrofit_verifyEmailResult>?
 
 }
