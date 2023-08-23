@@ -28,6 +28,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -94,7 +95,9 @@ fun SignupSelectTopicsScreen(navController: NavController){
                     //val lines=(topicList.size+itemsPerline-1)/itemsPerline
                     val lines=topicList.size/itemsPerline+1
 
-                    LazyColumn(content = {
+                    LazyColumn(
+
+                        content = {
                         items(lines){lineIndex->
                             val startIndex=lineIndex*itemsPerline
                             val endIndex=startIndex+itemsPerline
@@ -104,12 +107,13 @@ fun SignupSelectTopicsScreen(navController: NavController){
 
                             Log.d("index",itemsInLine.toString())
 
-                            LazyRow(content = {
+                            LazyRow(
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                content = {
                                 items(itemsInLine.size){
                                         index ->  TopicList(topic = itemsInLine[index])
                                 }
                             },
-                                horizontalArrangement = Arrangement.spacedBy(5.dp),
                                 modifier= Modifier
                                     .fillMaxSize()
                                     .padding(bottom = 0.dp)
@@ -175,9 +179,10 @@ fun TopicList(topic:String){
     var borderColors= if(clicked) LightBlue else MiddleGrey
 
 
-    Button(onClick = { clicked=!clicked }
-        ,shape= RoundedCornerShape(30.dp)
-        , colors = ButtonDefaults.buttonColors(Color.White),
+    Button(
+        onClick = { clicked=!clicked },
+        shape= RoundedCornerShape(30.dp),
+        colors = ButtonDefaults.buttonColors(Color.White),
         border = BorderStroke(1.dp,borderColors),
 
 

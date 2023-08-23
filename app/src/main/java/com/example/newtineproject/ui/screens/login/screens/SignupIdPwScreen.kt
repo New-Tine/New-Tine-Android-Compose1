@@ -117,7 +117,9 @@ fun SignupIdPwScreen(navController: NavController) {
                                 )
                                 .height(50.dp)
                                 .width(230.dp),
+
                             placeholder = { Text(text = "이메일") },
+                     
                             colors = TextFieldDefaults.colors(
                                 focusedContainerColor = textInputGrey,
                                 unfocusedContainerColor =textInputGrey
@@ -154,7 +156,6 @@ fun SignupIdPwScreen(navController: NavController) {
                     }
 
 
-
                 }
 
                 Spacer(modifier = Modifier.height(20.dp))
@@ -171,7 +172,10 @@ fun SignupIdPwScreen(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                         ,
-                        placeholder = { Text(text = "비밀번호 설정(8자리 이상)") },
+                        placeholder = { Text(
+                            text = "비밀번호 설정(8자리 이상)",
+                            fontSize = 15.sp
+                        ) },
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
                             unfocusedContainerColor =textInputGrey
@@ -189,7 +193,10 @@ fun SignupIdPwScreen(navController: NavController) {
                             .fillMaxWidth()
                             .height(50.dp)
                         ,
-                        placeholder = { Text(text = "비밀번호 재입력") }
+                        placeholder = { Text(
+                            text = "비밀번호 재입력",
+                            fontSize = 15.sp
+                        ) }
                         ,colors = TextFieldDefaults.colors(
                             focusedContainerColor = textInputGrey,
                             unfocusedContainerColor =textInputGrey
@@ -198,10 +205,12 @@ fun SignupIdPwScreen(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(10.dp))
 
+
                     if(isPwSame){
                         Text(text = "* 입력한 비밀번호와 일치합니다", color = LightBlue)
 
                     }
+
 
 
                 }
