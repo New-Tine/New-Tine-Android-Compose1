@@ -176,9 +176,7 @@ fun CategoryNewsItScreen(navController: NavController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 ArticleItem(article = article, onItemClick = {
-                    Log.d("index",index.toString())
-
-                    navController.navigate("${com.example.newtineproject.graphs.ArticleScreen.ArticleDetail.route}/${article.id}")
+                    navController.navigate("ArticleDetail/" + article.id)
                 })
             }
 
@@ -224,7 +222,9 @@ fun CategoryNewsPoliticScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ArticleItem(article = article, onItemClick = {})
+                ArticleItem(article = article, onItemClick = {
+                    navController.navigate("ArticleDetail/" + article.id)
+                })
             }
             if (articleLists.indexOf(article) != articleLists.size - 1) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))
@@ -268,7 +268,9 @@ fun CategoryNewsEconomyScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ArticleItem(article = article, onItemClick = {})
+                ArticleItem(article = article, onItemClick = {
+                    navController.navigate("ArticleDetail/" + article.id)
+                })
             }
             if (articleLists.indexOf(article) != articleLists.size - 1) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))
@@ -312,7 +314,9 @@ fun CategoryNewsIndustryScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ArticleItem(article = article, onItemClick = {})
+                ArticleItem(article = article, onItemClick = {
+                    navController.navigate("ArticleDetail/" + article.id)
+                })
             }
             if (articleLists.indexOf(article) != articleLists.size - 1) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))
@@ -356,7 +360,9 @@ fun CategoryNewsSocietyScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ArticleItem(article = article, onItemClick = {})
+                ArticleItem(article = article, onItemClick = {
+                    navController.navigate("ArticleDetail/" + article.id)
+                })
             }
             if (articleLists.indexOf(article) != articleLists.size - 1) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))
@@ -400,7 +406,9 @@ fun CategoryNewsCultureScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ArticleItem(article = article, onItemClick = {})
+                ArticleItem(article = article, onItemClick = {
+                    navController.navigate("ArticleDetail/" + article.id)
+                })
             }
             if (articleLists.indexOf(article) != articleLists.size - 1) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))
@@ -444,7 +452,9 @@ fun CategoryNewsSportsScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ArticleItem(article = article, onItemClick = {})
+                ArticleItem(article = article, onItemClick = {
+                    navController.navigate("ArticleDetail/" + article.id)
+                })
             }
             if (articleLists.indexOf(article) != articleLists.size - 1) {
                 Divider(modifier = Modifier.padding(horizontal = 17.dp))

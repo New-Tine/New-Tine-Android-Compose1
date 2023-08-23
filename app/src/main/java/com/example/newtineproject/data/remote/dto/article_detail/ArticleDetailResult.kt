@@ -22,8 +22,8 @@ data class ArticleDetailResult(
     val scrapped: Boolean,
     @SerialName("subscribed")
     val subscribed: Boolean,
-    //@SerialName("successMission")
-    //val successMission: List<Any>,
+    @SerialName("newsImg")
+    val newsImg: String,
     @SerialName("title")
     val title: String,
     @SerialName("newsId")
