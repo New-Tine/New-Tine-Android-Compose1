@@ -57,7 +57,7 @@ val articleDetailService = ArticleDetailService.create()
 @Composable
 fun ArticleDetailScreen (
     navController: NavController,
-    newsId: Int
+    newsId: Long
 ){
 
     var clicked by remember{ mutableStateOf(false) }
@@ -82,7 +82,7 @@ fun ArticleDetailScreen (
             )
         ),
         producer = {
-            value = articleDetailService.getEachArticleDetail()
+            value = articleDetailService.getEachArticleDetail(newsId = newsId)
         }
     )
 

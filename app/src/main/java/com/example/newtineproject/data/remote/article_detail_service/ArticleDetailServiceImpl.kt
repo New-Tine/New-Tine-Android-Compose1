@@ -10,8 +10,8 @@ class ArticleDetailServiceImpl(
     private val client: HttpClient
 ) : ArticleDetailService {
 
-    override suspend fun getEachArticleDetail(): ArticleDetail {
-        return client.get(Url.EACH_ARTICLE_NUM).body()
+    override suspend fun getEachArticleDetail(newsId: Long): ArticleDetail {
+        return client.get(Url.EACH_ARTICLE+"/${newsId}").body()
     }
 
 }
