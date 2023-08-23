@@ -36,7 +36,8 @@ fun NavGraphBuilder.ArticleNavGraph(
 
             ArticleDetailScreen(
                 navController = navController,
-                newsId = backStackEntry.arguments?.getLong("id")?: 0
+                newsId = backStackEntry.arguments?.getLong("id")?: 0,
+                paddingValues = paddingValues
             )
         }
 

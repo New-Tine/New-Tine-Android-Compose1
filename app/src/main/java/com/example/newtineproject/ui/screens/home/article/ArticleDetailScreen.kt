@@ -3,10 +3,10 @@ package com.example.newtineproject.ui.screens.home.article
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -57,7 +57,8 @@ val articleDetailService = ArticleDetailService.create(bearerToken)
 @Composable
 fun ArticleDetailScreen (
     navController: NavController,
-    newsId: Long
+    newsId: Long,
+    paddingValues: PaddingValues
 ){
 
     var clicked by remember{ mutableStateOf(false) }
@@ -92,6 +93,7 @@ fun ArticleDetailScreen (
     println(Url.EACH_ARTICLE+"/${newsId}")
 
     Scaffold(
+        modifier = Modifier.padding(paddingValues),
         topBar = {
             CenterAlignedTopAppBar(
             navigationIcon = {
@@ -123,7 +125,7 @@ fun ArticleDetailScreen (
             }
 
     ) },
-        content = {padding ->
+        content = { padding ->
             Column(
                 Modifier
                     .verticalScroll(rememberScrollState())
