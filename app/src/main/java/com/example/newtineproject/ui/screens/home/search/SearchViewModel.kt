@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.newtineproject.common.Resource
-import com.example.newtineproject.data.remote.NewsRankingService
-import com.example.newtineproject.data.remote.dto.Result
+import com.example.newtineproject.data.remote.news_ranking_service.NewsRankingService
+import com.example.newtineproject.data.remote.dto.news_ranking.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

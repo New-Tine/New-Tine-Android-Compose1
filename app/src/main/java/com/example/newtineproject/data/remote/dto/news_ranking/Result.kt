@@ -1,4 +1,4 @@
-package com.example.newtineproject.data.remote.dto
+package com.example.newtineproject.data.remote.dto.news_ranking
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

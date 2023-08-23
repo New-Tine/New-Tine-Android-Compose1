@@ -16,7 +16,7 @@ import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-
+//
 @Composable
 fun CustomScrollableTabRow(
     selectedTabIndex: Int,
@@ -115,7 +115,7 @@ class TabPosition internal constructor(val left: Dp, val width: Dp) {
 
         return true
     }
-//
+
     override fun hashCode(): Int {
         var result = left.hashCode()
         result = 31 * result + width.hashCode()
@@ -133,7 +133,7 @@ private enum class TabSlots {
     Indicator
 }
 
-//
+
 /**
  * The default padding from the starting edge before a tab in a [CustomScrollableTabRow].
  */

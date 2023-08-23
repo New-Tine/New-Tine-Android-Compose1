@@ -1,7 +1,7 @@
 package com.example.newtineproject.di
 
-import com.example.newtineproject.data.remote.NewsRankingService
-import com.example.newtineproject.data.remote.NewsRankingServiceImpl
+import com.example.newtineproject.data.remote.news_ranking_service.NewsRankingService
+import com.example.newtineproject.data.remote.news_ranking_service.NewsRankingServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
