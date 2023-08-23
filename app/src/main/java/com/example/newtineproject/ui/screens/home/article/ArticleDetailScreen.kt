@@ -3,6 +3,7 @@ package com.example.newtineproject.ui.screens.home.article
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -158,7 +159,6 @@ fun ArticleDetailScreen (
                         fontSize = 20.sp
                         , fontWeight = FontWeight.Bold
                         )
-
                 }
 
                 Row(
