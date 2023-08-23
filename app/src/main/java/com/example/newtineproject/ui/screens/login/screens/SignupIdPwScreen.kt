@@ -279,12 +279,8 @@ fun SignupIdPwScreen(navController: NavController) {
 
                     }
                     else{
-                        coroutineScope.launch {
-                            scaffoldState.snackbarHostState.showSnackbar(
-                                message = "이메일과 비밀번호를 다시 확인해주세요!",
-                                duration = SnackbarDuration.Short
-                            )
-                        }
+                        showToast(context,"이메일과 비밀번호를 확인해주세요!")
+
 
                     }
 

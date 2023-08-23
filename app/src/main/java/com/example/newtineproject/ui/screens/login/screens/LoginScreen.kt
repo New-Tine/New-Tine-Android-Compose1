@@ -3,6 +3,7 @@ package com.example.newtineproject.ui.screens.login.screens
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -85,9 +86,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
     val scaffoldState= rememberScaffoldState()
 
     Scaffold(
-
     ) {
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -195,8 +194,6 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                         var email = textIdState.value
                         var password = textPwState.value
                         isBlankExists = email.isBlank() || password.isBlank()
-                        email="testuser4@test.com"
-                        password="testuser4"
 
                         if (!isBlankExists) {
                             // Retrofit을 사용하여 POST 요청 생성
@@ -217,33 +214,26 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                                 // HTTP 상태 코드 200 (성공)인 경우
                                                 val result = response.body()
                                                 if (result != null) {
-                                                    // result를 사용하여 추가 처리 수행
-//                                                    Log.d("retrofit", "onResponse: Success")
-//                                                    Log.d(
-//                                                        "retrofit",
-//                                                        "userId: ${result.userId}"
-//                                                    )
-//                                                    Log.d("retrofit", "email: ${result.email}")
-//                                                    Log.d(
-//                                                        "retrofit",
-//                                                        "accessToken: ${result.accessToken}"
-//                                                    )
-//                                                    Log.d(
-//                                                        "retrofit",
-//                                                        "refreshToken: ${result.refreshToken}"
-//                                                    )
+                                                     //result를 사용하여 추가 처리 수행
+                                                    Log.d("retrofit", "onResponse: Success")
+                                                    Log.d(
+                                                        "retrofit",
+                                                        "userId: ${result.userId}"
+                                                    )
+                                                    Log.d("retrofit", "email: ${result.email}")
+                                                    Log.d(
+                                                        "retrofit",
+                                                        "accessToken: ${result.accessToken}"
+                                                    )
+                                                    Log.d(
+                                                        "retrofit",
+                                                        "refreshToken: ${result.refreshToken}"
+                                                    )
                                                     saveUserToken(context, result?.accessToken.toString() ?: "null")
 
                                                     Log.d("gerUserToken", getUserToken(context).toString())
 
-                                                    coroutineScope.launch {
-                                                        scaffoldState.snackbarHostState.showSnackbar(
-                                                            message = "로그인이 완료되었습니다!",
-                                                            duration = SnackbarDuration.Short
-                                                        )
-                                                        delay(2000)
-
-                                                    }
+                                                    showToast(context,"로그인이 완료되었습니다!")
 
                                                     navController.navigate(SignupScreen.GotoMain.route)
 
@@ -254,6 +244,9 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                                         "retrofit",
                                                         "onResponse: Response body is null"
                                                     )
+
+                                                    showToast(context,"이메일과 비밀번호를 확인해주세요!")
+
 
                                                 }
                                             }
@@ -282,12 +275,9 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                     } else {
                                         Log.e("retrofit", "onResponse: Request Failed")
                                         // 응답이 성공하지 않은 경우에 대한 처리
-                                        coroutineScope.launch {
-                                            scaffoldState.snackbarHostState.showSnackbar(
-                                                message = "로그인이 실패하였습니다! 회원가입을 먼저 진행해 주세요!",
-                                                duration = SnackbarDuration.Short
-                                            )
-                                        }
+
+                                        showToast(context,"로그인이 실패하였습니다! 회원가입을 먼저 진행해 주세요!")
+
                                     }
                                 }
 
@@ -297,24 +287,17 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
                                 ) {
                                     Log.e("retrofit", "onFailure: ${t.message}")
                                     // 네트워크 요청 실패에 대한 처리
-                                    coroutineScope.launch {
-                                        scaffoldState.snackbarHostState.showSnackbar(
-                                            message = "로그인이 실패하였습니다! 회원가입을 먼저 진행해 주세요!",
-                                            duration = SnackbarDuration.Short
-                                        )
-                                    }
+
+                                    showToast(context,"로그인이 실패하였습니다! 회원가입을 먼저 진행해 주세요!")
+
+
+
                                 }
                             })
 
                         }
                         else{
-                            coroutineScope.launch {
-                                scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "이메일과 비밀번호를 다시 확인해 주세요!",
-                                    duration = SnackbarDuration.Short
-                                )
-                            }
-
+                            showToast(context,"이메일과 비밀번호를 모두 입력해 주세요!")
 
                         }
 
@@ -360,9 +343,7 @@ fun LoginScreen(navController: NavHostController = rememberNavController()) {
 
                     TextButton(
                         onClick = {
-                            //navController.navigate(LoginScreen.Signup.route)
-
-                            navController.navigate(SignupScreen.IdPw.route)
+                           navController.navigate(SignupScreen.IdPw.route)
                         }) {
                         Text(text = "회원가입",
                             color = Grey
@@ -420,4 +401,8 @@ fun saveUserToken(context: Context,token:String){
 fun getUserToken(context:Context):String?{
     val preference=context.getSharedPreferences("Login",Context.MODE_PRIVATE)
     return preference.getString("user_token",null)
+}
+
+fun showToast(context: Context, message: String) {
+    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
