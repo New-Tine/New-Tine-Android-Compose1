@@ -184,7 +184,7 @@ fun NewTechScreen(navController: NavController) {
                                         )
                                 ) {
                                     Text(
-                                        text = "기사에 머물렀던 시간",
+                                        text = "기사에 머무른 시간",
                                         style = LocalTextStyle.current.copy(
                                             fontSize = 14.sp
                                         )

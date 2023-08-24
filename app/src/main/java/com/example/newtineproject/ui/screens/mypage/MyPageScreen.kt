@@ -242,7 +242,7 @@ fun MyPageScreen(
                                         contentScale = ContentScale.Crop
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
-                                    Text(text = "교환권 구매",
+                                    Text(text = "교환권",
                                         fontSize = 18.sp,
                                         color = Color.White,
                                         textAlign = TextAlign.Center,
