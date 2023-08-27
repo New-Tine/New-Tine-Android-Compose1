@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
-import com.example.newtineproject.graphs.LoginNavGraph
+import com.example.newtineproject.graphs.SignupNavGraph
 import com.example.newtineproject.ui.theme.Grey
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
@@ -53,7 +53,7 @@ fun LLoginScreen(navHostController: NavHostController= rememberNavController()) 
 
     Scaffold (
     ){
+        SignupNavGraph(navController = navHostController)
 
-        LoginNavGraph(navController = navHostController)
     }
 }

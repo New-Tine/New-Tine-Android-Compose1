@@ -13,7 +13,6 @@ fun RootNavGraph(navController: NavHostController) {
         route = Graph.ROOT,
         startDestination = Graph.LOGIN,
     ) {
-        //로그인 여부에 따른 분기 처리 추가 필요
         composable(route=Graph.LOGIN){
             LLoginScreen()
         }

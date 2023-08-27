@@ -53,7 +53,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.R
-import com.example.newtineproject.graphs.LoginScreen
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.KaKaoAuthViewModel
