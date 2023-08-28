@@ -151,7 +151,7 @@ fun SignupPressScreen(navController: NavController){
 
                     Spacer(modifier = Modifier.height(25.dp))
 
-                    Button(onClick = { /*TODO*/ },
+                    Button(onClick = { navController.navigate(SignupScreen.Topics.route) },
                         colors = ButtonDefaults.buttonColors(Color.Transparent)
                         , modifier = Modifier.fillMaxWidth()
                     ) {

@@ -58,6 +58,7 @@ fun SignupAgreementScreen(navController: NavController) {
     agreementList.add("[필수] 개인정보 수집 및 이용약관")
     agreementList.add("[선택] 프로필 정보 추가 수집 동의")
     agreementList.add("[선택 광고성 정보 수신 동의")
+
     var checked by rememberSaveable {
         mutableStateOf(false)
     }
@@ -67,7 +68,9 @@ fun SignupAgreementScreen(navController: NavController) {
     var isLazyColumnVisible by rememberSaveable { mutableStateOf(true) }
     var allAgreementsChecked by rememberSaveable { mutableStateOf(false) }
 
-
+    var checkedList = rememberSaveable {
+        MutableList(agreementList.size){false}
+    }
 
     Scaffold(
         topBar = {
@@ -133,14 +136,21 @@ fun SignupAgreementScreen(navController: NavController) {
                             var agreementChecked= rememberSaveable{
                                 mutableStateOf(allAgreementsChecked)
                             }
+
                             DisposableEffect(allAgreementsChecked) {
                                 agreementChecked.value = allAgreementsChecked
                                 onDispose { }
                             }
 
+                            var checkBoolean=itemsList(text = agreementList[index],agreementChecked)
+                            checkedList[index]=checkBoolean
 
-                            itemsList(text = agreementList[index],agreementChecked)
+                            DisposableEffect(checkedList) {
+                                Log.d("checkedList", checkedList.toString())
+                                onDispose { }
+                            }
                         }
+
 
                     }
 
@@ -160,62 +170,70 @@ fun SignupAgreementScreen(navController: NavController) {
 
             Button(
                 onClick = {
+                    if (!(checkedList[0]&&checkedList[1])) {
+                        Log.d("checkedlist",checkedList.toString())
+                        showToast(context, "필수 동의 항목을 모두 클릭해 주세요!")
+                    }
+                    else{
+                        //한꺼번에 retrofit으로 전송
+                        // Retrofit을 사용하여 POST 요청 생성
+                        val email= getUserInfo(context,"user_email").toString()
+                        val password= getUserInfo(context,"user_password").toString()
+                        val nickname= getUserInfo(context,"user_nickname").toString()
+                        val name= getUserInfo(context,"user_name").toString()
+                        Log.d("retrofit","${email} ${password} ${nickname} ${name}")
 
-                    //한꺼번에 retrofit으로 전송
-                    // Retrofit을 사용하여 POST 요청 생성
-                    val email= getUserInfo(context,"user_email").toString()
-                    val password= getUserInfo(context,"user_password").toString()
-                    val nickname= getUserInfo(context,"user_nickname").toString()
-                    val name= getUserInfo(context,"user_name").toString()
-                    Log.d("retrofit","${email} ${password} ${nickname} ${name}")
+                        val postData = Retrofit_SignupPost(email, password,nickname,name)
 
-                    val postData = Retrofit_SignupPost(email, password,nickname,name)
+                        val retrofitInterface = RetrofitClient().getRetrofitInterface()
+                        retrofitInterface.SignupPost(postData)?.enqueue(object : retrofit2.Callback<Void>{
+                            override fun onResponse(
+                                call: Call<Void>,
+                                response: Response<Void>
+                            ) {
+                                if (response.isSuccessful) {
+                                    // HTTP 상태 코드 확인
+                                    val statusCode = response.code()
+                                    when (statusCode) {
+                                        200 -> {
+                                            // HTTP 상태 코드 200 (성공)인 경우
+                                            Log.d("retrofit", "onResponse: Success")
+                                            // result를 사용하여 추가 처리 수행
 
-                    val retrofitInterface = RetrofitClient().getRetrofitInterface()
-                    retrofitInterface.SignupPost(postData)?.enqueue(object : retrofit2.Callback<Void>{
-                        override fun onResponse(
-                            call: Call<Void>,
-                            response: Response<Void>
-                        ) {
-                            if (response.isSuccessful) {
-                                // HTTP 상태 코드 확인
-                                val statusCode = response.code()
-                                when (statusCode) {
-                                    200 -> {
-                                        // HTTP 상태 코드 200 (성공)인 경우
-                                        Log.d("retrofit", "onResponse: Success")
-                                        // result를 사용하여 추가 처리 수행
-
+                                        }
+                                        400 -> {
+                                            // HTTP 상태 코드 400 (Bad Request)인 경우
+                                            Log.e("retrofit", "onResponse: Bad Request")
+                                            // 에러 처리 로직
+                                        }
+                                        401 -> {
+                                            // HTTP 상태 코드 401 (Unauthorized)인 경우
+                                            Log.e("retrofit", "onResponse: Unauthorized")
+                                            // 에러 처리 로직
+                                        }
+                                        // 다른 HTTP 상태 코드에 대한 처리 추가
+                                        else -> {
+                                            Log.e("retrofit", "onResponse: Unexpected Status Code $statusCode")
+                                            // 기타 예외 상황 처리
+                                        }
                                     }
-                                    400 -> {
-                                        // HTTP 상태 코드 400 (Bad Request)인 경우
-                                        Log.e("retrofit", "onResponse: Bad Request")
-                                        // 에러 처리 로직
-                                    }
-                                    401 -> {
-                                        // HTTP 상태 코드 401 (Unauthorized)인 경우
-                                        Log.e("retrofit", "onResponse: Unauthorized")
-                                        // 에러 처리 로직
-                                    }
-                                    // 다른 HTTP 상태 코드에 대한 처리 추가
-                                    else -> {
-                                        Log.e("retrofit", "onResponse: Unexpected Status Code $statusCode")
-                                        // 기타 예외 상황 처리
-                                    }
+                                } else {
+                                    Log.e("retrofit", "onResponse: Request Failed")
+                                    // 응답이 성공하지 않은 경우에 대한 처리
                                 }
-                            } else {
-                                Log.e("retrofit", "onResponse: Request Failed")
-                                // 응답이 성공하지 않은 경우에 대한 처리
                             }
-                        }
 
-                        override fun onFailure(call: Call<Void?>, t: Throwable) {
-                            Log.e("retrofit", "onFailure: ${t.message}")
-                            // 네트워크 요청 실패에 대한 처리
-                        }
-                    })
+                            override fun onFailure(call: Call<Void?>, t: Throwable) {
+                                Log.e("retrofit", "onFailure: ${t.message}")
+                                // 네트워크 요청 실패에 대한 처리
+                            }
+                        })
 
-                    navController.navigate(SignupScreen.Finish.route)
+                        navController.navigate(SignupScreen.Finish.route)
+
+                    }
+
+
 
 
                 },
@@ -245,7 +263,7 @@ fun SignupAgreementScreen(navController: NavController) {
 }
 
 @Composable
-fun itemsList(text:String, agreementChecked: MutableState<Boolean>){
+fun itemsList(text:String, agreementChecked: MutableState<Boolean>):Boolean{
     Row (
         modifier = Modifier.fillMaxWidth()
     ){
@@ -260,6 +278,7 @@ fun itemsList(text:String, agreementChecked: MutableState<Boolean>){
         }
 
     }
+    return agreementChecked.value
 
 
 }
