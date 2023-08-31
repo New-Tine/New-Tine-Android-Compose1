@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "808632842959",
+    "project_id": "newtine-bbf83",
+    "storage_bucket": "newtine-bbf83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808632842959:android:f2c15f68c874171e05d5ba",
+        "android_client_info": {
+          "package_name": "com.example.newtineproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808632842959-ephm2egn5hp14meq00d91v4n2quh322e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJWLflc-6taXRaFZvJPFaF6Sy5rCoCOqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808632842959-ephm2egn5hp14meq00d91v4n2quh322e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

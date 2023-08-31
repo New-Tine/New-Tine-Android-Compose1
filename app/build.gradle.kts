@@ -5,6 +5,7 @@ plugins {
     id("com.google.dagger.hilt.android")
     kotlin("plugin.serialization") version "1.9.0"
     id("androidx.navigation.safeargs")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -129,6 +130,12 @@ dependencies {
 
     // Serialization
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+    //fire base - alarm
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.2.1")
+
+
 }

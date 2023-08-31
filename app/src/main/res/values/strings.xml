@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NEWTINE</string>
+    <string name="newtine_alarm_channel">NEWTINE_ALARM_CHANEL</string>
 </resources>
