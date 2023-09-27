@@ -57,10 +57,10 @@ import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.screens.getUserToken
 import com.example.newtineproject.ui.screens.login.screens.saveUserToken
 import com.example.newtineproject.ui.screens.login.screens.showToast
-import com.example.newtineproject.ui.screens.login.server.RetrofitClient
-import com.example.newtineproject.ui.screens.login.server.Retrofit_GetUserInfoResult
-import com.example.newtineproject.ui.screens.login.server.Retrofit_LoginPost
-import com.example.newtineproject.ui.screens.login.server.Retrofit_LoginResult
+import com.example.newtineproject.server.RetrofitClient
+import com.example.newtineproject.server.Retrofit_GetUserInfoResult
+import com.example.newtineproject.server.Retrofit_LoginPost
+import com.example.newtineproject.server.Retrofit_LoginResult
 import com.example.newtineproject.ui.screens.mypage.components.myPageActivity
 import com.example.newtineproject.ui.screens.mypage.components.myPageHelp
 import com.example.newtineproject.ui.screens.mypage.components.myPageSetting

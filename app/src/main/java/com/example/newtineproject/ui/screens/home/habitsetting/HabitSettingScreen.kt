@@ -4,6 +4,9 @@ package com.example.newtineproject.ui.screens.home.habitsetting
 
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.SharedPreferences
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -42,6 +45,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -62,9 +67,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.newtineproject.R
+import com.example.newtineproject.server.RetrofitClient
+import com.example.newtineproject.server.Retrofit_HabbitPost
+import com.example.newtineproject.server.Retrofit_SignupPost
+import com.example.newtineproject.ui.screens.login.screens.showToast
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
+import retrofit2.Call
+import retrofit2.Response
 import java.util.Calendar
+
+var habbit_day= "월"
+
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -90,15 +104,27 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
     val calender = Calendar.getInstance()
     val timeState = remember { mutableStateOf("") }
 
+    // server로 넘기는 habbit 값들
+    var habbit_hour="12"
+    var habbit_minute="00"
+    val habbit_days= mutableSetOf<String>()
+
+//    var habbit_hour=remember{ mutableStateOf("12") }
+//    var habbit_minute=remember{ mutableStateOf("00") }
+
     val context = LocalContext.current
     val timePickerDialog = TimePickerDialog(
         context, { _, hour, minute ->
             timeState.value = "${hour}시: ${minute}분"
+            habbit_hour=hour.toString()
+            habbit_minute=minute.toString()
         },
         calender[Calendar.HOUR_OF_DAY],
         calender[Calendar.MINUTE],
-        false
+        true,
     )
+
+
 
     Scaffold(
         modifier = Modifier.padding(paddingValues),
@@ -150,7 +176,7 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
                     LazyRow(
                         content = {
                             items(weekdays.size) { index ->
-                                WeekdaysItem(day = weekdays[index])
+                                WeekdaysItem(habbit_days=habbit_days,day = weekdays[index])
                             }
                         },
                         modifier = Modifier
@@ -187,6 +213,7 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
                         onClick = {
 
                             timePickerDialog.show()
+
                         },
                     ) {
                         Text(
@@ -359,6 +386,61 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
                         Button(
                             onClick = {
                                 navController.popBackStack()
+//                                val preference=context.getSharedPreferences("habbit_setting",Context.MODE_PRIVATE)
+//                                val editor=preference.edit()
+//                                editor.putStringSet("habbit_days",habbit_days)
+//                                editor.putString("habbit_hour",habbit_hour)
+//                                editor.putString("habbit_minute",habbit_minute)
+//                                editor.apply()
+
+                                //여기다가 retrofit 보내는거 구현!
+                                val postData = Retrofit_HabbitPost(habbit_days, habbit_hour = habbit_hour, habbit_minute =habbit_minute)
+
+                                val retrofitInterface = RetrofitClient().getRetrofitInterface()
+                                retrofitInterface.habbitPost(postData)?.enqueue(object:retrofit2.Callback<Void>{
+                                    override fun onResponse(
+                                        call: Call<Void>,
+                                        response: Response<Void>
+                                    ) {
+                                        if (response.isSuccessful) {
+                                            // HTTP 상태 코드 확인
+                                            val statusCode = response.code()
+                                            when (statusCode) {
+                                                200 -> {
+                                                    // HTTP 상태 코드 200 (성공)인 경우
+                                                    Log.d("retrofit", "onResponse: Success")
+                                                    showToast(context,"습관 설정이 완료되었습니다:)")
+                                                    // result를 사용하여 추가 처리 수행
+
+                                                }
+                                                400 -> {
+                                                    // HTTP 상태 코드 400 (Bad Request)인 경우
+                                                    Log.e("retrofit", "onResponse: Bad Request")
+                                                    // 에러 처리 로직
+                                                }
+                                                401 -> {
+                                                    // HTTP 상태 코드 401 (Unauthorized)인 경우
+                                                    Log.e("retrofit", "onResponse: Unauthorized")
+                                                    // 에러 처리 로직
+                                                }
+                                                // 다른 HTTP 상태 코드에 대한 처리 추가
+                                                else -> {
+                                                    Log.e("retrofit", "onResponse: Unexpected Status Code $statusCode")
+                                                    // 기타 예외 상황 처리
+                                                }
+                                            }
+                                        } else {
+                                            Log.e("retrofit", "onResponse: Request Failed")
+                                            // 응답이 성공하지 않은 경우에 대한 처리
+                                        }
+                                    }
+
+                                    override fun onFailure(call: Call<Void?>, t: Throwable) {
+                                        Log.e("retrofit", "onFailure: ${t.message}")
+                                        // 네트워크 요청 실패에 대한 처리
+                                    }
+                                })
+
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -398,8 +480,9 @@ fun HabitSettingScreen(navController: NavController, paddingValues: PaddingValue
 
 
 @Composable
-fun WeekdaysItem(day: String) {
+fun WeekdaysItem(habbit_days:Set<String>,day: String) {
     val context = LocalContext.current
+    var habbit_day:String="월"
     var isButtonClicked by remember {
         mutableStateOf(false)
     }
@@ -407,6 +490,18 @@ fun WeekdaysItem(day: String) {
     Button(
         onClick = {
             isButtonClicked = !isButtonClicked
+            habbit_day=day
+
+            if(isButtonClicked){
+                showToast(context,"${habbit_day}가 선택되었습니다!")
+                habbit_days.plus(habbit_day)
+
+            }
+            else{
+                showToast(context,"${habbit_day}가 선택 해제되었습니다!")
+                habbit_days.minus(habbit_day)
+            }
+
         },
         colors = ButtonDefaults.buttonColors(
             Color.Transparent
@@ -429,5 +524,6 @@ fun WeekdaysItem(day: String) {
         )
     }
     Spacer(modifier = Modifier.padding(end = 5.dp))
+
 }
 

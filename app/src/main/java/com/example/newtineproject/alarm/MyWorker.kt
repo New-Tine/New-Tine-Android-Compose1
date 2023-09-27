@@ -1,4 +1,4 @@
-package com.example.newtineproject
+package com.example.newtineproject.alarm
 
 import android.content.Context
 import android.util.Log

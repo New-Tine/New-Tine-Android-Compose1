@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.login.server
+package com.example.newtineproject.server
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -30,6 +30,21 @@ data class Retrofit_LoginPost(
     @SerializedName("password")
     @Expose
     var password:String,
+
+)
+
+data class Retrofit_HabbitPost(
+    @SerializedName("habbit_days")
+    @Expose
+    var habbit_days:Set<String>,
+
+    @SerializedName("habbit_hour")
+    @Expose
+    var habbit_hour:String,
+
+    @SerializedName("habbit_minute")
+    @Expose
+    var habbit_minute:String,
 
 )
 

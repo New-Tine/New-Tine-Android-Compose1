@@ -42,8 +42,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.components.SignupTopAppBar
-import com.example.newtineproject.ui.screens.login.server.RetrofitClient
-import com.example.newtineproject.ui.screens.login.server.Retrofit_SignupPost
+import com.example.newtineproject.server.RetrofitClient
+import com.example.newtineproject.server.Retrofit_SignupPost
 import com.example.newtineproject.ui.theme.Grey
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey

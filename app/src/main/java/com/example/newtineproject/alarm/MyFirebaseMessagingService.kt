@@ -1,4 +1,4 @@
-package com.example.newtineproject
+package com.example.newtineproject.alarm
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,10 +9,10 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.work.Logger
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
-import com.google.firebase.messaging.FirebaseMessaging
+import com.example.newtineproject.MainActivity
+import com.example.newtineproject.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 

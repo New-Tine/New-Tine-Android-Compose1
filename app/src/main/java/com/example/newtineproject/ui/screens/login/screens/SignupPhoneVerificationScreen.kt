@@ -44,8 +44,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.components.SignupTopAppBar
-import com.example.newtineproject.ui.screens.login.server.RetrofitClient
-import com.example.newtineproject.ui.screens.login.server.Retrofit_verifyEmailResult
+import com.example.newtineproject.server.RetrofitClient
+import com.example.newtineproject.server.Retrofit_verifyEmailResult
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.textInputGrey
 import retrofit2.Call
@@ -137,7 +137,7 @@ fun SignupPhoneVerificationScreen(navController: NavController) {
                         onClick = {
                             //retrofit 이메일 인증 요청
                             val email=textEmailState.value
-                            val retrofitInterface=RetrofitClient().getRetrofitInterface()
+                            val retrofitInterface= RetrofitClient().getRetrofitInterface()
                             retrofitInterface.verifyEmail(email)?.enqueue(object :retrofit2.Callback<Retrofit_verifyEmailResult?> {
                                 override fun onResponse(
                                     call: Call<Retrofit_verifyEmailResult?>,

@@ -46,8 +46,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import com.example.newtineproject.ui.screens.login.server.RetrofitClient
-import com.example.newtineproject.ui.screens.login.server.Retrofit_SignupPost
+import com.example.newtineproject.server.RetrofitClient
+import com.example.newtineproject.server.Retrofit_SignupPost
 import retrofit2.Call
 import retrofit2.Response
 import androidx.compose.material3.Text as Text

@@ -1,4 +1,4 @@
-package com.example.newtineproject.ui.screens.login.server
+package com.example.newtineproject.server
 
 import android.telecom.Call
 import coil.intercept.Interceptor
@@ -18,15 +18,20 @@ interface RetrofitInterface {
     //sign up
     @POST("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/signup/")
     fun SignupPost(
-        @Body postData:Retrofit_SignupPost,
+        @Body postData: Retrofit_SignupPost,
 
-    ): retrofit2.Call<Void>
+        ): retrofit2.Call<Void>
 
     @POST("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/signin/")
     fun LoginPost(
-        @Body postData:Retrofit_LoginPost,
+        @Body postData: Retrofit_LoginPost,
 
-    ): retrofit2.Call<Retrofit_LoginResult?>?
+        ): retrofit2.Call<Retrofit_LoginResult?>?
+
+    @POST()
+    fun habbitPost(
+        @Body postData:Retrofit_HabbitPost,
+    ):retrofit2.Call<Void>
 
     @GET("http://ec2-52-78-221-52.ap-northeast-2.compute.amazonaws.com:8080/user/info")
     fun getUserInfo(
@@ -37,5 +42,6 @@ interface RetrofitInterface {
     fun verifyEmail(
         @Query("email") email:String,
     ):retrofit2.Call<Retrofit_verifyEmailResult>?
+
 
 }

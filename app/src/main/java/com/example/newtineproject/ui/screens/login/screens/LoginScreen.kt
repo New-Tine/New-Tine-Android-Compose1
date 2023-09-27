@@ -56,10 +56,10 @@ import com.example.newtineproject.R
 import com.example.newtineproject.graphs.NavigationBarScreen
 import com.example.newtineproject.graphs.SignupScreen
 import com.example.newtineproject.ui.screens.login.KaKaoAuthViewModel
-import com.example.newtineproject.ui.screens.login.server.RetrofitClient
-import com.example.newtineproject.ui.screens.login.server.Retrofit_LoginPost
-import com.example.newtineproject.ui.screens.login.server.Retrofit_LoginResult
-import com.example.newtineproject.ui.screens.login.server.Retrofit_SignupPost
+import com.example.newtineproject.server.RetrofitClient
+import com.example.newtineproject.server.Retrofit_LoginPost
+import com.example.newtineproject.server.Retrofit_LoginResult
+import com.example.newtineproject.server.Retrofit_SignupPost
 import com.example.newtineproject.ui.theme.Grey
 import com.example.newtineproject.ui.theme.LightBlue
 import com.example.newtineproject.ui.theme.LightGrey
